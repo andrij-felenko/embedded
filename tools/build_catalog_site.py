@@ -862,15 +862,15 @@ footer a{color:var(--accent)}
  .lede{display:none}
  .stage{gap:3px;padding:0 0 3px}
  .stage[data-step=build] .top{flex:0 0 38%;padding:3px 5px 3px}
- .tp{grid-template-columns:1fr;gap:6px}
- .tpr{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:4px}
+ .tp{gap:5px}
+ .tpr{padding-left:5px}
  .mrow>b{width:58px;font-size:.6rem}
  .tab{font-size:.72rem;padding:6px 2px}
  .tab .d{display:none}
  .tab .m{display:block;white-space:normal}
  /* щільніше, але читабельно: менший шрифт і відступи замість обрізання */
- .row{padding:4px 5px;gap:4px}
- .row b{font-size:.78rem}
+ .row{padding:9px 6px;gap:5px;min-height:40px}
+ .row b{font-size:.8rem}
  .row svg{width:16px;height:16px}
  .row .dir svg{width:12px;height:12px}
  .mini2{padding:3px 7px;gap:4px}
