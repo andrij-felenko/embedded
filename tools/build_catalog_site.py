@@ -343,7 +343,7 @@ def parse_recipes():
     for x in out:
         x["need"] = [[a.strip() for a in alt.split("|") if a.strip()]
                      for alt in x.pop("з")]
-        x["sec"] = secs.get(x["key"], "Інше")
+        x["sec"], x["sub"] = secs.get(x["key"], ("Інше", "Інше"))
     return out
 
 
@@ -371,18 +371,30 @@ CAT_RULES = [("світло", "Світло"), ("рослин", "Рослини 
              ("жодне", "Автоматика: помітив — зробив"), ("живлен", "Автоматика: помітив — зробив")]
 
 
+SUB_MERGE = {"Для бабусі й дідуся": "Бабуся й дідусь", "Для офісу": "Офіс", "Ігри й іграшки": "Ігри",
+             "Іграшки та ігри": "Ігри", "Іграшки і дрібниці": "Іграшки", "Навчання й школа": "Навчання",
+             "Діти й навчання": "Діти", "Кухня і побут": "Кухня", "Кухня і стіл": "Кухня", "Дім і побут": "Дім",
+             "Авто та велосипед": "Автомобіль", "Похід і намет": "Подорожі й походи", "Охорона вдома": "Охорона",
+             "Світло вдома": "Світло", "Машинки і човни": "Машинки і роботи", "Рослини, город і бочка": "Город і балкон",
+             "Балкон": "Город і балкон", "Двері, замки і доступ": "Замки і доступ"}
+
+
 def recipe_sections(path):
-    out, cat = {}, "Інше"
+    """ключ рецепту -> (категорія, підгрупа): категорія за правилами, підгрупа — заголовок розділу як є."""
+    out, cat, sub = {}, "Інше", "Інше"
     for line in open(path, encoding="utf-8"):
         t = line.strip()
         if t.startswith("## "):
             h = t[3:].strip()
             low = h.lower()
-            cat = next((c for s, c in CAT_RULES if s in low), None) or re.sub(r"^Ще:?\s*", "", h)
+            sub = re.sub(r"^Ще:?\s*", "", h)
+            sub = sub[:1].upper() + sub[1:]
+            sub = SUB_MERGE.get(sub, sub)
+            cat = next((c for s, c in CAT_RULES if s in low), None) or sub
             continue
         m = re.match(r"^\[([^\]]+)\]\s+\S", t)
         if m:
-            out[m.group(1)] = cat
+            out[m.group(1)] = (cat, sub)
     return out
 
 
@@ -687,6 +699,16 @@ body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--in
 .acat[open] summary::before{content:'▾'}
 .acat .cnt{margin-left:auto;font-size:.72rem;font-weight:500;color:var(--soft)}
 .acat .al{margin:0 0 4px 10px}
+.asub{margin:0 0 4px 10px}
+.asub summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px;font-size:.8rem;
+ font-weight:500;padding:4px 8px;border:1px solid var(--line);border-radius:4px;margin:0 0 4px;color:var(--ink)}
+.asub summary::-webkit-details-marker{display:none}
+.asub summary::before{content:'▸';font-size:.75rem;color:var(--soft)}
+.asub[open] summary::before{content:'▾'}
+.asub .cnt{margin-left:auto;font-size:.7rem;font-weight:500;color:var(--soft)}
+.mf{width:100%;border:1px solid var(--line);border-radius:4px;padding:6px 9px;font:inherit;font-size:.86rem;
+ background:var(--paper);color:var(--ink)}
+.mf:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--glow)}
 .al.done2{opacity:.55}
 .okmark{font-size:.72rem;color:var(--down);flex:none}
 .al b{display:block;font-size:.88rem;font-weight:600;line-height:1.25}
@@ -1231,21 +1253,43 @@ function showAlmost(){
         <button class="pm" data-build="${esc(x.r.key)}" title="додати й зліпити">+</button></div>`).join('')}</div>`
     :`<p class="mq">Поки нічого, чому бракує лише одного. Усі рішення — плюс біля «готово».</p>`));
 }
-// «усі готові рішення»: за категоріями, згорнуті списки; плюс добирає все, чого бракує
+// «усі готові рішення»: категорія -> підгрупа -> рецепти; фільтр; категорія обраного виду першою
+const KIND_CAT={"світло":"Світло","охорона":"Охорона і замки","погода":"Дім і погода","грядка":"Рослини і тварини",
+  "тварини":"Рослини і тварини","кухня":"Кухня","прилади":"Показники і керування","замок":"Охорона і замки",
+  "іграшки":"Іграшки, ігри, свята","насобі":"Діти, здоров'я, старші","робот":"Машинки, роботи, дорога",
+  "машинка":"Машинки, роботи, дорога","човен":"Машинки, роботи, дорога"};
 function showAll(){
   const have=availNames(), cats=[], by={};
-  RECIPES.forEach(r=>{ if(!by[r.sec]){by[r.sec]=[];cats.push(r.sec);} by[r.sec].push(r); });
+  RECIPES.forEach(r=>{ if(!by[r.sec]){by[r.sec]={subs:[],by:{}};cats.push(r.sec);}
+    const c=by[r.sec]; if(!c.by[r.sub]){c.by[r.sub]=[];c.subs.push(r.sub);} c.by[r.sub].push(r); });
+  const pref=KIND_CAT[kind]||'';
+  cats.sort((x,y)=>(y===pref)-(x===pref)||RECIPES.filter(r=>r.sec===y).length-RECIPES.filter(r=>r.sec===x).length);
   const item=r=>{const rows=recipeRows(r,have);
     return {r,rows,miss:rows.filter(x=>!x.ok).length,done:built.some(b=>b.key===r.key)};};
+  const itemHtml=x=>`<div class="al${x.done?' done2':''}" data-text="${esc((x.r.name+' '+x.r.need.flat().join(' ')).toLowerCase())}">
+      <div class="alt"><b>${esc(x.r.name)}</b>${ingsHtml(x.rows)}</div>${
+      x.done?`<span class="okmark">готово</span>`
+            :`<button class="pm" data-build="${esc(x.r.key)}" title="${x.miss?'додати '+x.miss+' і зліпити':'зліпити'}">+</button>`}</div>`;
   openBox(`<h3 class="mt">Усі готові рішення</h3>
-    <p class="mq small">Розгорни категорію. Плюс додає все, чого бракує, і зліплює — навіть якщо бракує кількох або цілої сутності всередині.</p>
-    <div class="alist">${cats.map(c=>{
-      const items=by[c].map(item).sort((a,b)=>(a.done?1:0)-(b.done?1:0)||a.miss-b.miss||b.r.need.length-a.r.need.length);
-      return `<details class="acat"><summary>${esc(c)}<span class="cnt">${items.length}</span></summary>${items.map(x=>
-        `<div class="al${x.done?' done2':''}"><div class="alt"><b>${esc(x.r.name)}</b>${ingsHtml(x.rows)}</div>${
-        x.done?`<span class="okmark">готово</span>`
-              :`<button class="pm" data-build="${esc(x.r.key)}" title="${x.miss?'додати '+x.miss+' і зліпити':'зліпити'}">+</button>`}</div>`).join('')}</details>`;
+    <input class="mf" type="search" placeholder="Знайти за назвою або складником…" autocomplete="off">
+    <p class="mq small">Розгорни категорію, потім підгрупу. Плюс додає все, чого бракує, і зліплює — навіть цілу сутність усередині.</p>
+    <div class="alist">${cats.map((c,ci)=>{
+      const cat=by[c]; const n=cat.subs.reduce((k,sname)=>k+cat.by[sname].length,0);
+      return `<details class="acat"${ci===0&&pref?' open':''}><summary>${esc(c)}<span class="cnt">${n}</span></summary>${
+        cat.subs.map(sname=>{
+          const items=cat.by[sname].map(item).sort((p,q)=>(p.done?1:0)-(q.done?1:0)||p.miss-q.miss||q.r.need.length-p.r.need.length);
+          return `<details class="asub"><summary>${esc(sname)}<span class="cnt">${items.length}</span></summary>${items.map(itemHtml).join('')}</details>`;
+        }).join('')}</details>`;
     }).join('')}</div>`,'wide');
+  mbox.querySelector('.mf').focus();
+}
+function filterAll(q){
+  q=q.trim().toLowerCase();
+  mbox.querySelectorAll('.al').forEach(el=>{ el.hidden=!!q&&!el.dataset.text.includes(q); });
+  mbox.querySelectorAll('.asub').forEach(d=>{ const vis=[...d.querySelectorAll('.al')].some(el=>!el.hidden);
+    d.hidden=!vis; if(q) d.open=vis; });
+  mbox.querySelectorAll('.acat').forEach(d=>{ const vis=[...d.querySelectorAll('.asub')].some(el=>!el.hidden);
+    d.hidden=!vis; if(q) d.open=vis; });
 }
 // зліпити будь-що: добрати відсутні вміння (перший варіант), вкладені сутності зібрати спершу
 function buildFull(key,depth){
@@ -1424,6 +1468,7 @@ modal.onclick=e=>{
   if(e.target===modal||e.target.closest('[data-close]')) closeBox();
 };
 document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeBox(); });
+modal.addEventListener('input',e=>{ if(e.target.classList.contains('mf')) filterAll(e.target.value); });
 infoEl.onclick=e=>{
   if(e.target.closest('[data-back]')){look=null;drawRail();return;}
   const o=e.target.closest('[data-pic]');
