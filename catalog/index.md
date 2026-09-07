@@ -1,7 +1,7 @@
 # Каталог
 
-Усе разом — наявне ([../hardware.md](../hardware.md)) плюс замовлене
-([../hardware_incoming.md](../hardware_incoming.md)). Кількість — скільки буде після
+Усе разом — наявне ([../docs/hardware.md](../docs/hardware.md)) плюс замовлене
+([../docs/hardware_incoming.md](../docs/hardware_incoming.md)). Кількість — скільки буде після
 доставки.
 
 Замовлення **№ 651018** від 06.09.2026, 172 позиції, 579 одиниць, 42 493 грн.
