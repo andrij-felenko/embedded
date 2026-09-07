@@ -1177,33 +1177,45 @@ function partsOf(){
 }
 
 /* ── збереження в браузері ── */
-const KEY='ctor-v1';
+const KEY='ctor-v2';
 let built=[];   // зліплені сутності: {key,name,used:[назви умінь],usedBuilt:[сутності]}
 let comboOpen=false;   // чи розгорнута смужка «можна об'єднати»
-let workKind=null, workSub=null;   // до якого типу належить обране (щоб «домівка» нічого не губила)
+let work={};   // збереження на кожен вид окремо: {"світло":{picked,built}, "машинка/ровер":{…}}
+const slot=(k,sb)=>sb?k+'/'+sb:k;
+function stash(){ if(kind) work[slot(kind,sub)]={picked:[...picked],built}; }
 function save(){
-  try{localStorage.setItem(KEY,JSON.stringify({kind,sub,workKind,workSub,qOpen,
-    picked:[...picked],built,comboOpen}));}catch(e){}
+  stash();
+  try{localStorage.setItem(KEY,JSON.stringify({v:2,work,qOpen,comboOpen}));}catch(e){}
+}
+function clean(w){
+  return {picked:(w.picked||[]).filter(n=>ANSWERS.some(a=>a.name===n)),
+          built:(w.built||[]).filter(x=>x&&RECIPES.some(r=>r.key===x.key))};
 }
 function load(){
   try{
-    const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(!s) return;
+    let s=JSON.parse(localStorage.getItem(KEY)||'null');
+    if(!s){   // перенести старе збереження (один проєкт) у новий формат
+      const o=JSON.parse(localStorage.getItem('ctor-v1')||'null');
+      if(o){ const k=o.workKind||o.kind, sb=o.workSub||o.sub;
+        s={v:2,work:k?{[slot(k,sb)]:{picked:o.picked||[],built:o.built||[]}}:{},qOpen:o.qOpen,comboOpen:o.comboOpen}; }
+    }
+    if(!s) return;
     comboOpen=!!s.comboOpen;
-    // сторінка завжди відкривається з головного екрана; робота пам'ятається за видом
-    // і повертається, щойно обрати той самий вид
-    const savedKind=s.kind&&KINDS.some(k=>k.key===s.kind)?s.kind:null;
-    const savedSub=s.sub&&KINDS.some(k=>k.key===s.sub)?s.sub:null;
-    kind=null; sub=null;
-    workKind=s.workKind&&KINDS.some(k=>k.key===s.workKind)?s.workKind:savedKind;
-    workSub=s.workSub&&KINDS.some(k=>k.key===s.workSub)?s.workSub:savedSub;
     if(s.qOpen&&TABS.some(t=>t[0]===s.qOpen)) qOpen=s.qOpen;
-    (s.picked||[]).forEach(n=>{ if(ANSWERS.some(a=>a.name===n)) picked.add(n); });
-    built=(s.built||[]).filter(b=>b&&RECIPES.some(r=>r.key===b.key));
+    work={}; Object.keys(s.work||{}).forEach(k=>{ work[k]=clean(s.work[k]); });
+    kind=null; sub=null;   // сторінка завжди відкривається з головного екрана
   }catch(e){}
 }
+// повернути збережене для виду; true, якщо щось було
+function restore(k,sb){
+  picked.clear(); built=[]; look=null;
+  const w=work[slot(k,sb)]; if(!w) return false;
+  w.picked.forEach(n=>picked.add(n)); built=w.built.slice(); return true;
+}
 function resetAll(){
-  ask('Стерти все обране й почати спочатку?','Так, стерти',()=>{
-    kind=null;sub=null;workKind=null;workSub=null;picked.clear();built=[];look=null;
+  ask('Стерти все обране в цьому виді й почати спочатку?','Так, стерти',()=>{
+    if(kind) delete work[slot(kind,sub)];
+    picked.clear();built=[];kind=null;sub=null;look=null;
     save();mode='build';render();});
 }
 
@@ -1295,11 +1307,11 @@ function buildFull(key,depth){
   make(key); return true;
 }
 // домівка: на головний екран, обране лишається — повернешся до того самого типу і все на місці
-function goHome(){ kind=null;sub=null;look=null;mode='build';save();render(); }
+function goHome(){ save();kind=null;sub=null;look=null;mode='build';render(); }
 
 /* ── усе обране як текст (щоб скопіювати й надіслати) ── */
 function exportText(){
-  const L=['Що робимо: '+(kindName(workSub||workKind)||'—')];
+  const L=['Що робимо: '+(kindName(sub||kind)||'—')];
   if(picked.size){L.push('','Обрано:');[...picked].forEach(n=>L.push('• '+n));}
   if(built.length){L.push('','Готово:');built.forEach(b=>L.push('• '+b.name+' = '+partsLine(b)));}
   return L.join('\n');
@@ -1464,19 +1476,17 @@ infoEl.onclick=e=>{
   look=null;save();drawRail();drawTop();render();};
 topPane.addEventListener('click',e=>{
   if(e.target.closest('[data-kback]')){
-    if(sub){sub=null;workSub=null;picked.clear();built=[];} else kind=null;
-    save(); render(); return;}
+    save();
+    if(sub){sub=null;picked.clear();built=[];} else kind=null;
+    render(); return;}
   const k=e.target.closest('[data-kind]');
   if(k){
     const node=KINDS.find(x=>x.key===k.dataset.kind);
-    // той самий тип, що й збережене обране — нічого не чистимо, просто повертаємось
-    let fresh;
-    if(node['батько']){ fresh=node.key!==workSub; sub=node.key; workSub=sub; }
-    else { fresh=node.key!==workKind; kind=node.key; sub=null; workKind=kind; if(fresh) workSub=null; }
-    if(fresh){
-      picked.clear(); built=[];
+    save();   // поточний вид — у свою шухляду
+    if(node['батько']) sub=node.key; else { kind=node.key; sub=null; }
+    // у цього виду вже щось є — повертаємо; інакше стартові вміння
+    if(!restore(kind,sub))
       (node['одразу']||[]).forEach(n=>{ if(ANSWERS.some(a=>a.name===n)) picked.add(n); });
-    }
     save(); render(); return;}
   const d=e.target.closest('[data-drop]');
   if(d){look=d.dataset.drop;qOpen=(ANSWERS.find(x=>x.name===look)||{}).g||qOpen;
