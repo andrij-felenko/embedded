@@ -1,0 +1,3 @@
+[submodule "qgc"]
+	path = qgc
+	url = https://github.com/mavlink/qgroundcontrol.git

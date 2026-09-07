@@ -1,0 +1,22 @@
+# clangd config for this workspace.
+#
+# Placed here (parent of the qgc submodule) so the submodule stays unmodified —
+# clangd merges .clangd fragments from every ancestor directory.
+#
+# Silences the -Wc++98-compat family. Those diagnostics fire *because* the code
+# model is correctly in C++20 mode: they flag every construct that C++98 lacked.
+# Qt's Q_OBJECT macro alone triggers six of them on a single line, which buries
+# real diagnostics in the Issues pane.
+CompileFlags:
+  Add:
+    - "-Wno-c++98-compat"
+    - "-Wno-c++98-compat-pedantic"
+    - "-Wno-pre-c++14-compat"
+    - "-Wno-pre-c++17-compat"
+    - "-Wno-pre-c++20-compat"
+    # Same source (some -Weverything-style config we could not locate): noise that
+    # fires on ordinary Qt code and drowns out real diagnostics.
+    - "-Wno-padded"
+    - "-Wno-switch-enum"
+    - "-Wno-extra-semi-stmt"
+    - "-Wno-inconsistent-missing-destructor-override"
