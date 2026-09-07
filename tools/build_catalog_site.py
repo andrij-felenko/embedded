@@ -634,6 +634,7 @@ body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--in
 .al{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:4px;
  padding:6px 9px;background:var(--paper)}
 .alt{min-width:0;flex:1}
+.al .pm{--c:var(--accent)}
 .al b{display:block;font-size:.88rem;font-weight:600;line-height:1.25}
 .ings{display:flex;flex-wrap:wrap;gap:2px 10px;font-size:.74rem;margin-top:2px}
 .ings i{font-style:normal}
@@ -1165,10 +1166,10 @@ function almost(){
 function showAlmost(){
   const list=almost();
   openBox(`<h3 class="mt">Майже зібрано</h3>`+(list.length
-    ?`<p class="mq small">Зелене вже є, з плюсом — бракує. «Додати» бере, чого бракує, і одразу зліплює.</p>
+    ?`<p class="mq small">Зелене вже є, червоне — бракує. Плюс бере, чого бракує, і одразу зліплює.</p>
       <div class="alist">${list.map(x=>`<div class="al"><div class="alt"><b>${esc(x.r.name)}</b>
-        <span class="ings">${x.rows.map(y=>`<i class="${y.ok?'ok':'no'}">${y.ok?'✓':'+'} ${esc(y.name)}</i>`).join('')}</span></div>
-        <button class="mb add" data-almost="${esc(x.r.key)}">Додати</button></div>`).join('')}</div>`
+        <span class="ings">${x.rows.map(y=>`<i class="${y.ok?'ok':'no'}">${y.ok?'✓':'✗'} ${esc(y.name)}</i>`).join('')}</span></div>
+        <button class="pm" data-almost="${esc(x.r.key)}" title="додати й зліпити">+</button></div>`).join('')}</div>`
     :`<p class="mq">Поки нічого близького — обери ще кілька умінь.</p>`));
 }
 function addAlmost(key){
