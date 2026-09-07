@@ -472,8 +472,9 @@ body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--in
 .combo.open{flex:0 1 auto;max-height:55%}
 .clist{overflow-y:auto;min-height:0;margin-top:6px;scrollbar-width:thin;
  scrollbar-color:var(--line) transparent}
-.toList{display:none;border:0;background:transparent;color:var(--accent);font:inherit;
- font-size:.8rem;padding:0;margin:0 0 2px;cursor:pointer;align-self:flex-start}
+.toList{display:none;flex:none;width:26px;height:26px;border:1px solid var(--line);
+ background:transparent;color:var(--soft);border-radius:4px;font-size:1rem;line-height:1;padding:0;
+ cursor:pointer;align-items:center;justify-content:center}
 .lbl{display:block;font-weight:500;text-transform:uppercase;letter-spacing:.07em;
  font-size:.66rem;color:var(--soft);margin:0 0 6px}
 .hint2{margin:0;color:var(--soft);font-size:.82rem;line-height:1.4}
@@ -926,7 +927,10 @@ footer a{color:var(--accent)}
  .pane .legend{grid-column:1}
  .stage[data-look="1"] .plist{display:none}
  .stage[data-look="1"] .info{display:flex}
+ .stage[data-look="1"] .legend{display:none}
  .toList{display:inline-flex}
+ .info .fixed{flex:0 1 auto;min-height:0;overflow-y:auto}
+ .src{min-height:38%}
  .plist{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));padding:5px;gap:4px}
  .info{padding:6px 8px}
 }
@@ -1159,8 +1163,8 @@ function drawInfo(){
   // натяки, куди це може піти — з поля «ідеї:» в answers.md
   const hints=(a.ideas||[]).length?`<div class="hints"><b>куди це може піти</b><ul>${
       a.ideas.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`:'';
-  infoEl.innerHTML=`<div class="fixed"><button class="toList" data-back="1">← до списку</button>
-    <div class="ihead">${pic(a.icon)}<h3>${esc(a.name)}</h3>
+  infoEl.innerHTML=`<div class="fixed">
+    <div class="ihead"><button class="toList" data-back="1" title="до списку">←</button>${pic(a.icon)}<h3>${esc(a.name)}</h3>
       <button class="pm${has?' off':''}" data-toggle="${esc(a.name)}"
        title="${has?'прибрати':'додати'}">${has?'−':'+'}</button></div>
     <p>${esc(a.what||'')}</p>${hints}</div>
