@@ -143,7 +143,7 @@ def main():
         if not items:
             continue
         out += "\n## %s\n" % cat
-        subs = [s for _, s, _ in RULES if _ == cat]
+        subs = [s for c, s, _kw in RULES if c == cat]
         seen = set()
         for sub in subs:
             if sub in seen:
