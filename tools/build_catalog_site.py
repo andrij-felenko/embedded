@@ -593,6 +593,7 @@ body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--in
  border:1px solid transparent;border-radius:4px;cursor:pointer;min-width:0;
  text-align:left;justify-content:flex-start;
  background:var(--panel);transition:background .12s ease,border-color .12s ease}
+.row.dim{opacity:.45}
 .row[data-g=sens]{--c:var(--sens)}.row[data-g=meas]{--c:var(--meas)}
 .row[data-g=act]{--c:var(--act)}.row[data-g=talk]{--c:var(--talk)}
 .row[data-g=pow]{--c:var(--pow)}
@@ -948,7 +949,22 @@ const QS=[["рух","Що воно робить"],["помічає","Що пом
           ["енергія","Звідки енергія"]];
 let qOpen='помічає', kind=null, sub=null, look=null;
 const picked=new Set();
-const fits=a=>kind==='своє'||!a.kinds.length||a.kinds.includes(kind);
+// чи пасує вміння обраному виду: явні «типи:» — як написано; інакше — чи є воно
+// в рецептах категорії цього виду (живлення пасує завжди)
+const relCache={};
+function relevantSet(k){
+  if(relCache[k]) return relCache[k];
+  const cat=KIND_CAT[k], s=new Set();
+  if(cat) RECIPES.filter(r=>r.sec===cat).forEach(r=>r.need.flat().forEach(n=>s.add(n)));
+  let grew=true;   // складники-рецепти розгорнути до умінь
+  while(grew){grew=false;RECIPES.forEach(r=>{ if(s.has(r.name)) r.need.flat().forEach(n=>{ if(!s.has(n)){s.add(n);grew=true;} }); });}
+  return relCache[k]=s;
+}
+const fits=a=>{
+  if(kind==='своє'||a.g==='живлення') return true;
+  if(a.kinds.length) return a.kinds.includes(kind);
+  const s=relevantSet(kind); return !s.size||s.has(a.name);
+};
 // ключ групи, два рядки підпису вкладки, два коротші рядки для телефону
 const TABS=[["помічає","Реагує на","зовнішні зміни","Реагує","на зміни"],
             ["міряє","Вимірює","за нашим запитом","Вимірює","на запит"],
