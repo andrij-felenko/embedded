@@ -1189,10 +1189,13 @@ function load(){
   try{
     const s=JSON.parse(localStorage.getItem(KEY)||'null'); if(!s) return;
     comboOpen=!!s.comboOpen;
-    if(s.kind&&KINDS.some(k=>k.key===s.kind)) kind=s.kind;
-    if(s.sub&&KINDS.some(k=>k.key===s.sub)) sub=s.sub;
-    workKind=s.workKind&&KINDS.some(k=>k.key===s.workKind)?s.workKind:kind;
-    workSub=s.workSub&&KINDS.some(k=>k.key===s.workSub)?s.workSub:sub;
+    // сторінка завжди відкривається з головного екрана; робота пам'ятається за видом
+    // і повертається, щойно обрати той самий вид
+    const savedKind=s.kind&&KINDS.some(k=>k.key===s.kind)?s.kind:null;
+    const savedSub=s.sub&&KINDS.some(k=>k.key===s.sub)?s.sub:null;
+    kind=null; sub=null;
+    workKind=s.workKind&&KINDS.some(k=>k.key===s.workKind)?s.workKind:savedKind;
+    workSub=s.workSub&&KINDS.some(k=>k.key===s.workSub)?s.workSub:savedSub;
     if(s.qOpen&&TABS.some(t=>t[0]===s.qOpen)) qOpen=s.qOpen;
     (s.picked||[]).forEach(n=>{ if(ANSWERS.some(a=>a.name===n)) picked.add(n); });
     built=(s.built||[]).filter(b=>b&&RECIPES.some(r=>r.key===b.key));
@@ -1549,7 +1552,7 @@ def build(out_dir):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Що це вміє</title>
+<title>Конструктор ідей</title>
 <meta name="description" content="Деталі й те, на що кожна здатна.">
 <style>%s</style>
 </head>
