@@ -496,7 +496,7 @@ body{margin:0;height:100%;overflow:hidden;background:var(--paper);color:var(--in
 /* верх у режимі збирання: зліва обране, справа зверху готове, справа знизу — що можна об'єднати */
 .stage[data-step=build] .top{flex:0 0 40%;max-height:none;overflow:hidden;
  display:flex;flex-direction:column;padding:4px 6px 4px}
-.tp{display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1;min-height:0}
+.tp{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr);gap:6px;flex:1;min-height:0}
 .tpl{overflow-y:auto;min-height:0;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
 .tpr{display:flex;flex-direction:column;gap:6px;min-height:0;
  border-left:1px solid var(--line);padding-left:6px}
