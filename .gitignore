@@ -1,2 +1,8 @@
 _site/
 __pycache__/
+build/
+sdkconfig
+sdkconfig.old
+.cache/
+CMakeLists.txt.user
+*.user
