@@ -1318,11 +1318,6 @@ function exportText(){
   const L=['Що робимо: '+(kindName(workSub||workKind)||'—')];
   if(picked.size){L.push('','Обрано:');[...picked].forEach(n=>L.push('• '+n));}
   if(built.length){L.push('','Готово:');built.forEach(b=>L.push('• '+b.name+' = '+partsLine(b)));}
-  const parts=new Map();
-  const add=n=>{const a=ANSWERS.find(x=>x.name===n);(a&&a.src||[]).forEach(s=>parts.set(s.tech,s.id||''));};
-  const walk=(names,bs)=>{names.forEach(add);(bs||[]).forEach(b=>walk(b.used||[],b.usedBuilt));};
-  walk([...picked],built);
-  if(parts.size){L.push('','З чого:');[...parts].forEach(([t,id])=>L.push('• '+t+(id?' ['+id+']':'')));}
   return L.join('\n');
 }
 function copyAll(btn){
