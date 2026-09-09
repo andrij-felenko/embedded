@@ -1524,66 +1524,28 @@ load();drawTiles();render();
 
 ROVER = os.path.join(ROOT, "apps", "rover")
 
-# Вкладки міні-сайту ровера: (якір, назва, файл або None, група)
-# групи: app — апарат, node — вузли, brd — плати
-ROVER_TABS = [
-    ("obrazy", "Образи",         "looks.html",        "app"),
-    ("korpus", "Устрій корпусу", "frame-layers.html", "app"),
-    ("zhyv",   "Живлення",       "power.html",        "app"),
-    ("ideya",  "Опис ідеї",      None,                "app"),
-
-    ("koleso", "Колесо",         "wheel-tilt.html",   "node"),
-    ("ruka",   "Роборука",       "arm.html",          "node"),
-    ("pult",   "Пульт",          "remote.html",       "node"),
-
-    ("arch",   "Архітектура",    None,                "brd"),
-    ("platy",  "Схема плат",     None,                "brd"),
-    ("b1",     "1 · Привід",     None,                "brd"),
-    ("b2",     "2 · Навігація",  None,                "brd"),
-    ("b3",     "3 · Маршрути",   None,                "brd"),
-    ("b4",     "4 · Зв'язок",    None,                "brd"),
-    ("b5",     "5 · Камера",     None,                "brd"),
-]
-ROVER_DEFAULT = "obrazy"
-
-ROVER_STUB = {
-    "ideya": ("Опис ідеї",
-              "Що це за апарат, для чого, і який у нього список функцій."),
-    "arch":  ("Архітектура",
-              "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
-    "platy": ("Схема плат",
-              "Дерево зв'язків: хто з ким говорить, якими шинами й через що йде живлення."),
-    "b1":    ("Плата 1 · Привід",
-              "STM32. Енкодери, PWM на драйвери, PID швидкості кожного колеса, "
-              "міксер повороту. Найжорсткіший таймінг у ровері."),
-    "b2":    ("Плата 2 · Навігація",
-              "ESP32. IMU і компас, GNSS, ToF по периметру, одометрія, "
-              "маршрут по точках, failsafe. Віддає команди на привід."),
-    "b3":    ("Плата 3 · Маршрути",
-              "ESP32-S3 з PSRAM. Карта з радара, аналіз перешкод, планування шляху."),
-    "b4":    ("Плата 4 · Зв'язок",
-              "ESP32. Радіоканал з пультом, розбір команд, телеметрія назад. "
-              "Головна в дереві — решта плат висить на ній."),
-    "b5":    ("Плата 5 · Камера",
-              "ESP32. Відео по Wi-Fi, а коли Wi-Fi немає — обрізаний потік "
-              "через плату зв'язку низьким пріоритетом."),
-}
-
+NOCACHE = ('<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
+           '<meta http-equiv="Pragma" content="no-cache">\n'
+           '<meta http-equiv="Expires" content="0">\n')
 VIEWPORT = '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
 
 
 def copy_rover(out_dir):
-    """Кладе міні-сайт ровера в <out>/rover/ окремим розділом. index.html каталогу не чіпає."""
+    """Копіює сторінки ровера в <out>/rover/ окремим розділом.
+
+    index.html з apps/rover — це оболонка з вкладками, вона копіюється як є.
+    Сторінкам без meta viewport і без заборони кешу вони додаються тут,
+    щоб самі файли лишались чистими.
+    """
     if not os.path.isdir(ROVER):
         return 0
     dst = os.path.join(out_dir, "rover")
     os.makedirs(dst, exist_ok=True)
 
-    stamp = __import__("datetime").datetime.now().strftime("%Y%m%d%H%M%S")
     n = 0
     for f in sorted(os.listdir(ROVER)):
-        if not f.lower().endswith(".html") or f.lower() == "index.html":
-            continue  # index.html завжди генерується, а не копіюється
+        if not f.lower().endswith(".html"):
+            continue
         with open(os.path.join(ROVER, f), encoding="utf-8") as fh:
             body = fh.read()
         if "http-equiv" not in body:
@@ -1593,142 +1555,7 @@ def copy_rover(out_dir):
         with open(os.path.join(dst, f), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(body)
         n += 1
-
-    btns, panes = [], []
-    prev_g = None
-    for key, label, src, grp in ROVER_TABS:
-        live = bool(src) and os.path.exists(os.path.join(ROVER, src))
-        cls = "tab g-" + grp + ("" if live else " tab-off")
-        if prev_g is not None and grp != prev_g:
-            cls += " gap"
-        prev_g = grp
-        if key == ROVER_DEFAULT: cls += " on"
-        btns.append('  <button class="%s" data-k="%s"%s>%s</button>'
-                    % (cls, key, "" if live else ' title="поки порожньо"', label))
-        if live:
-            on = " on" if key == ROVER_DEFAULT else ""
-            panes.append('<div class="pane%s" id="p-%s" data-src="%s"></div>' % (on, key, src))
-        else:
-            t, d = ROVER_STUB.get(key, (label, ""))
-            on = " on" if key == ROVER_DEFAULT else ""
-            panes.append('<div class="pane%s" id="p-%s"><div class="stub">'
-                         '<div class="st">%s</div><div class="sd">%s</div>'
-                         '<div class="sn">поки порожньо</div></div></div>' % (on, key, t, d))
-
-    page = (ROVER_SHELL
-            .replace("__BTNS__", "\n".join(btns))
-            .replace("__PANES__", "\n".join(panes))
-            .replace("__DEF__", ROVER_DEFAULT)
-            .replace("__STAMP__", stamp))
-    with open(os.path.join(dst, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
-        fh.write(page)
     return n
-
-
-NOCACHE = ('<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
-           '<meta http-equiv="Pragma" content="no-cache">\n'
-           '<meta http-equiv="Expires" content="0">\n')
-
-ROVER_SHELL = """<!doctype html>
-<html lang="uk"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
-<title>Ровер</title>
-<style>
-  :root{--bg:#14171a;--bar:#1b1f23;--line:#2c3339;--txt:#e6ebef;--dim:#93a1ab;--acc:#7fb3d5}
-  *{box-sizing:border-box}
-  body{background:var(--bg);color:var(--txt);margin:0;
-       font:15px/1.6 "Segoe UI",system-ui,sans-serif}
-  header{position:sticky;top:0;z-index:5;background:var(--bar);
-         border-bottom:1px solid var(--line)}
-  .hin{max-width:1120px;margin:0 auto;padding:12px 18px 0;
-       display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
-  .brand{font-size:17px;font-weight:600}
-  .home{color:var(--dim);text-decoration:none;font-size:13px}
-  .home:hover{color:var(--acc)}
-  nav{max-width:1120px;margin:0 auto;padding:6px 18px 10px;display:flex;
-      flex-wrap:wrap;gap:4px}
-  .tab{flex:0 0 auto;background:transparent;border:1px solid var(--line);border-radius:0;
-       color:var(--dim);font:inherit;font-size:12.5px;line-height:1.3;padding:5px 10px;
-       cursor:pointer;white-space:nowrap;transition:border-color .12s,color .12s}
-  .tab.g-app{border-color:#2e3f4c;color:#8fa6b8}
-  .tab.g-node{border-color:#2c4030;color:#93b493}
-  .tab.g-brd{border-color:#43352a;color:#bda07f}
-  .tab.g-app:hover{border-color:#7fb3d5;color:#dbe7f0}
-  .tab.g-node:hover{border-color:#8fd18b;color:#dff0dd}
-  .tab.g-brd:hover{border-color:#d18b47;color:#f0e0cc}
-  .tab.g-app.on{border-color:#7fb3d5;color:#eaf3fa;background:#1b2833}
-  .tab.g-node.on{border-color:#8fd18b;color:#e9f7e7;background:#1a2a1e}
-  .tab.g-brd.on{border-color:#d18b47;color:#fbeedd;background:#2c2219}
-  .tab.gap{margin-left:14px}
-  .tab-off{opacity:.5}
-  main{max-width:1120px;margin:0 auto}
-  .pane{display:none}
-  .pane.on{display:block}
-  iframe{display:block;width:100%;border:0;min-height:70vh}
-  .stub{padding:90px 24px;text-align:center}
-  .st{font-size:22px;font-weight:600;margin-bottom:8px}
-  .sd{color:var(--dim);max-width:52ch;margin:0 auto 18px}
-  .sn{display:inline-block;font-size:12px;color:var(--dim);
-      border:1px solid var(--line);border-radius:20px;padding:4px 14px}
-  @media (max-width:520px){
-    .hin{padding:10px 12px 0}
-    nav{padding:6px 10px 9px;gap:3px;flex-wrap:nowrap;overflow-x:auto;
-        -webkit-overflow-scrolling:touch;scrollbar-width:none}
-    nav::-webkit-scrollbar{display:none}
-    .tab{font-size:12px;padding:5px 9px}
-    .tab.gap{margin-left:9px}
-    .stub{padding:56px 16px}
-    .st{font-size:19px}
-  }
-</style></head><body>
-<header>
-  <div class="hin"><span class="brand">Ровер</span>
-    <a class="home" href="../">← Конструктор ідей</a></div>
-  <nav>
-__BTNS__
-  </nav>
-</header>
-<main>
-__PANES__
-</main>
-<script>
-var DEF="__DEF__";
-function load(p){
-  if(p.dataset.src && !p.firstChild){
-    var f=document.createElement("iframe");
-    var u=p.dataset.src+(p.dataset.src.indexOf("?")<0?"?":"&")+"v=__STAMP__&t="+Date.now();
-    f.src=u; f.setAttribute("scrolling","no");
-    f.onload=function(){
-      try{
-        var d=f.contentDocument;
-        var fit=function(){f.style.height=d.documentElement.scrollHeight+"px";};
-        fit(); setTimeout(fit,120);
-        if(window.ResizeObserver) new ResizeObserver(fit).observe(d.body);
-      }catch(e){f.style.height="1600px";}
-    };
-    p.appendChild(f);
-  }
-}
-function show(k){
-  var t=document.querySelector('.tab[data-k="'+k+'"]');
-  var p=document.getElementById("p-"+k);
-  if(!t||!p) return show(DEF);
-  document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("on",x===t);});
-  document.querySelectorAll(".pane").forEach(function(x){x.classList.toggle("on",x===p);});
-  load(p);
-  try{if(location.hash.slice(1)!==k) history.replaceState(null,"","#"+k);}catch(e){}
-}
-document.querySelectorAll(".tab").forEach(function(t){
-  t.addEventListener("click",function(){show(t.dataset.k);});
-});
-window.addEventListener("hashchange",function(){show(location.hash.slice(1)||DEF);});
-show(location.hash.slice(1)||DEF);
-</script>
-</body></html>
-"""
 
 
 def build(out_dir):

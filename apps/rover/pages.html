@@ -1,0 +1,55 @@
+<title>Ровер — усі сторінки</title>
+<style>
+body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:32px 20px 70px}
+.wrap{max-width:980px;margin:0 auto}
+h1{font-size:28px;font-weight:600;margin:0 0 6px}
+h2{font-size:15px;font-weight:600;margin:34px 0 10px;color:#7fb3d5;text-transform:uppercase;letter-spacing:.06em}
+p.lead{color:#93a1ab;margin:0 0 4px;max-width:80ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+a.card{display:block;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:13px 15px;text-decoration:none;color:inherit;transition:border-color .12s,background .12s}
+a.card:hover{border-color:#7fb3d5;background:#20262b}
+a.card b{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+a.card span{color:#93a1ab;font-size:12.5px}
+.note{color:#5d6b76;font-size:12.5px;margin-top:40px;border-top:1px solid #2c3339;padding-top:14px}
+</style>
+<div class="wrap">
+
+<h1>Ровер</h1>
+<p class="lead">Шість коліс, друкована рама на трубах, рука спереду, власне радіо.
+Маса 1–5 кг. Кожна сторінка — один вирішений вузол або набір варіантів, з яких вибираємо.</p>
+
+<h2>Задум</h2>
+<div class="grid">
+  <a class="card" href="concepts.html"><b>Концепти компонування</b><span>Два варіанти ходової: 4WD skid-steer і 6WD rocker-bogie</span></a>
+  <a class="card" href="chassis-types.html"><b>Типи ходової</b><span>Від найпростішого skid-steer до керма на кожному колесі</span></a>
+  <a class="card" href="looks.html"><b>Образи</b><span>Як це виглядає зовні — силует, обшивка, що ховаємо і що показуємо</span></a>
+</div>
+
+<h2>Рама і ходова</h2>
+<div class="grid">
+  <a class="card" href="frame-schemes.html"><b>Сім схем рами</b><span>Пліт, катамаран, клин, хребет, дельта, двоярусна</span></a>
+  <a class="card" href="frame-layers.html"><b>Устрій корпусу</b><span>Три шари: труби вздовж, труби поперек, пластини зверху</span></a>
+  <a class="card" href="tube-variants.html"><b>Сім варіацій труб</b><span>Форма труб, TPU-гнізда, як поділений внутрішній об'єм</span></a>
+  <a class="card" href="spacing-springs.html"><b>Розстановка коліс і пружини</b><span>Проміжки, хід підвіски, жорсткість під масу 1–5 кг</span></a>
+  <a class="card" href="wheel-tilt.html"><b>Нахил коліс</b><span>Що саме крутиться, а що ні, і навіщо розвал</span></a>
+  <a class="card" href="front-drive.html"><b>Передній привід</b><span>Винесене переднє колесо і що це дає на перешкоді</span></a>
+  <a class="card" href="split-body.html"><b>Шарнірний корпус</b><span>Дві половини на шарнірі: артикуляція замість буксування</span></a>
+</div>
+
+<h2>Електроніка</h2>
+<div class="grid">
+  <a class="card" href="power.html"><b>Живлення</b><span>Пак 2S4P, три шини, розводка, роз'єми, зарядка — усе з наявного</span></a>
+  <a class="card" href="remote.html"><b>Пульт</b><span>Дві плати, радіо, піни</span></a>
+</div>
+
+<h2>Рука</h2>
+<div class="grid">
+  <a class="card" href="arm-mechanics.html"><b>Механіка — повний опис</b><span>Суглоби, храповик, передача, паралелограм, хват, опори проти перекиду</span></a>
+  <a class="card" href="arm-schemes.html"><b>Як працює і сім схем</b><span>Цикл підбирання, хто тримає вагу, і сім способів скомпонувати</span></a>
+  <a class="card" href="arm.html"><b>Устрій</b><span>Види з трьох боків, чотири вузли, залізо по номерах</span></a>
+</div>
+
+<p class="note">Залізо в наявності — <code>docs/hardware.md</code> і <code>docs/hardware_incoming.md</code>.
+Список функцій, з якого все почалося — <code>apps/rover/ideas.md</code>.</p>
+
+</div>
