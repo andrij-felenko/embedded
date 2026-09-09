@@ -1,0 +1,288 @@
+<title>Роборука — робота і сім схем</title>
+<style>
+body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:26px;font-weight:600;margin:0 0 4px}
+h2{font-size:20px;font-weight:600;margin:38px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+p{margin:8px 0;max-width:80ch}
+.lead{color:#93a1ab}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:16px}
+.card{background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px}
+.card h4{margin:0 0 2px;font-size:15px;font-weight:600}
+.card .sub{color:#93a1ab;font-size:12px;margin:0 0 8px}
+.card svg{display:block;width:100%;height:auto;margin-bottom:8px}
+.card dl{margin:0;font-size:12.5px}
+.card dt{color:#7fb3d5;font-weight:600;margin-top:6px}
+.card dd{margin:0;color:#c9d4db}
+.card dd.b{color:#e07b6a}
+table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#20262b;font-weight:600}
+td.n{color:#7fb3d5;font-variant-numeric:tabular-nums;white-space:nowrap}
+ul,ol{margin:8px 0;padding-left:20px;max-width:80ch}
+li{margin:4px 0}
+.b{color:#e07b6a}
+.k{color:#8fd18b}
+code{background:#20262b;padding:1px 5px;border-radius:3px;font-size:12.5px}
+.box{background:#1b1f23;border:1px solid #2c3339;border-left:3px solid #8fd18b;border-radius:5px;padding:10px 14px;margin:14px 0;max-width:80ch}
+.box.b{border-left-color:#e07b6a}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+</style>
+<div class="wrap">
+
+<h1>Роборука — як працює і сім схем</h1>
+<p class="lead">Спершу — що відбувається при підбиранні предмета і хто в кожен момент тримає вагу.
+Потім сім способів це скомпонувати. Залізо по номерах — у <code>arm.html</code>,
+живлення — у <code>power.html</code>.</p>
+
+<p style="margin:14px 0 0;padding:10px 14px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;font-size:13px">
+<b style="color:#93a1ab">Роборука —</b>
+<a href="arm.html" style="color:#7fb3d5;text-decoration:none;margin-left:8px">Устрій</a> ·
+<span style="color:#e6ebef">Як працює і сім схем</span> ·
+<a href="arm-mechanics.html" style="color:#7fb3d5;text-decoration:none">Механіка</a>
+</p>
+
+<h2>Як це має працювати</h2>
+
+<h3>Три стани, і в кожному вагу тримає щось інше</h3>
+
+<table>
+<tr><th style="width:150px">Стан</th><th>Плече і лікоть</th><th>Хват</th><th>Струм</th></tr>
+<tr><td><b>Рух</b></td><td>тримає мотор, соленоїд підняв собачку</td><td>мотор крутить гвинт</td><td class="n">240 мА × 2 + соленоїд</td></tr>
+<tr><td><b>Пауза</b></td><td class="k">тримає храповик</td><td class="k">тримає різьба</td><td class="n k">0</td></tr>
+<tr><td><b>Живлення зникло</b></td><td class="k">тримає храповик</td><td class="k">тримає різьба</td><td class="n k">0</td></tr>
+</table>
+
+<p>Це і є те, заради чого схема така складна: <b>у спокої рука не споживає нічого</b>,
+а при аварійному стопі вона завмирає, а не падає.</p>
+
+<div class="box">
+<b>Правило соленоїда.</b> Щоб вісь <b>опустилась</b>, соленоїд мусить бути ввімкнений —
+він піднімає собачку з зуба. Знімаєш живлення — вісь миттєво зафіксована.
+Тому послідовність завжди тристрокова: <code>соленоїд ON → крутити мотор → соленоїд OFF</code>.
+Підйом працює і без соленоїда: собачка сама перескакує зуби в бік підйому.
+</div>
+
+<h3>Цикл підбирання</h3>
+
+<table>
+<tr><th style="width:34px">#</th><th>Дія</th><th>Хто працює</th><th>Час</th></tr>
+<tr><td class="n">1</td><td>Ровер під'їжджає, ціль у секторі ±120°</td><td>колеса</td><td class="n">—</td></tr>
+<tr><td class="n">2</td><td>Поворот основи на ціль</td><td>вісь 1</td><td class="n">~19 с</td></tr>
+<tr><td class="n">3</td><td>Плече і лікоть опускають хват до землі</td><td>осі 2, 3 + обидва соленоїди</td><td class="n">~38 с</td></tr>
+<tr><td class="n">4</td><td>Розкрити губки</td><td>N20</td><td class="n">~6 с</td></tr>
+<tr><td class="n">5</td><td>Звести губки до зростання струму</td><td>N20 + ACS712</td><td class="n">~6 с</td></tr>
+<tr><td class="n">6</td><td>Підняти — соленоїди <b>не потрібні</b></td><td>осі 2, 3</td><td class="n">~38 с</td></tr>
+<tr><td class="n">7</td><td>Поворот на корпус, опустити у відсік</td><td>осі 1, 2, 3</td><td class="n">~40 с</td></tr>
+<tr><td class="n">8</td><td>Розтиснути, скласти руку</td><td>N20, осі 2, 3</td><td class="n">~30 с</td></tr>
+</table>
+
+<p class="lead">Часи — оцінка від паспортного моменту 28BYJ-48 і поки що <b>діапазон, а не число</b>:
+паспорт дає момент при 1,5 об/хв, а працювати вона буде на 16. Міряється барабанчиком
+з підвішеними 200 г.</p>
+
+<h3>Чого прошивка не має права дозволити</h3>
+
+<ul>
+<li><b>Крутити мотор при опущеній собачці.</b> Зуб зріже. Соленоїд вмикається <b>раніше</b> за перший крок і вимикається <b>після</b> останнього.</li>
+<li><b>Виїхати за сектор.</b> Кінцевики на Hall <code>#181</code> — апаратна межа, не програмна: далі рука б'є в антену.</li>
+<li><b>Стискати без обмеження струму.</b> N20 у стопі зжує друковані шестерні. Поріг по ACS712, а не по часу.</li>
+<li><b>Їхати з винесеною рукою.</b> Таблиця «маса × виліт» рахована для нерухомого ровера. На ходу до неї додається інерція.</li>
+</ul>
+
+<h2>Сім схем</h2>
+<p class="lead">Спільне для всіх: хват — зустрічна різьба з N20, самогальмівна;
+приводи осей — 28BYJ-48 через ремінь GT2; утримання — храповик із соленоїдом
+там, де вісь бореться з вагою. Відрізняється те, <b>як складається геометрія</b>.</p>
+
+<div class="grid">
+
+<div class="card">
+<h4>1 · Дволанкова</h4>
+<p class="sub">класика — плече, лікоть, паралелограм</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="118" width="16" height="54" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M70 104 L146 64" stroke="#93a1ab" stroke-width="2"/>
+  <path d="M152 66 L230 94" stroke="#93a1ab" stroke-width="2"/>
+  <path d="M70 118 L148 78" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M148 78 L228 108" stroke="#7fb3d5" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="70" cy="118" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="148" cy="78" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <rect x="219" y="106" width="20" height="14" rx="2" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M224 120 L222 142 M234 120 L236 142" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Дві ланки на шарнірах, обидва мотори біля основи, ремені вздовж ланок. Тонка тяга — паралелограм, тримає губки рівними без мотора.</dd>
+<dt>Приводи</dt><dd>3 × 28BYJ-48 · 2 соленоїди · N20</dd>
+<dt>Плюс</dt><dd>Два ступені свободи на позицію: дістає в кільце, а не в одну точку. Складається вдвічі. Усе на підшипниках, яких повно.</dd>
+<dd class="b">Ціна: найбільше вузлів. Лікоть навантажує плече навіть порожній.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>2 · П'ятиланкова</h4>
+<p class="sub">обидва мотори на одній осі, ланки порожні</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="118" width="16" height="54" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M70 118 L146 84" stroke="#7fb3d5" stroke-width="8" stroke-linecap="round"/>
+  <path d="M70 118 L120 146" stroke="#7fb3d5" stroke-width="8" stroke-linecap="round"/>
+  <path d="M146 84 L224 106" stroke="#7fb3d5" stroke-width="7" stroke-linecap="round"/>
+  <path d="M120 146 L224 106" stroke="#7fb3d5" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="70" cy="118" r="10" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="70" cy="118" r="17" fill="none" stroke="#8fd18b" stroke-width="2" stroke-dasharray="4 4"/>
+  <circle cx="146" cy="84" r="6" fill="#14171a" stroke="#93a1ab" stroke-width="2"/>
+  <circle cx="120" cy="146" r="6" fill="#14171a" stroke="#93a1ab" stroke-width="2"/>
+  <rect x="222" y="98" width="18" height="14" rx="2" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M226 112 L224 134 M236 112 L238 134" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Обидва мотори сидять на спільній осі біля колони, кожен крутить свій важіль. Дві тяги сходяться в хваті. На самих ланках немає нічого.</dd>
+<dt>Приводи</dt><dd>3 × 28BYJ-48 · 2 соленоїди · N20</dd>
+<dt>Плюс</dt><dd>Найлегша рухома частина з усіх семи — жодного мотора, ременя чи соленоїда далі осі. Момент на плечі мінімальний.</dd>
+<dd class="b">Ціна: кінематика перестає бути очевидною. Координати хвата рахуються з двох кутів разом, і біля країв робочої зони рух стає різким.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>3 · SCARA</h4>
+<p class="sub">повороти в горизонталі, вертикаль окремо</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="46" width="16" height="126" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <g stroke="#8fd18b" stroke-width="1.6"><path d="M64 58 l12 8 M64 74 l12 8 M64 90 l12 8 M64 106 l12 8 M64 122 l12 8 M64 138 l12 8"/></g>
+  <rect x="52" y="88" width="36" height="24" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M88 100 L162 100" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M162 100 L228 100" stroke="#7fb3d5" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="162" cy="100" r="8" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M228 108 L228 128" stroke="#d9b25f" stroke-width="4"/>
+  <path d="M222 128 L220 148 M234 128 L236 148" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M150 40 a44 14 0 1 0 88 0 a44 14 0 1 0 -88 0" fill="none" stroke="#93a1ab" stroke-width="1.6" stroke-dasharray="5 4"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Обидва шарніри обертаються навколо вертикалей, тобто <b>ніколи не борються з вагою</b>. Висоту дає окремий гвинт на щоглі.</dd>
+<dt>Приводи</dt><dd>2 × 28BYJ-48 на повороти · 1 на гвинт · N20 · <b class="k">соленоїдів не треба</b></dd>
+<dt>Плюс</dt><dd>Слабкі мотори тут перестають бути проблемою: вагу тримає щогла, а не суглоби. Гвинт підйому самогальмівний сам собою.</dd>
+<dd class="b">Ціна: щогла має бути висока, інакше хват не дістане землі. Висока щогла — це високий центр ваги на ровері 3 кг.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>4 · Щогла з кареткою</h4>
+<p class="sub">тільки вертикаль, виліт дає сам ровер</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="40" width="14" height="132" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <g stroke="#8fd18b" stroke-width="1.6"><path d="M63 52 l12 8 M63 70 l12 8 M63 88 l12 8 M63 106 l12 8 M63 124 l12 8 M63 142 l12 8"/></g>
+  <rect x="52" y="94" width="34" height="24" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M86 106 L204 106" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <path d="M204 114 L204 130" stroke="#d9b25f" stroke-width="4"/>
+  <path d="M198 130 L196 150 M210 130 L212 150" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+  <path d="M36 72 L36 140" stroke="#93a1ab" stroke-width="1.6"/>
+  <path d="M32 78 L36 72 L40 78 M32 134 L36 140 L40 134" stroke="#93a1ab" stroke-width="1.6" fill="none"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Ланки немає взагалі. Каретка їздить по щоглі на гвинті, до неї прикручено коротке жорстке плече. Відстань до предмета підбирає сам ровер.</dd>
+<dt>Приводи</dt><dd>1 × 28BYJ-48 на гвинт · 1 на поворот · N20 · <b class="k">соленоїдів не треба</b></dd>
+<dt>Плюс</dt><dd>Найпростіша з семи. Один гвинт, одна каретка, нуль шарнірів під навантаженням. Звільняє кроковий і обидва соленоїди.</dd>
+<dd class="b">Ціна: перекладає точність на шасі. Skid-steer на траві дає ±3–5 см — а виліт фіксований, промахнувся значить не дістав.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>5 · Стріла з лебідкою</h4>
+<p class="sub">висоту дає трос, а не суглоб</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="124" width="16" height="48" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M70 124 L214 64" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="70" cy="124" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="98" cy="130" r="11" fill="#232d36" stroke="#d9b25f" stroke-width="2.4"/>
+  <path d="M98 119 L206 66" stroke="#93a1ab" stroke-width="1.4"/>
+  <circle cx="214" cy="64" r="5" fill="#14171a" stroke="#93a1ab" stroke-width="2"/>
+  <path d="M214 69 L214 126" stroke="#93a1ab" stroke-width="1.6"/>
+  <rect x="205" y="126" width="18" height="14" rx="2" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M209 140 L207 160 M219 140 L221 160" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Одна нерухома стріла і барабан біля основи. Хват висить на тросі й опускається лебідкою. Виліт міняється кутом стріли.</dd>
+<dt>Приводи</dt><dd>1 × 28BYJ-48 на стрілу · 1 на лебідку · 1 на поворот · N20</dd>
+<dt>Плюс</dt><dd>Найбільший робочий діапазон по висоті за найменшу вагу. Трос нічого не важить, тому момент на стрілі майже не росте з глибиною.</dd>
+<dd class="b">Ціна: хват гойдається. Наводитись на предмет тим, що висить на нитці — окрема задача, і на нерівному ґрунті вона недобра.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>6 · Ножичний пантограф</h4>
+<p class="sub">виліт одним гвинтом, усе біля основи</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="56" y="96" width="16" height="76" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M72 100 L128 134 L184 100 L240 134" stroke="#7fb3d5" stroke-width="6" fill="none" stroke-linejoin="round"/>
+  <path d="M72 134 L128 100 L184 134 L240 100" stroke="#7fb3d5" stroke-width="6" fill="none" stroke-linejoin="round"/>
+  <g fill="#14171a" stroke="#8fd18b" stroke-width="2"><circle cx="128" cy="117" r="5"/><circle cx="184" cy="117" r="5"/></g>
+  <path d="M74 152 L134 152" stroke="#8fd18b" stroke-width="3"/>
+  <g stroke="#8fd18b" stroke-width="1.4"><path d="M82 146 l6 12 M94 146 l6 12 M106 146 l6 12 M118 146 l6 12"/></g>
+  <rect x="240" y="110" width="18" height="14" rx="2" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M244 124 L242 144 M254 124 L256 144" stroke="#d9b25f" stroke-width="5" stroke-linecap="round"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Ножиці розкладаються по горизонталі від одного гвинта біля основи. Виліт міняється, а мотор не їде разом з рукою.</dd>
+<dt>Приводи</dt><dd>1 × 28BYJ-48 на гвинт · 1 на плече · 1 на поворот · N20</dd>
+<dt>Плюс</dt><dd>Змінний виліт без телескопа й без ковзання: усі з'єднання — шарніри, тобто те, під що куплені підшипники.</dd>
+<dd class="b">Ціна: шарнірів найбільше з усіх семи, і кожен зі своїм люфтом. На кінці вони складаються, тому хват хитається сильніше, ніж деінде.</dd>
+</dl>
+</div>
+
+<div class="card">
+<h4>7 · Ківш на одній осі</h4>
+<p class="sub">без хвата взагалі</p>
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20 172 L300 172" stroke="#3a444c" stroke-width="2"/>
+  <rect x="62" y="110" width="16" height="62" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M70 110 L178 146" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <circle cx="70" cy="110" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="178" cy="146" r="8" fill="#14171a" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M178 134 L228 128 L242 158 L186 164 Z" fill="#232d36" stroke="#d9b25f" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M228 128 L246 124" stroke="#d9b25f" stroke-width="4" stroke-linecap="round"/>
+</svg>
+<dl>
+<dt>Суть</dt><dd>Замість губок — ківш на власній осі. Загрібає предмет із землі й перекидає його у відсік. Нічого не стискає й нічого не тримає.</dd>
+<dt>Приводи</dt><dd>1 × 28BYJ-48 на стрілу · 1 на ківш · 1 на поворот · <b class="k">N20 вільний</b></dd>
+<dt>Плюс</dt><dd>Найменше деталей і найшвидший цикл з семи: немає ані гвинта хвата, ані наведення на предмет — досить під'їхати й загребти.</dd>
+<dd class="b">Ціна: бере лише те, що лежить вільно й влазить у ківш. Ні підняти за ручку, ні поставити акуратно, ні відпустити там, де треба.</dd>
+</dl>
+</div>
+
+</div>
+
+<h2>Порівняння</h2>
+
+<table>
+<tr><th>Схема</th><th>Ступенів на позицію</th><th>Соленоїдів</th><th>Маса на рухомій частині</th><th>Найбільший ризик</th></tr>
+<tr><td>1 · Дволанкова</td><td class="n">2</td><td class="n">2</td><td>середня</td><td>момент на плечі</td></tr>
+<tr><td>2 · П'ятиланкова</td><td class="n">2</td><td class="n">2</td><td class="k">найменша</td><td>кінематика</td></tr>
+<tr><td>3 · SCARA</td><td class="n">2</td><td class="n k">0</td><td>середня</td><td>високий центр ваги</td></tr>
+<tr><td>4 · Щогла</td><td class="n b">1 + ровер</td><td class="n k">0</td><td class="k">найменша</td><td>точність під'їзду</td></tr>
+<tr><td>5 · Лебідка</td><td class="n">2</td><td class="n">1</td><td class="k">мала</td><td>гойдання хвата</td></tr>
+<tr><td>6 · Пантограф</td><td class="n">2</td><td class="n">1</td><td>середня</td><td>люфт від багатьох шарнірів</td></tr>
+<tr><td>7 · Ківш</td><td class="n">2</td><td class="n">1</td><td>мала</td><td>бере не все</td></tr>
+</table>
+
+<div class="box">
+<b>Дві схеми знімають найбільшу проблему всієї цієї розмови.</b>
+У <b>3 · SCARA</b> і <b>4 · Щогла</b> суглоби взагалі не борються з вагою — її несе вертикальна
+щогла. Саме там слабкість 28BYJ-48 перестає бути обмеженням, і саме там не потрібні
+ані храповики, ані соленоїди.<br><br>
+Ціна теж спільна: обидві піднімають центр ваги ровера, який ми весь час намагалися опустити.
+</div>
+
+<div class="box b">
+<b>Чого немає в жодній із семи.</b> Опор проти перекиду. Без них діє таблиця
+«маса × виліт»: 600 г на 300 мм при ровері 3 кг. Схема руки цього не змінює — це
+властивість шасі, а не руки.
+</div>
+
+</div>

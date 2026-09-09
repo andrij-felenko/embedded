@@ -24,6 +24,11 @@
   .tab.gap{margin-left:14px}
   .tab-off{opacity:.5}
 
+  /* другий рівень: сторінки одного вузла */
+  nav.sub{border-top:1px solid var(--line);margin-top:2px;padding-top:8px}
+  nav.sub[hidden]{display:none}
+  nav.sub .lbl{align-self:center;font-size:12px;color:var(--dim);margin-right:6px}
+
   /* апарат */
   .g-app{border-color:#2e3f4c;color:#8fa6b8}
   .g-app:hover{border-color:#7fb3d5;color:#dbe7f0}
@@ -86,6 +91,13 @@
     <button class="tab g-brd tab-off" data-k="b4">4 · Зв'язок</button>
     <button class="tab g-brd tab-off" data-k="b5">5 · Камера</button>
   </nav>
+
+  <nav class="sub" id="sub-ruka" hidden>
+    <span class="lbl">Роборука:</span>
+    <button class="tab g-node" data-k="ruka" data-src="arm.html">Устрій</button>
+    <button class="tab g-node" data-k="ruka-s" data-src="arm-schemes.html">Як працює і сім схем</button>
+    <button class="tab g-node" data-k="ruka-m" data-src="arm-mechanics.html">Механіка</button>
+  </nav>
 </header>
 
 <main>
@@ -95,6 +107,8 @@
   <div class="pane" id="p-pages"></div>
   <div class="pane" id="p-koleso"></div>
   <div class="pane" id="p-ruka"></div>
+  <div class="pane" id="p-ruka-s"></div>
+  <div class="pane" id="p-ruka-m"></div>
   <div class="pane" id="p-pult"></div>
 
   <div class="pane" id="p-ideya"><div class="stub">
@@ -189,8 +203,14 @@ function show(k){
   var t = document.querySelector('.tab[data-k="' + k + '"]');
   var p = document.getElementById("p-" + k);
   if(!t || !p){ if(k !== DEF) show(DEF); return; }
-  document.querySelectorAll(".tab").forEach(function(x){ x.classList.toggle("on", x === t); });
+  // ruka-s -> група ruka. Верхня вкладка світиться за групою, підвкладка — за точним ключем,
+  // тому «Роборука» лишається підсвіченою на всіх трьох сторінках руки.
+  var sub = k.split("-")[0];
+  document.querySelectorAll(".tab").forEach(function(x){
+    x.classList.toggle("on", x.dataset.k === (x.closest("nav.sub") ? k : sub));
+  });
   document.querySelectorAll(".pane").forEach(function(x){ x.classList.toggle("on", x === p); });
+  document.querySelectorAll("nav.sub").forEach(function(n){ n.hidden = (n.id !== "sub-" + sub); });
   load(p, t.dataset.src);
   try{ if(location.hash.slice(1) !== k) history.replaceState(null, "", "#" + k); }catch(e){}
 }
