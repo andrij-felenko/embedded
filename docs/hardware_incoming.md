@@ -6,7 +6,7 @@ type: project
 
 # Hardware Incoming — arduino.ua
 
-**Order № 651018 · 172 positions · 579 units · 42 493 UAH**
+**Order № 651018 · 171 positions · 569 units · 42 443 UAH** (delivered 07.09.2026)
 
 Placed 2026-09-06 02:48, status *Новий*, payment pending, Nova Poshta to Cherkasy.
 Every line was in stock at the time of ordering.
@@ -113,8 +113,8 @@ the machines these parts serve are in [vehicles.md](vehicles.md).
 
 ## Displays
 
-168. **OLED 0.91" 128×32 I2C, white** — 2 pcs. A 4:1 strip.
-169. **OLED 0.96" 128×64 I2C, yellow** — 3 pcs. 2:1, nearly square, twice the pixels, same price as the strip. Robot faces and status readouts. 1024 bytes per frame, about 26 ms over I2C at 400 kHz, so roughly 35 fps.
+168. **OLED 0.91" 128×32 I2C, white** — 1 pc. A 4:1 strip.
+169. **OLED 0.96" 128×64 I2C, yellow** — 4 pcs. 2:1, nearly square, twice the pixels, same price as the strip. Robot faces and status readouts. 1024 bytes per frame, about 26 ms over I2C at 400 kHz, so roughly 35 fps.
 170. **IPS 1.3" 240×240 SPI (ST7789)** ×1 and **TFT 1.77" 128×160 SPI (ST7735S)** ×1 — two different controllers and two different panel types (IPS against TN), deliberately, to compare. The 1.77" has **PWM backlight control**, which is real battery saving: the backlight draws more than the matrix.
 171. **WS2812B 5050 addressable LED** — 20 pcs. One data line, chainable.
 
@@ -139,7 +139,7 @@ the machines these parts serve are in [vehicles.md](vehicles.md).
 178. **SHT30 I2C temperature and humidity** ×2, **AHT20+BMP280** ×2 (adds pressure).
 179. **PT100 platinum RTD, waterproof** ×1 — resistance-based, needs signal conditioning.
 180. **LM35DZ analogue** ×2 — 10 mV per °C straight into an ADC.
-181. **SS41F digital Hall** ×10, **A3144 Hall module** ×3 — position and RPM sensing off a magnet.
+181. **A3144 Hall module** ×3 — position and RPM sensing off a magnet. (SS41F ×10 was dropped: out of stock.)
 182. **Water flow sensor G1/2"** — turbine plus Hall. The output is a **frequency**, so it is measured by counting pulses, not with the ADC.
 183. **Liquid level sensor** ×2.
 184. **MQ-7 carbon monoxide** ×1 — a plain 5 V sensor; needs a heater duty cycle.

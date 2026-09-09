@@ -104,7 +104,6 @@ vmnnpg	6396	asc196	small_ara152-251_1.jpg	og
 dc4b3e	8062	aoc982	small_aoc982-1.jpg	og
 vy6ewd	238	aoc257	small_BreadboardMicro1.jpg	og
 asp3jh	8137	aoc647	small_aoc647.jpg	og
-xk7hah	6877	npn394	small_npn394_1.jpg	og
 ykyyej	3638	dat297	small_dat297_4.jpg	og
 m56ebm	2692	dat263	small_dat263_1.jpg	og
 ezk6z5	1960	tdc163	small_tdc163_5.jpg	og
