@@ -147,11 +147,29 @@ var DEF = "obrazy";
 
 function load(pane, src){
   if(!src || pane.firstChild) return;
-  var f = document.createElement("iframe");
-  // на file:// query-рядок стає частиною імені файлу і сторінка не знаходиться,
-  // тому обхід кешу додаємо тільки для http(s)
+
+  // Chrome не дозволяє локальній сторінці вкладати іншу локальну сторінку,
+  // тож з диска замість порожнього іфрейма показуємо пряме посилання.
   var web = location.protocol === "http:" || location.protocol === "https:";
-  f.src = web ? src + (src.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now() : src;
+  if(!web){
+    var d = document.createElement("div");
+    d.className = "stub";
+    d.innerHTML =
+      '<div class="st">Вкладки працюють тільки з сервера</div>' +
+      '<div class="sd">Ви відкрили сторінку з диска, а браузер не дозволяє ' +
+      'вкладати одну локальну сторінку в іншу. Відкрийте потрібну напряму, ' +
+      'або підніміть локальний сервер у цій папці — тоді вкладки працюватимуть ' +
+      'так само, як на сайті.</div>';
+    var a = document.createElement("a");
+    a.className = "sn"; a.href = src; a.style.textDecoration = "none";
+    a.textContent = "Відкрити " + src;
+    d.appendChild(a);
+    pane.appendChild(d);
+    return;
+  }
+
+  var f = document.createElement("iframe");
+  f.src = src + (src.indexOf("?") < 0 ? "?" : "&") + "t=" + Date.now();
   f.onload = function(){
     try{
       var d = f.contentDocument;
