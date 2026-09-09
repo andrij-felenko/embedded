@@ -1622,15 +1622,14 @@ ROVER_SHELL = """<!doctype html>
   .brand{font-size:17px;font-weight:600}
   .home{color:var(--dim);text-decoration:none;font-size:13px}
   .home:hover{color:var(--acc)}
-  nav{max-width:1120px;margin:0 auto;padding:10px 18px 12px;display:flex;
-      flex-wrap:wrap;gap:3px}
-  .tab{flex:0 0 auto;background:#20262b;border:0;border-radius:0;color:var(--dim);
-       font:inherit;font-size:13.5px;padding:11px 16px;cursor:pointer;white-space:nowrap;
-       transition:background .12s,color .12s}
-  .tab:hover{background:#262e35;color:var(--txt)}
-  .tab.on{background:#2f6a9e;color:#fff}
-  .tab-off{opacity:.5}
-  .tab-off::after{content:"·";margin-left:7px}
+  nav{max-width:1120px;margin:0 auto;padding:6px 18px 10px;display:flex;
+      flex-wrap:wrap;gap:4px}
+  .tab{flex:0 0 auto;background:transparent;border:1px solid var(--line);border-radius:0;
+       color:var(--dim);font:inherit;font-size:12.5px;line-height:1.3;padding:5px 10px;
+       cursor:pointer;white-space:nowrap;transition:border-color .12s,color .12s}
+  .tab:hover{border-color:#4a5a66;color:var(--txt)}
+  .tab.on{border-color:var(--acc);color:var(--txt);background:#1e2831}
+  .tab-off{opacity:.45}
   main{max-width:1120px;margin:0 auto}
   .pane{display:none}
   .pane.on{display:block}
@@ -1642,8 +1641,8 @@ ROVER_SHELL = """<!doctype html>
       border:1px solid var(--line);border-radius:20px;padding:4px 14px}
   @media (max-width:520px){
     .hin{padding:10px 12px 0}
-    nav{padding:8px 10px 10px;gap:2px}
-    .tab{font-size:12.5px;padding:9px 11px}
+    nav{padding:6px 10px 9px;gap:3px}
+    .tab{font-size:12px;padding:5px 8px}
     .stub{padding:56px 16px}
     .st{font-size:19px}
   }
