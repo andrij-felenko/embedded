@@ -1,0 +1,529 @@
+<title>Живлення ровера</title>
+<style>
+body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:26px;font-weight:600;margin:0 0 4px}
+h2{font-size:20px;font-weight:600;margin:38px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+p{margin:8px 0;max-width:80ch}
+.lead{color:#93a1ab}
+figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+svg{display:block;min-width:560px;max-width:100%;height:auto}
+table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#20262b;font-weight:600}
+td.n{color:#7fb3d5;font-variant-numeric:tabular-nums;white-space:nowrap}
+ul,ol{margin:8px 0;padding-left:20px;max-width:80ch}
+li{margin:4px 0}
+.b{color:#e07b6a}
+.k{color:#8fd18b}
+code{background:#20262b;padding:1px 5px;border-radius:3px;font-size:12.5px}
+.box{background:#1b1f23;border:1px solid #2c3339;border-left:3px solid #e07b6a;border-radius:5px;padding:10px 14px;margin:14px 0;max-width:80ch}
+.box.k{border-left-color:#8fd18b}
+</style>
+<div class="wrap">
+
+<h1>Живлення ровера</h1>
+<p class="lead">Пак, розводка, роз'єми, зарядка. <b>Нічого не докуповуємо</b> — усе зібрано з того,
+що вже є або замовлено; номери <code>#N</code> посилаються на <code>docs/hardware.md</code>
+і <code>docs/hardware_incoming.md</code>. Розділ 10 показує, чим закрито кожне місце,
+де спершу здавалося, що потрібна покупка.</p>
+
+<div class="box">
+<b>Головне, що змінилось.</b> Мотори <b>#130</b> — це <b>6 В</b>, 100 об/хв, 6 шт.
+Не 12 В, як у старому <code>docs/rover.md</code>. Тому пак — <b class="k">2S</b>, а не 4S,
+і все нижче рахується від 7,4 В.
+</div>
+
+<h2>1 · Що вже є під живлення</h2>
+
+<table>
+<tr><th style="width:74px">#</th><th>Деталь</th><th>Скільки</th><th>Роль у схемі</th></tr>
+<tr><td class="n">158</td><td>EVE INR21700-40P, 4000 мАг, 50 А</td><td>8</td><td><b class="k">банки паку</b> — рівно на 2S4P. Голі, без вивідів</td></tr>
+<tr><td class="n">156</td><td>LiitoKala HG2 18650, 3000 мАг, <b>з вивідами</b></td><td>9</td><td>запасний пак, паяється без зварки</td></tr>
+<tr><td class="n">157</td><td>NCR18650B 3200 мАг, з вивідами</td><td>3</td><td>не для приводу — 5 А на банку</td></tr>
+<tr><td class="n">159</td><td>Точкова зварка MECHANIC PN360</td><td>1</td><td>зварити 21700</td></tr>
+<tr><td class="n">160</td><td>Нікелева стрічка 0,15 × 10 мм</td><td>5 м</td><td>перемички паку</td></tr>
+<tr><td class="n">162</td><td><b>BMS 2S 20 А з балансуванням</b></td><td>2</td><td><b class="k">захист паку</b></td></tr>
+<tr><td class="n">161</td><td>SkyRC iMAX B6 Mini</td><td>1</td><td>балансир при зарядці</td></tr>
+<tr><td class="n">112</td><td>DPS/DPH програмований DC-DC</td><td>1</td><td><b class="k">основна зарядка</b> 8,4 В CV / CC</td></tr>
+<tr><td class="n">152</td><td>Hobbywing UBEC 3 А, 2–6S</td><td>1</td><td><b class="k">шина логіки 5 В</b></td></tr>
+<tr><td class="n">146</td><td>Mini560 фіксований 5 В</td><td>3</td><td><b class="k">шина серв 5 В</b> + запас</td></tr>
+<tr><td class="n">132+91</td><td>MC33886, H-міст 5 А</td><td>3</td><td>2 канали приводу + 1 запас</td></tr>
+<tr><td class="n">130</td><td>Мотор-редуктор 6 В / 100 об/хв</td><td>6</td><td>по одному на колесо</td></tr>
+<tr><td class="n">186</td><td>ACS712 5 А ×2, ACS712 30 А ×1, INA219</td><td>4</td><td>струм по каналах і по шині</td></tr>
+<tr><td class="n">197/199</td><td>Запобіжники 5×20 + тримачі 10 А</td><td>100 / 4</td><td>головна шина</td></tr>
+<tr><td class="n">202</td><td>XT60 пара / XT30 пара</td><td>5 / 3</td><td>пак ↔ ровер</td></tr>
+<tr><td class="n">203</td><td>JST-SM 4pin / 3pin / SYP-2P</td><td>5 / 5 / 5</td><td>мотори, UART, датчики</td></tr>
+<tr><td class="n">204</td><td>Провід 18 AWG / 20 AWG</td><td>4 м / 6 м</td><td>силова / моторна</td></tr>
+<tr><td class="n">166</td><td>Сигналізатор 1–8S, Lipo Guard мішок</td><td>1 / 1</td><td>попередження і зарядка</td></tr>
+</table>
+
+<h2>2 · Чому 2S, а не 4S</h2>
+
+<p>Мотор 6 В. Три варіанти напруги шини:</p>
+
+<table>
+<tr><th style="width:130px">Варіант</th><th style="width:170px">Напруга</th><th>Що виходить</th></tr>
+<tr><td><b class="k">2S — обрано</b></td><td>6,0 – 7,4 – 8,4 В</td><td>Мотор живиться <b>прямо з паку</b>. Перезаряд +40% гаситься ШІМ і власним падінням MC33886. Жодного силового перетворювача.</td></tr>
+<tr><td>3S</td><td>9,0 – 11,1 – 12,6 В</td><td>Потрібен понижувач на 60 Вт на моторну шину. Такого немає — XL4015E тягне 5 А, тобто 30 Вт.</td></tr>
+<tr><td>4S</td><td>12,0 – 14,8 – 16,8 В</td><td>Те саме, тільки гірше: більше падати, більше грітись. І BMS 2S уже куплена.</td></tr>
+</table>
+
+<p>MC33886 працює від 5 В, тому 2S тримається до самого розряду: навіть на 6,0 В драйвер живий.</p>
+
+<div class="box k">
+<b>Приємний побічний ефект.</b> MC33886 губить 0,6–0,8 В на плечах при робочому струмі.
+На повному паку 8,4 − 0,8 ≈ <b>7,6 В на моторі</b>, на розрядженому 6,0 − 0,5 ≈ <b>5,5 В</b>.
+Мотор увесь час близько до своїх 6 В без жодного перетворювача — треба лише обмежити ШІМ
+до ~80%, поки пак свіжий.
+</div>
+
+<h2>3 · Скільки треба — бюджет</h2>
+
+<p>Ровер 3 кг, колесо Ø90, мотор 100 об/хв → <b>0,47 м/с</b>. Струм рахований від моменту:
+стоповий струм мотора ≈ 1,5 А, холостий ≈ 0,08 А.</p>
+
+<table>
+<tr><th>Режим</th><th>Мотори</th><th>Електроніка</th><th>Разом</th><th>А @ 7,4 В</th></tr>
+<tr><td>Стоїть, камера пише</td><td class="n">0</td><td class="n">4 Вт</td><td class="n">4 Вт</td><td class="n">0,55</td></tr>
+<tr><td>Їде по твердому</td><td class="n">4</td><td class="n">4</td><td class="n">8</td><td class="n">1,1</td></tr>
+<tr><td>Їде по траві</td><td class="n">7</td><td class="n">4</td><td class="n">11</td><td class="n">1,5</td></tr>
+<tr><td>Розворот на місці (шкребе)</td><td class="n">18</td><td class="n">4</td><td class="n">22</td><td class="n">3,0</td></tr>
+<tr><td>Підйом 30°</td><td class="n">21</td><td class="n">4</td><td class="n">25</td><td class="n">3,4</td></tr>
+<tr><td>+ серви pan/tilt у русі</td><td class="n">—</td><td class="n">+7</td><td class="n">—</td><td class="n">+0,95</td></tr>
+<tr><td><b class="b">Пік: стоп усіх 6 моторів</b></td><td class="n b">54</td><td class="n b">12</td><td class="n b">66 Вт</td><td class="n b">9,0</td></tr>
+</table>
+
+<p>Реальне середнє по місії, з поправкою на шкребіння в поворотах — <b>~14 Вт, 1,9 А</b>.</p>
+
+<h3>Час ходу</h3>
+
+<table>
+<tr><th>Пак</th><th>Банок</th><th>Ємність</th><th>Маса</th><th>Час</th></tr>
+<tr><td><b class="k">2S4P · 21700 40P</b></td><td class="n">8</td><td class="n">16 Аг / 118 Вт·год</td><td class="n">~700 г</td><td class="n k">6,8 год</td></tr>
+<tr><td>2S4P · 18650 HG2</td><td class="n">8</td><td class="n">12 Аг / 89 Вт·год</td><td class="n">~450 г</td><td class="n">5,1 год</td></tr>
+<tr><td>2S2P · 21700 40P</td><td class="n">4</td><td class="n">8 Аг / 59 Вт·год</td><td class="n">~380 г</td><td class="n">3,4 год</td></tr>
+</table>
+
+<p><b>Рекомендація — 2S4P на 21700.</b> Вісім банок #158 це рівно 2S4P, вони саме під це й куплені,
+а 50 А на банку означає, що стоповий струм пак навіть не помітить. Якщо потім виявиться, що
+700 г на ровері 3 кг забагато — та сама геометрія ріжеться навпіл до 2S2P.</p>
+
+<h2>4 · Сам пак: 2S4P</h2>
+
+<figure>
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <rect x="170" y="52" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="266" y="52" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="362" y="52" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="458" y="52" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="170" y="152" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="266" y="152" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="362" y="152" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <rect x="458" y="152" width="88" height="46" rx="6" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <g fill="#93a1ab" font-size="15" text-anchor="middle">
+    <text x="182" y="82">−</text><text x="278" y="82">−</text><text x="374" y="82">−</text><text x="470" y="82">−</text>
+    <text x="246" y="82">+</text><text x="342" y="82">+</text><text x="438" y="82">+</text><text x="534" y="82">+</text>
+    <text x="182" y="182">+</text><text x="278" y="182">+</text><text x="374" y="182">+</text><text x="470" y="182">+</text>
+    <text x="246" y="182">−</text><text x="342" y="182">−</text><text x="438" y="182">−</text><text x="534" y="182">−</text>
+  </g>
+  <rect x="152" y="46" width="14" height="58" fill="#8fd18b" opacity="0.85"/>
+  <rect x="152" y="146" width="14" height="58" fill="#8fd18b" opacity="0.85"/>
+  <rect x="550" y="46" width="14" height="158" fill="#d9b25f" opacity="0.9"/>
+  <text x="146" y="42" fill="#8fd18b" text-anchor="end">PACK −</text>
+  <text x="146" y="224" fill="#8fd18b" text-anchor="end">PACK +</text>
+  <text x="574" y="44" fill="#d9b25f">послідовна</text>
+  <text x="574" y="60" fill="#d9b25f">перемичка</text>
+  <text x="574" y="76" fill="#93a1ab">вузол B1</text>
+  <text x="358" y="30" fill="#93a1ab" text-anchor="middle">ряд A — паралель з 4 банок, «мінусом» ліворуч</text>
+  <text x="358" y="240" fill="#93a1ab" text-anchor="middle">ряд B — та сама паралель, розвернута навпаки</text>
+  <g stroke="#e07b6a" stroke-width="1.6" fill="none">
+    <path d="M152 75 L108 75 L108 262"/>
+    <path d="M557 125 L604 125 L604 262"/>
+    <path d="M152 175 L128 175 L128 262"/>
+  </g>
+  <rect x="88" y="262" width="528" height="28" rx="4" fill="#232d36" stroke="#e07b6a" stroke-width="1.8"/>
+  <text x="352" y="281" fill="#e6ebef" text-anchor="middle">BMS 2S 20 A · #162 — три балансирні дроти: B− · B1 · B+</text>
+  <text x="358" y="128" fill="#7fb3d5" text-anchor="middle">8 × 21700 · 140 × 84 × 21 мм · один шар</text>
+</svg>
+<figcaption>Дві паралелі по чотири, друга розвернута. Тоді послідовна перемичка — <b>одна стрічка</b>
+праворуч, а обидва силові виводи виходять ліворуч, з одного боку.</figcaption>
+</figure>
+
+<h3>Порядок зварки</h3>
+
+<ol>
+<li><b>Відібрати банки.</b> Розрядити всі 8 до 3,60 В, дати відстоятись годину, зміряти. Розкид більше 20 мВ — банку відкласти.</li>
+<li><b>Зарядити всі до однакового</b> рівня (3,80 В) перед зваркою. Паралель із різних напруг вирівнюється струмом у сотні ампер через тонку стрічку.</li>
+<li><b>Кільця fish paper на «плюс»</b> кожної банки. <b class="b">Куплені #167 — під 18650 (Ø18).</b> На 21700 вони малі: обідок лишиться голим. Або брати 21700-шні, або різати самому.</li>
+<li><b>Склеїти ряди</b> в друкований тримач — він же лягає в нішу рами. Банки не мають рухатись під час зварки.</li>
+<li><b>Зварити паралелі</b>: ліва стрічка ряду A, ліва ряду B. По 2 точки на банку. Двох стрічок не треба — на цьому струмі однієї 0,15×10 вистачає з запасом.</li>
+<li><b>Зварити послідовну перемичку</b> праворуч — одна стрічка через обидва ряди.</li>
+<li><b>Тест на відрив</b> (метод із опису PN360): зварити пробну стрічку на непотрібну банку і потягнути пасатижами. Правильно — рветься стрічка, а не зварка.</li>
+<li><b>Приварити виводи</b> 18 AWG до PACK− і PACK+, припаяти балансирні до B−/B1/B+.</li>
+<li><b>Повісити BMS</b>, обтиснути каптоном і термоусадкою.</li>
+</ol>
+
+<div class="box">
+<b>Перевір перед зваркою два числа.</b><br>
+Ніша між поперечними трубами — <b>108 мм</b> завдовжки (з <code>frame-layers.html</code>).
+Пак 84 мм влазить, лишається 24 мм на BMS і дроти. <b>Але поперек треба 140 мм чистої ширини</b>,
+а колія всього 180 з колесами по 40. Якщо чистими лишається менше 140 — пак іде на 18650
+(два ряди по 4 = 130 мм) або в два поверхи, і тоді труба шару 2 росте з 21 до 42 мм.
+</div>
+
+<h2>5 · Загальна схема розводки</h2>
+
+<figure>
+<svg viewBox="0 0 720 560" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <defs>
+    <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 z" fill="#7fb3d5"/>
+    </marker>
+  </defs>
+  <g stroke="#7fb3d5" stroke-width="1.8" fill="none" marker-end="url(#ar)">
+    <path d="M120 62 L120 90"/><path d="M120 128 L120 156"/><path d="M120 194 L120 222"/>
+    <path d="M120 260 L120 288"/><path d="M120 326 L120 354"/>
+    <path d="M120 330 L330 330 L330 354"/>
+    <path d="M120 330 L560 330 L560 354"/>
+  </g>
+  <rect x="30" y="26" width="180" height="36" rx="5" fill="#232d36" stroke="#8fd18b" stroke-width="2"/>
+  <text x="120" y="49" fill="#e6ebef" text-anchor="middle">Пак 2S4P · 7,4 В · 16 Аг</text>
+  <rect x="30" y="92" width="180" height="36" rx="5" fill="#232d36" stroke="#8fd18b" stroke-width="2"/>
+  <text x="120" y="115" fill="#e6ebef" text-anchor="middle">BMS 2S 20 A · #162</text>
+  <rect x="30" y="158" width="180" height="36" rx="5" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="120" y="181" fill="#e6ebef" text-anchor="middle">XT60 · #202</text>
+  <rect x="30" y="224" width="180" height="36" rx="5" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="120" y="247" fill="#e6ebef" text-anchor="middle">Вимикач MTS-101 · #207</text>
+  <rect x="30" y="288" width="180" height="42" rx="5" fill="#232d36" stroke="#e07b6a" stroke-width="2"/>
+  <text x="120" y="307" fill="#e6ebef" text-anchor="middle">Запобіжник 15 A · #199</text>
+  <text x="120" y="322" fill="#93a1ab" text-anchor="middle" font-size="11">тут же ACS712 30 A — вся шина</text>
+
+  <rect x="30" y="354" width="180" height="54" rx="5" fill="#232d36" stroke="#e07b6a" stroke-width="2"/>
+  <text x="120" y="374" fill="#e07b6a" text-anchor="middle">МОТОРНА 7,4 В</text>
+  <text x="120" y="390" fill="#93a1ab" text-anchor="middle" font-size="11">напряму з паку</text>
+  <text x="120" y="403" fill="#93a1ab" text-anchor="middle" font-size="11">+ банка 1000 мкФ</text>
+
+  <rect x="240" y="354" width="180" height="54" rx="5" fill="#232d36" stroke="#8fd18b" stroke-width="2"/>
+  <text x="330" y="374" fill="#8fd18b" text-anchor="middle">ЛОГІКА 5 В</text>
+  <text x="330" y="390" fill="#93a1ab" text-anchor="middle" font-size="11">UBEC 3 A 2–6S · #152</text>
+  <text x="330" y="403" fill="#93a1ab" text-anchor="middle" font-size="11">спожив ~0,7 A</text>
+
+  <rect x="470" y="354" width="180" height="54" rx="5" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <text x="560" y="374" fill="#d9b25f" text-anchor="middle">СЕРВИ 5 В</text>
+  <text x="560" y="390" fill="#93a1ab" text-anchor="middle" font-size="11">Mini560 · #146</text>
+  <text x="560" y="403" fill="#93a1ab" text-anchor="middle" font-size="11">пік 1,4 A</text>
+
+  <g stroke="#3a444c" stroke-width="1.5" fill="none">
+    <path d="M120 408 L120 434"/><path d="M330 408 L330 434"/><path d="M560 408 L560 434"/>
+  </g>
+  <rect x="20" y="434" width="200" height="100" rx="5" fill="#1b1f23" stroke="#3a444c"/>
+  <text x="120" y="454" fill="#e6ebef" text-anchor="middle">2 × MC33886</text>
+  <text x="120" y="472" fill="#93a1ab" text-anchor="middle" font-size="11">канал A → 3 мотори ліворуч</text>
+  <text x="120" y="488" fill="#93a1ab" text-anchor="middle" font-size="11">канал B → 3 мотори праворуч</text>
+  <text x="120" y="506" fill="#93a1ab" text-anchor="middle" font-size="11">ACS712 5 A на кожен канал</text>
+  <text x="120" y="524" fill="#e07b6a" text-anchor="middle" font-size="11">радіатор обов'язково</text>
+
+  <rect x="230" y="434" width="200" height="100" rx="5" fill="#1b1f23" stroke="#3a444c"/>
+  <text x="330" y="454" fill="#e6ebef" text-anchor="middle">5 плат</text>
+  <text x="330" y="472" fill="#93a1ab" text-anchor="middle" font-size="11">STM32 · 4 × ESP32</text>
+  <text x="330" y="488" fill="#93a1ab" text-anchor="middle" font-size="11">nRF24 через адаптер #123</text>
+  <text x="330" y="506" fill="#93a1ab" text-anchor="middle" font-size="11">IMU · компас · ToF · OLED</text>
+  <text x="330" y="524" fill="#93a1ab" text-anchor="middle" font-size="11">6 × TCRT5000 енкодери</text>
+
+  <rect x="460" y="434" width="200" height="100" rx="5" fill="#1b1f23" stroke="#3a444c"/>
+  <text x="560" y="454" fill="#e6ebef" text-anchor="middle">2 × MG90S · #133</text>
+  <text x="560" y="472" fill="#93a1ab" text-anchor="middle" font-size="11">pan / tilt камери</text>
+  <text x="560" y="496" fill="#e07b6a" text-anchor="middle" font-size="11">окрема шина: стоповий струм</text>
+  <text x="560" y="511" fill="#e07b6a" text-anchor="middle" font-size="11">серви просаджує логіку,</text>
+  <text x="560" y="526" fill="#e07b6a" text-anchor="middle" font-size="11">якщо вона спільна</text>
+</svg>
+<figcaption>Три шини від однієї точки. Земля <b>спільна</b> і зводиться в одну зірку біля запобіжника —
+інакше сигнал STM32 → драйвер не має опори.</figcaption>
+</figure>
+
+<h2>6 · Мотори: яке колесо до якого каналу</h2>
+
+<figure>
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <defs><marker id="ar2" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#7fb3d5"/></marker></defs>
+  <rect x="150" y="110" width="330" height="100" rx="8" fill="#1b1f23" stroke="#3a444c" stroke-width="1.6"/>
+  <text x="315" y="142" fill="#93a1ab" text-anchor="middle">рама</text>
+  <text x="315" y="166" fill="#7fb3d5" text-anchor="middle">STM32G431 · #113</text>
+  <text x="315" y="186" fill="#93a1ab" text-anchor="middle" font-size="11">2 × PWM + 2 × DIR</text>
+  <g fill="#232d36" stroke="#e07b6a" stroke-width="2.2">
+    <rect x="120" y="52" width="54" height="34" rx="5"/>
+    <rect x="330" y="52" width="54" height="34" rx="5"/>
+    <rect x="424" y="52" width="54" height="34" rx="5"/>
+  </g>
+  <g fill="#232d36" stroke="#8fd18b" stroke-width="2.2">
+    <rect x="120" y="234" width="54" height="34" rx="5"/>
+    <rect x="330" y="234" width="54" height="34" rx="5"/>
+    <rect x="424" y="234" width="54" height="34" rx="5"/>
+  </g>
+  <path d="M147 86 L147 100 M357 86 L357 100 M451 86 L451 100" stroke="#e07b6a" stroke-width="2"/>
+  <path d="M147 220 L147 234 M357 220 L357 234 M451 220 L451 234" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M147 100 L451 100" stroke="#e07b6a" stroke-width="2.6"/>
+  <path d="M147 220 L451 220" stroke="#8fd18b" stroke-width="2.6"/>
+  <text x="500" y="96" fill="#e07b6a">канал A · MC33886 #1</text>
+  <text x="500" y="112" fill="#93a1ab" font-size="11">3 мотори паралельно · 4,5 A стоп</text>
+  <text x="500" y="224" fill="#8fd18b">канал B · MC33886 #2</text>
+  <text x="500" y="240" fill="#93a1ab" font-size="11">3 мотори паралельно · 4,5 A стоп</text>
+  <path d="M100 160 L62 160" stroke="#7fb3d5" stroke-width="2" marker-end="url(#ar2)"/>
+  <text x="86" y="148" fill="#7fb3d5" text-anchor="middle">вперед</text>
+  <text x="147" y="42" fill="#93a1ab" text-anchor="middle" font-size="11">переднє винесене</text>
+  <text x="404" y="290" fill="#93a1ab" text-anchor="middle" font-size="11">задня пара близько</text>
+  <text x="315" y="312" fill="#93a1ab" text-anchor="middle" font-size="11">розстановка Х— — — —Х— —Х</text>
+</svg>
+<figcaption>Skid-steer: борт крутиться як одне ціле. Шість моторів — це два канали, а не шість.</figcaption>
+</figure>
+
+<div class="box">
+<b>Наслідок, який варто визнати одразу.</b> Три мотори паралельно на канал означає,
+що <b>PID швидкості на кожне колесо неможливий</b> — керована величина одна на борт.
+Це суперечить тому, що записано в <code>concepts.html</code>.<br><br>
+Енкодери (6 × TCRT5000 <b>#174</b> на друковані диски) тоді дають <b>одометрію і виявлення
+пробуксовки</b>, а не контур керування. Щоб керувати кожним колесом окремо, потрібно шість
+каналів — тобто ще три MC33886 і шість PWM зі STM32.
+</div>
+
+<h3>Що конкретно йде на драйвер</h3>
+<table>
+<tr><th>Лінія</th><th>Звідки</th><th>Куди</th><th>Провід</th></tr>
+<tr><td>VCC силове</td><td>моторна шина 7,4 В</td><td>MC33886 ×2</td><td>18 AWG</td></tr>
+<tr><td>OUT1 / OUT2</td><td>MC33886 канал</td><td>3 мотори паралельно</td><td>20 AWG</td></tr>
+<tr><td>IN1 / IN2</td><td>STM32 PWM + DIR</td><td>MC33886</td><td>сигнальний</td></tr>
+<tr><td>EN</td><td>STM32 GPIO</td><td>MC33886</td><td>сигнальний</td></tr>
+<tr><td>FS (fault)</td><td>MC33886</td><td>STM32 GPIO</td><td>сигнальний</td></tr>
+<tr><td>ACS712 OUT</td><td>датчик струму</td><td>STM32 ADC <b class="b">через дільник</b></td><td>сигнальний</td></tr>
+</table>
+
+<p class="b">ACS712 живиться від 5 В і віддає до 4,5 В на виході. АЦП STM32 — 3,3 В.
+Без дільника 2:1 вхід згорить. Резистори вже є (#97).</p>
+
+<h2>7 · Плати і зв'язок між ними</h2>
+
+<p>Дерево з чату: №4 головна, №5 окремо до неї, №2 і №3 до неї ж, №1 — до №2.</p>
+
+<figure>
+<svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <g stroke="#d9b25f" stroke-width="2" fill="none">
+    <path d="M350 92 L350 128"/>
+    <path d="M290 74 L170 74 L170 128"/>
+    <path d="M410 74 L540 74 L540 128"/>
+    <path d="M170 180 L170 224"/>
+  </g>
+  <g fill="#232d36" stroke="#7fb3d5" stroke-width="2">
+    <rect x="248" y="34" width="204" height="58" rx="6"/>
+    <rect x="90" y="128" width="160" height="52" rx="6"/>
+    <rect x="270" y="128" width="160" height="52" rx="6"/>
+    <rect x="460" y="128" width="160" height="52" rx="6"/>
+    <rect x="90" y="224" width="160" height="52" rx="6"/>
+  </g>
+  <g text-anchor="middle" fill="#e6ebef">
+    <text x="350" y="54">№4 · ГОЛОВНА — зв'язок</text>
+    <text x="350" y="70" fill="#93a1ab" font-size="11">ESP32-S3 · nRF24 #122+#123 · лише маршрутизація</text>
+    <text x="350" y="85" fill="#d9b25f" font-size="11">потрібні 3 вільні UART</text>
+    <text x="170" y="150">№2 · навігація</text>
+    <text x="170" y="166" fill="#93a1ab" font-size="11">IMU · компас · ToF</text>
+    <text x="350" y="150">№3 · карта</text>
+    <text x="350" y="166" fill="#93a1ab" font-size="11">радар, перешкоди</text>
+    <text x="540" y="150">№5 · камера</text>
+    <text x="540" y="166" fill="#93a1ab" font-size="11">ESP32+OV3640 #118</text>
+    <text x="170" y="246">№1 · привід</text>
+    <text x="170" y="262" fill="#93a1ab" font-size="11">STM32G431 #113</text>
+  </g>
+  <g fill="#d9b25f" font-size="11">
+    <text x="358" y="114">UART</text><text x="178" y="114">UART</text><text x="548" y="114">UART</text><text x="178" y="208">UART</text>
+  </g>
+  <text x="350" y="306" fill="#93a1ab" text-anchor="middle">4 лінки × (TX · RX · GND) = 4 × JST-SM 3pin · #203 (є 5)</text>
+</svg>
+<figcaption>Плата №4 мусить мати <b>три вільні UART</b>. Тому саме ESP32-S3: у нього нативний USB,
+консоль іде через USB-CDC, і UART0 звільняється. На C6 портів менше.</figcaption>
+</figure>
+
+<table>
+<tr><th style="width:34px">№</th><th>Плата</th><th>З інвентаря</th><th>5 В, мА</th></tr>
+<tr><td class="n">1</td><td>привід, ШІМ, енкодери, deadman</td><td>STM32G431CBU6 <b>#113</b></td><td class="n">30</td></tr>
+<tr><td class="n">2</td><td>навігація, датчики</td><td>ESP32-S3 SuperMini <b>#7</b></td><td class="n">60</td></tr>
+<tr><td class="n">3</td><td>карта, маршрути</td><td>ESP32-S3-Pico <b>#6</b></td><td class="n">100</td></tr>
+<tr><td class="n">4</td><td>радіо, маршрутизація</td><td>ESP32-S3-Zero <b>#115</b> + nRF24 <b>#122/#123</b></td><td class="n">70</td></tr>
+<tr><td class="n">5</td><td>камера, Wi-Fi</td><td>ESP32 + OV3640 <b>#118</b></td><td class="n">260</td></tr>
+<tr><td colspan="3">датчики, OLED, енкодери</td><td class="n">~150</td></tr>
+<tr><td colspan="3"><b>Разом на UBEC 3 A</b></td><td class="n k">~670 мА</td></tr>
+</table>
+
+<p class="k">UBEC 3 А має більш ніж дворазовий запас. Друга #115, а також #114 і #116 лишаються під пульт.</p>
+
+<h2>8 · Проводка і роз'єми</h2>
+
+<table>
+<tr><th>Ділянка</th><th>Струм</th><th>Провід</th><th>Роз'єм</th><th>Вистачає?</th></tr>
+<tr><td>Пак → BMS → вимикач → запобіжник</td><td class="n">9 A пік</td><td>18 AWG</td><td>XT60 <b>#202</b></td><td class="k">так, 5 пар</td></tr>
+<tr><td>Шина → 2 × MC33886</td><td class="n">4,5 A / канал</td><td>18 AWG</td><td>гвинтові клеми на модулі</td><td class="k">так</td></tr>
+<tr><td>Драйвер → мотор ×6</td><td class="n">1,5 A</td><td>20 AWG</td><td>JST-SM 4pin — <b>по два мотори на роз'єм</b></td><td class="k">3 з 5</td></tr>
+<tr><td>Шина → UBEC, Mini560</td><td class="n">1 A</td><td>20 AWG</td><td>XT30 <b>#202</b></td><td class="k">так, 3 пари</td></tr>
+<tr><td>UART між платами ×4</td><td class="n">—</td><td>22 AWG</td><td>JST-SM 3pin <b>#203</b></td><td class="k">4 з 5</td></tr>
+<tr><td>Енкодери TCRT5000 ×6</td><td class="n">—</td><td>22 AWG</td><td><b>через перфоплату</b> #200 по бортах</td><td class="k">пайкою, роз'єм не потрібен</td></tr>
+<tr><td>Контроль банок</td><td class="n">—</td><td>22 AWG</td><td><b>дільники #97 → АЦП</b></td><td class="k">роз'єм не потрібен</td></tr>
+</table>
+
+<p><b>18 AWG всього 4 м.</b> Головний шлейф туди-назад ~1 м, роздача на драйвери ~1,5 м —
+лишається метр запасу. Різати обережно.</p>
+
+<div class="box">
+<b>Крімпера SN-28B немає</b> — власні JST і Dupont не обтиснути. Тому все, що не влізло в
+куплені готові джгути, іде <b>пайкою на перфоплату</b>: по одній маленькій платі-хабу на борт
+(стріпборд #200), туди три енкодери й три мотори, а від хаба на STM32 — один готовий джгут.
+Це і менше дротів через середину рами.
+</div>
+
+<h2>9 · Зарядка</h2>
+
+<figure>
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 z" fill="#8fd18b"/></marker></defs>
+  <g stroke="#8fd18b" stroke-width="2" fill="none" marker-end="url(#ar3)">
+    <path d="M196 76 L258 76"/><path d="M446 76 L508 76"/>
+    <path d="M196 200 L258 200"/><path d="M446 200 L508 200"/>
+  </g>
+  <g fill="#232d36" stroke="#7fb3d5" stroke-width="2">
+    <rect x="36" y="50" width="160" height="52" rx="6"/>
+    <rect x="266" y="50" width="180" height="52" rx="6"/>
+    <rect x="516" y="50" width="152" height="52" rx="6"/>
+    <rect x="36" y="174" width="160" height="52" rx="6"/>
+    <rect x="266" y="174" width="180" height="52" rx="6"/>
+    <rect x="516" y="174" width="152" height="52" rx="6"/>
+  </g>
+  <g text-anchor="middle" fill="#e6ebef">
+    <text x="116" y="72">Блок 12–15 В</text><text x="116" y="90" fill="#93a1ab" font-size="11">будь-який ноутбучний</text>
+    <text x="356" y="72">DPS/DPH · #112</text><text x="356" y="90" fill="#d9b25f" font-size="11">8,40 В CV · 2 A CC</text>
+    <text x="592" y="72">Пак через BMS</text><text x="592" y="90" fill="#93a1ab" font-size="11">XT60 · ~8 год</text>
+    <text x="116" y="190">Дільники на #97</text><text x="116" y="208" fill="#93a1ab" font-size="11">пак 8,4→3,0 В</text><text x="116" y="221" fill="#93a1ab" font-size="11">середина 4,2→3,0 В</text>
+    <text x="356" y="190">2 канали ADC STM32</text><text x="356" y="208" fill="#d9b25f" font-size="11">банка 1 = середина</text><text x="356" y="221" fill="#d9b25f" font-size="11">банка 2 = пак − середина</text>
+    <text x="592" y="190">Телеметрія + зумер</text><text x="592" y="208" fill="#93a1ab" font-size="11">#88 замість #166</text>
+  </g>
+  <text x="24" y="34" fill="#8fd18b">Штатно — щодня</text>
+  <text x="24" y="158" fill="#d9b25f">Контроль по банках — постійно, без жодного роз'єму</text>
+  <text x="350" y="268" fill="#93a1ab" text-anchor="middle">Зарядка — тільки в мішку Lipo Guard #166, і тільки коли ти в кімнаті</text>
+</svg>
+<figcaption>Щодня — просто CC/CV з DPS через BMS. Балансирний роз'єм не потрібен: BMS 2S
+вирівнює банки сама, а бачити їх окремо дає пара дільників на АЦП.</figcaption>
+</figure>
+
+<h3>Режими</h3>
+<ul>
+<li><b>Кінець заряду 8,40 В</b> (4,20 на банку). Хочеш подвоїти ресурс — став <b>8,10 В</b>: втратиш ~10% ємності, отримаєш у 2–3 рази більше циклів.</li>
+<li><b>Струм 2 А</b> = 0,125C на 16 Аг → ~8 годин. Можна до 4 А (4 год); 40P витримує значно більше, обмежують DPS і провід.</li>
+<li><b>Нижній поріг 6,0 В</b> (3,0 на банку) — його тримає BMS. У прошивці попередження на <b>6,6 В</b>, повернення додому на <b>6,4 В</b>.</li>
+<li><b>Джерело для DPS</b> — брикет 12 В від Chuwi (<b>#110</b>) або будь-який ноутбучний. У полі —
+<b>LiPo 3S (#109)</b>: 12,6 В на вхід DPS, 8,4 В на вихід. Ровер заряджається від запасного паку.</li>
+</ul>
+
+<h2>10 · Нічого не докуповуємо — як закривається кожна дірка</h2>
+
+<h3>Балансирний роз'єм JST-XH — не потрібен зовсім</h3>
+
+<p>Він був потрібен для двох речей, і обидві закриваються інакше.</p>
+
+<table>
+<tr><th style="width:190px">Було потрібно для</th><th>Замість цього</th></tr>
+<tr><td>вирівняти банки</td><td><b>BMS 2S 20 A (#162) це вже вміє</b> — балансування на верху заряду це її штатна функція. А паралель із чотирьох банок вирівнюється сама через нікель.</td></tr>
+<tr><td>бачити напругу кожної банки</td><td>Два дільники з резисторів <b>#97</b>: один на пак, другий на середню точку. Два канали АЦП STM32 — і кожна банка видна <b>постійно</b>, а не коли встромив роз'єм.</td></tr>
+<tr><td>сигналізатор #166</td><td>Зумер <b>#88</b> від STM32 за порогом у прошивці. Гнучкіше: можна два пороги, можна різні звуки.</td></tr>
+</table>
+
+<p><b>iMAX B6 Mini (#161) лишається для LiPo 3S (#109)</b> — у нього балансирний хвіст із заводу.
+Пак ровера з BMS його не потребує.</p>
+
+<h3>Ізолятори під 21700 — друкуються разом з тримачем</h3>
+
+<p>Тримач банок і так треба друкувати — він лягає в нішу рами. Зробити його так, щоб він
+<b>накривав плечі банки</b> і лишав відкритим тільки центральний п'ятак Ø10 мм — і окремі
+кільця fish paper зникають як задача.</p>
+
+<ul>
+<li><b>Термоусадка на пак не потрібна</b> — пак живе в друкованому корпусі, а не в оболонці.</li>
+<li>Куплені 18650-кільця <b>#167</b> лишаються на другий пак з HG2, де вони по розміру.</li>
+<li>Матеріал тримача — <b>Nylon #225</b>: не тече, тримає температуру, не крихкий. Не PLA.</li>
+</ul>
+
+<h3>Запобіжник — уже є в наборі</h3>
+
+<p>Набір <b>#197</b> це <b>0,2–20 А</b>, тобто 15 А там є. Дірки не було — я помилився,
+подивившись на паспорт тримача, а не на набір.</p>
+
+<p>Тримач <b>#199</b> паспортно на 10 А. З 15-амперною вставкою він теплішає, але піковий
+струм триває секунди до спрацювання deadman. Другий рівень захисту вже стоїть окремо:
+BMS ріже на 20 А, MC33886 має власний ліміт і тепловий захист.
+<b>PolySwitch 1 А (#198)</b> — на шину логіки, вона самовідновна.</p>
+
+<h3>Радіатор на драйвер — не потрібен, якщо порахувати</h3>
+
+<table>
+<tr><th>Режим</th><th>Струм каналу</th><th>Розсіювання MC33886</th></tr>
+<tr><td>їде по траві</td><td class="n">0,6 А</td><td class="n k">0,07 Вт</td></tr>
+<tr><td>підйом 30°</td><td class="n">1,8 А</td><td class="n k">0,65 Вт</td></tr>
+<tr><td>розворот на місці</td><td class="n">1,5 А</td><td class="n k">0,45 Вт</td></tr>
+<tr><td>стоп трьох моторів</td><td class="n b">4,5 А</td><td class="n b">4 Вт — але &lt; 1 с</td></tr>
+</table>
+
+<p>При 0,2 Ом сумарного опору плечей робоче розсіювання менше вата. Гріється тільки стоп,
+а стоп обриває deadman. Тому: <b>вентилятор 5 В (#92) на обидва драйвери</b>, DS18B20 (<b>#177</b>)
+на корпус, вмикання за температурою. Алюміній не потрібен.</p>
+
+<h3>PSRAM для карти — швидше за все її й так вистачає</h3>
+
+<p>Сітка 10×10 м із кроком 5 см = 40 000 комірок = <b>40 КБ по байту</b>. У ESP32-S3
+<b>512 КБ внутрішньої SRAM</b>. Тобто карта влазить у звичайну пам'ять із восьмикратним запасом,
+і PSRAM тут узагалі ні до чого — вона потрібна для <b>кадру JPEG</b>, а не для сітки.</p>
+
+<p class="lead">Що варто перевірити за хвилину: <code>#6 Waveshare ESP32-S3-Pico</code> у більшості
+ревізій іде як S3R2, тобто <b>вже з 2 МБ PSRAM</b>. Подивись напис на модулі або зчитай
+<code>esptool flash_id</code>. Якщо так — питання зникає двічі.</p>
+
+<h3>«Радар» — це VL53L0X на серві камери</h3>
+
+<p>Окремого лідара в наявності немає і не буде. Але сканер збирається з того, що є:</p>
+
+<ul>
+<li><b>VL53L0X ×3 (#172)</b> — 50 вимірів за секунду. Один ставиться поруч з камерою на ту саму
+голову pan/tilt, два дивляться в боки нерухомо.</li>
+<li>Голова <b>вже махає</b> для камери — окрема серва під сканер не потрібна. Прохід 180° за
+~0,5 с дає близько <b>25 точок на розгортку</b>. Грубо, але це справжній 2D-зріз.</li>
+<li>Ближній пояс закривають <b>HC-SR04 ×5 (#49)</b> і <b>Sharp GP2Y0A21 (#173)</b> — вони по
+іншому фізичному принципу, тобто не сліпнуть там, де сліпне ToF.</li>
+<li>Живлення: 20 мА на VL53L0X. У бюджеті вже враховано, окремої лінії не треба.</li>
+</ul>
+
+<h3>Чого це коштує</h3>
+
+<table>
+<tr><th>Дірка</th><th>Стан</th></tr>
+<tr><td>Балансирний роз'єм</td><td class="k">закрито повністю — вийшло краще, ніж було</td></tr>
+<tr><td>Ізолятори 21700</td><td class="k">закрито друком</td></tr>
+<tr><td>Запобіжник 15 А</td><td class="k">його й не бракувало</td></tr>
+<tr><td>Радіатор драйвера</td><td class="k">закрито вентилятором #92</td></tr>
+<tr><td>PSRAM карти</td><td class="k">не потрібна за арифметикою</td></tr>
+<tr><td>Радар</td><td class="k">VL53L0X на серві камери</td></tr>
+<tr><td><b>Блок 12 В на вхід DPS</b></td><td class="b">єдине, що не з інвентаря — але це брикет від Chuwi (#110) чи ноутбука, які вдома вже є. У полі — LiPo 3S #109.</td></tr>
+<tr><td><b>Провід 18 AWG — 4 м</b></td><td class="b">не докупити, тому <b>драйвери ставити впритул до паку</b>: головний шлейф 15 см замість півметра. Це і менше падіння, і менше наводок на сигнальні лінії.</td></tr>
+</table>
+
+<h2>11 · Порядок, у якому це збирати</h2>
+
+<ol>
+<li><b>Пак і зарядка.</b> Зварити, поставити BMS, зарядити з DPS, перевірити напругу під навантаженням лампочкою.</li>
+<li><b>Шина без моторів.</b> XT60 → вимикач → запобіжник → UBEC → одна плата. Переконатись, що 5 В тримається.</li>
+<li><b>Один мотор через один MC33886</b> від STM32. Зміряти реальний струм по ACS712 і порівняти з цифрами вище — вони рахункові.</li>
+<li><b>Три мотори паралельно</b> на канал. Тут з'ясується, чи потрібен радіатор.</li>
+<li><b>Обидва канали і deadman.</b> Висмикнути UART — мотори мусять зупинитись самі.</li>
+<li><b>Решта плат</b> на шину по одній, щоразу дивлячись на просадку 5 В.</li>
+</ol>
+
+<p class="lead" style="margin-top:28px">Усі цифри споживання — розрахункові, від паспортного стопового
+струму мотора. Перший же вимір на кроці 3 їх або підтвердить, або перекреслить.</p>
+
+</div>

@@ -1526,24 +1526,28 @@ ROVER = os.path.join(ROOT, "apps", "rover")
 
 # Вкладки міні-сайту ровера: (якір, назва, файл або None = заглушка)
 ROVER_TABS = [
-    ("korpus", "Устрій корпусу", None),
-    ("obrazy", "Образи", "looks.html"),
+    ("obrazy", "Образи",         "looks.html"),
+    ("korpus", "Устрій корпусу", "frame-layers.html"),
+    ("koleso", "Колесо",         "wheel-tilt.html"),
+    ("ruka",   "Роборука",       "arm.html"),
+    ("zhyv",   "Живлення",       "power.html"),
+    ("pult",   "Пульт",          "remote.html"),
     ("platy",  "Схема плат",     None),
-    ("ideya",  "Опис ідеї",      None),
     ("arch",   "Архітектура",    None),
+    ("ideya",  "Опис ідеї",      None),
 ]
 ROVER_DEFAULT = "obrazy"
 
 ROVER_STUB = {
-    "korpus": ("Устрій корпусу",
-               "Три шари, труби, панелі, скіс і профіль. Матеріал є — переносимо сюди."),
-    "platy":  ("Схема плат",
-               "П'ять плат, хто з ким говорить, які шини й через що йде живлення."),
-    "ideya":  ("Опис ідеї",
-               "Що це за апарат, для чого, і який у нього список функцій."),
-    "arch":   ("Архітектура",
-               "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
+    "platy": ("Схема плат",
+              "П'ять плат, хто з ким говорить, які шини й через що йде живлення."),
+    "arch":  ("Архітектура",
+              "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
+    "ideya": ("Опис ідеї",
+              "Що це за апарат, для чого, і який у нього список функцій."),
 }
+
+VIEWPORT = '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
 
 
 def copy_rover(out_dir):
@@ -1562,6 +1566,8 @@ def copy_rover(out_dir):
             body = fh.read()
         if "http-equiv" not in body:
             body = NOCACHE + body
+        if 'name="viewport"' not in body:
+            body = VIEWPORT + body
         with open(os.path.join(dst, f), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(body)
         n += 1
@@ -1616,14 +1622,15 @@ ROVER_SHELL = """<!doctype html>
   .brand{font-size:17px;font-weight:600}
   .home{color:var(--dim);text-decoration:none;font-size:13px}
   .home:hover{color:var(--acc)}
-  nav{max-width:1120px;margin:0 auto;padding:10px 18px 0;display:flex;gap:6px;
-      overflow-x:auto}
-  .tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--dim);
-       font:inherit;font-size:14px;padding:8px 12px 10px;cursor:pointer;white-space:nowrap}
-  .tab:hover{color:var(--txt)}
-  .tab.on{color:var(--txt);border-bottom-color:var(--acc)}
+  nav{max-width:1120px;margin:0 auto;padding:10px 18px 12px;display:flex;
+      flex-wrap:wrap;gap:3px}
+  .tab{flex:0 0 auto;background:#20262b;border:0;border-radius:0;color:var(--dim);
+       font:inherit;font-size:13.5px;padding:11px 16px;cursor:pointer;white-space:nowrap;
+       transition:background .12s,color .12s}
+  .tab:hover{background:#262e35;color:var(--txt)}
+  .tab.on{background:#2f6a9e;color:#fff}
   .tab-off{opacity:.5}
-  .tab-off::after{content:"·";margin-left:6px;color:var(--acc)}
+  .tab-off::after{content:"·";margin-left:7px}
   main{max-width:1120px;margin:0 auto}
   .pane{display:none}
   .pane.on{display:block}
@@ -1635,8 +1642,8 @@ ROVER_SHELL = """<!doctype html>
       border:1px solid var(--line);border-radius:20px;padding:4px 14px}
   @media (max-width:520px){
     .hin{padding:10px 12px 0}
-    nav{padding:8px 12px 0;gap:2px}
-    .tab{font-size:13px;padding:8px 8px 10px}
+    nav{padding:8px 10px 10px;gap:2px}
+    .tab{font-size:12.5px;padding:9px 11px}
     .stub{padding:56px 16px}
     .st{font-size:19px}
   }

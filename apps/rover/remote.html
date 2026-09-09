@@ -1,0 +1,595 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Пульт — залізо і піни</title>
+<style>
+body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:26px;font-weight:600;margin:0 0 4px}
+h2{font-size:20px;font-weight:600;margin:38px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+p{margin:8px 0;max-width:80ch}
+.lead{color:#93a1ab}
+figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+svg{display:block;min-width:560px;max-width:100%;height:auto}
+table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#20262b;font-weight:600}
+td.n{color:#7fb3d5;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.g{color:#d9b25f;font-variant-numeric:tabular-nums;white-space:nowrap}
+ul,ol{margin:8px 0;padding-left:20px;max-width:80ch}
+li{margin:4px 0}
+.b{color:#e07b6a}
+.k{color:#8fd18b}
+.y{color:#d9b25f}
+code{background:#20262b;padding:1px 5px;border-radius:3px;font-size:12.5px}
+.box{background:#1b1f23;border:1px solid #2c3339;border-left:3px solid #e07b6a;border-radius:5px;padding:10px 14px;margin:14px 0;max-width:80ch}
+.box.k{border-left-color:#8fd18b}
+.box.y{border-left-color:#d9b25f;color:#e6ebef}
+</style>
+<div class="wrap">
+
+<h1>Пульт — залізо і піни</h1>
+<p class="lead">Дві плати, три екрани, двадцять чотири ноги. Номери <code>#N</code> посилаються
+на <code>docs/hardware.md</code> і <code>docs/hardware_incoming.md</code>. Розділ 1 — про те,
+де ця сторінка розходиться з уже прийнятими рішеннями в <b>Живленні</b>: три місця, і всі три
+треба закрити рішенням, а не мовчанкою.</p>
+
+<h2>1 · Три розходження, які треба закрити першими</h2>
+
+<p>Частина пульта вже описана в інших місцях репозиторію. Не все збігається.</p>
+
+<table>
+<tr><th style="width:120px">Питання</th><th>Де що написано</th><th>Наслідок</th></tr>
+<tr>
+  <td><b>Радіо</b></td>
+  <td><code>vehicles.md</code> — CC1101 433<br>
+      <b>Живлення</b> — nRF24 <b>#121/#122</b><br>
+      мій розрахунок — SiK 433 <b>#13/#14</b></td>
+  <td class="b">Три різні відповіді. Пропускна здатність відрізняється в 5–20 разів,
+      тобто від цього залежить, чи є відео взагалі.</td>
+</tr>
+<tr>
+  <td><b>Плата А</b></td>
+  <td><code>hardware_incoming.md</code> <b>#116</b> —
+      «ESP32-C6-Mini, the control half of the remote»</td>
+  <td class="b">У C6 <b>всього 7 каналів АЦП</b> (GPIO 0–6). Панелі нижче треба 10.
+      Не влазить.</td>
+</tr>
+<tr>
+  <td><b>Радар</b></td>
+  <td><b>Живлення</b> — VL53L0X на серві камери,
+      ~25 точок за прохід 180°</td>
+  <td class="k">Тут розходження на нашу користь: не 360 точок по 2 байти,
+      а <b>25 × 2 = 50 байт</b> на розгортку. Канал звільняється майже повністю.</td>
+</tr>
+</table>
+
+<div class="box">
+<b>Плата #116 не тримає цю панель.</b> ESP32-C6 має один АЦП на 7 каналів. Потрібно:
+4 осі стіків + потенціометр + драбина кнопок = <b>6</b>, і ще <b>4</b> під тумблери.
+Разом 10 проти 7. Варіанти: перевести тумблери на цифрові ноги (+8 GPIO, на Mini теж тісно),
+або взяти під плату А повнорозмірну ESP32-S3. Пін-карта в розділі 5 — під S3.
+</div>
+
+<h2>2 · Дві плати</h2>
+
+<p>Розділення не через брак МГц — один ESP32-S3 потягнув би обидві задачі. Через <b>таймінги</b>:
+цикл керування має бути передбачуваним, а декодування JPEG і Wi-Fi крадуть такт коли захочуть.</p>
+
+<figure>
+<svg viewBox="0 0 700 400" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- antenna -->
+  <path d="M97 50 V26" stroke="#9aa5ad" stroke-width="2"/>
+  <path d="M97 26 l-9 -11 M97 26 l9 -11" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+
+  <!-- links down into board A -->
+  <g stroke="#d9b25f" stroke-width="2" fill="none">
+    <path d="M97 102 V190"/>
+    <path d="M232 102 V190"/>
+  </g>
+  <path d="M535 108 V190" stroke="#d9b25f" stroke-width="2" fill="none" stroke-dasharray="5 4"/>
+
+  <!-- top boxes -->
+  <g fill="#232d36" stroke="#7fb3d5" stroke-width="2">
+    <rect x="40" y="50" width="115" height="52" rx="6"/>
+    <rect x="175" y="50" width="115" height="52" rx="6"/>
+  </g>
+  <g text-anchor="middle" fill="#e6ebef">
+    <text x="97" y="72">радіо</text>
+    <text x="97" y="90" fill="#93a1ab" font-size="11">див. розділ 1</text>
+    <text x="232" y="72">органи керування</text>
+    <text x="232" y="90" fill="#93a1ab" font-size="11">стіки · тумблери · кнопки</text>
+    <text x="535" y="82" fill="#e6ebef">Wi-Fi</text>
+    <text x="535" y="99" fill="#93a1ab" font-size="11">відео зблизька, ~50 м</text>
+  </g>
+
+  <!-- boards -->
+  <g fill="#232d36" stroke="#7fb3d5" stroke-width="2.4">
+    <rect x="40" y="190" width="250" height="82" rx="7"/>
+    <rect x="410" y="190" width="250" height="82" rx="7"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="165" y="214" fill="#e6ebef" font-size="13">ПЛАТА А · керування</text>
+    <text x="165" y="233" fill="#93a1ab" font-size="11">ESP32-S3, Wi-Fi не піднімається</text>
+    <text x="165" y="251" fill="#d9b25f" font-size="11">цикл 50 Гц · watchdog · пріоритет</text>
+    <text x="535" y="214" fill="#e6ebef" font-size="13">ПЛАТА Б · картинка</text>
+    <text x="535" y="233" fill="#93a1ab" font-size="11">ESP32-S3R2 #114 · 2 МБ PSRAM</text>
+    <text x="535" y="251" fill="#8fd18b" font-size="11">JPEG · радар · OSD</text>
+  </g>
+
+  <!-- UART between -->
+  <path d="M290 231 H400" stroke="#8fd18b" stroke-width="2.4" fill="none"/>
+  <path d="M400 231 l-9 -5 l0 10 Z" fill="#8fd18b"/>
+  <g text-anchor="middle" fill="#8fd18b" font-size="11">
+    <text x="345" y="212">UART 460800</text>
+    <text x="345" y="252">~70 кбіт/с</text>
+  </g>
+
+  <!-- down to displays -->
+  <g stroke="#7fb3d5" stroke-width="2" fill="none">
+    <path d="M165 272 V320"/><path d="M535 272 V320"/>
+  </g>
+  <g fill="#7fb3d5" font-size="11">
+    <text x="173" y="300">I2C</text><text x="543" y="300">SPI</text>
+  </g>
+
+  <!-- display boxes -->
+  <g fill="#20262b" stroke="#4a6f8a" stroke-width="2">
+    <rect x="40" y="320" width="250" height="54" rx="6"/>
+    <rect x="410" y="320" width="250" height="54" rx="6"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="165" y="343" fill="#e6ebef">OLED 128×64 ×2</text>
+    <text x="165" y="361" fill="#93a1ab" font-size="11">телеметрія — живе без плати Б</text>
+    <text x="535" y="343" fill="#e6ebef">IPS 240×240 · ST7789</text>
+    <text x="535" y="361" fill="#93a1ab" font-size="11">відео або радар</text>
+  </g>
+</svg>
+<figcaption>Двонаправлений зв'язок тут рівно один — <b>радіо</b>. Все решта тече в один бік.
+Телеметрія висить на платі А навмисно: якщо плата Б зависне або її вимкнуть заради економії,
+напруга, струм і якість зв'язку залишаються на екрані.</figcaption>
+</figure>
+
+<table>
+<tr><th style="width:130px"></th><th>Плата А — керування</th><th>Плата Б — картинка</th></tr>
+<tr><td>Чим бути</td><td>ESP32-S3 (<b class="b">не</b> #116, див. розділ 1)</td><td>Waveshare ESP32-S3R2 <b>#114</b></td></tr>
+<tr><td>Вхід</td><td>радіо, стіки, тумблери, кнопки</td><td>UART від А, Wi-Fi</td></tr>
+<tr><td>Вихід</td><td>2× OLED по I2C, UART на Б</td><td>IPS 240×240 по SPI</td></tr>
+<tr><td>Робота</td><td>цикл 50 Гц, watchdog, пріоритет пакетів</td><td>JPEG decode, радар, OSD</td></tr>
+<tr><td>Wi-Fi</td><td class="k">не піднімається взагалі</td><td>так</td></tr>
+</table>
+
+<div class="box k">
+<b>Рядок «Wi-Fi не піднімається» — не дрібниця.</b> На ESP32-S3 <b>ADC2 мертвий, поки працює Wi-Fi</b>.
+На платі А його немає — отже вільні обидва АЦП, <b>20 аналогових ніг замість 10</b>.
+Саме це закриває пульт без жодного розширювача.
+</div>
+
+<h2>3 · Передня панель</h2>
+
+<p>Правило розкладки, з якого все випливає: <b>стан</b> → тумблер із фіксацією, який відчуваєш
+пальцем не дивлячись; <b>дія</b> → миттєва кнопка; <b>безперервне</b> → стік або потенціометр;
+решта → енкодер і меню. Усе, що стосується безпеки, мусить бути тумблером — пункт меню не видно
+на сонці, і стан не відчувається на дотик.</p>
+
+<figure>
+<svg viewBox="0 0 700 510" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <rect x="50" y="16" width="600" height="470" rx="18" fill="#20262b" stroke="#4a6f8a" stroke-width="2"/>
+
+  <!-- top toggles -->
+  <g fill="#232d36" stroke="#9aa5ad" stroke-width="2">
+    <rect x="131" y="44" width="18" height="30" rx="4"/>
+    <rect x="341" y="44" width="18" height="30" rx="4"/>
+    <rect x="551" y="44" width="18" height="30" rx="4"/>
+  </g>
+  <g stroke="#e6ebef" stroke-width="3" stroke-linecap="round">
+    <path d="M140 60 V46"/><path d="M350 60 V74"/><path d="M560 60 V46"/>
+  </g>
+  <circle cx="350" cy="59" r="19" fill="none" stroke="#e07b6a" stroke-width="1.6" stroke-dasharray="4 3"/>
+  <g text-anchor="middle" fill="#93a1ab" font-size="11">
+    <text x="140" y="92">живлення</text>
+    <text x="350" y="92" fill="#e07b6a">ARM · під ковпачком</text>
+    <text x="560" y="92">камера</text>
+  </g>
+
+  <!-- IPS -->
+  <rect x="80" y="106" width="250" height="152" rx="5" fill="#14171a" stroke="#7fb3d5" stroke-width="2.4"/>
+  <g text-anchor="middle">
+    <text x="205" y="172" fill="#7fb3d5" font-size="14">IPS 240×240</text>
+    <text x="205" y="192" fill="#93a1ab" font-size="11">відео або радар + OSD</text>
+  </g>
+
+  <!-- OLEDs -->
+  <g fill="#14171a" stroke="#4a6f8a" stroke-width="2">
+    <rect x="368" y="106" width="242" height="72" rx="4"/>
+    <rect x="368" y="186" width="242" height="72" rx="4"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="489" y="136" fill="#e6ebef" font-size="12">OLED 128×64</text>
+    <text x="489" y="155" fill="#93a1ab" font-size="11">напруга · струм · шлях</text>
+    <text x="489" y="216" fill="#e6ebef" font-size="12">OLED 128×64</text>
+    <text x="489" y="235" fill="#93a1ab" font-size="11">зв'язок · курс · нахил</text>
+  </g>
+
+  <!-- encoder -->
+  <circle cx="589" cy="300" r="21" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <path d="M589 300 V284" stroke="#e6ebef" stroke-width="2.4" stroke-linecap="round"/>
+  <text x="589" y="336" fill="#93a1ab" font-size="11" text-anchor="middle">KY-040 · меню</text>
+
+  <!-- MTS-103 row -->
+  <g fill="#232d36" stroke="#d9b25f" stroke-width="2">
+    <rect x="121" y="284" width="18" height="32" rx="4"/>
+    <rect x="241" y="284" width="18" height="32" rx="4"/>
+    <rect x="361" y="284" width="18" height="32" rx="4"/>
+    <rect x="481" y="284" width="18" height="32" rx="4"/>
+  </g>
+  <g stroke="#d9b25f" stroke-width="3" stroke-linecap="round">
+    <path d="M130 300 V286"/><path d="M250 300 V300"/><path d="M370 300 V314"/><path d="M490 300 V286"/>
+  </g>
+  <g text-anchor="middle" fill="#d9b25f" font-size="11">
+    <text x="130" y="336">режим</text>
+    <text x="250" y="336">канал</text>
+    <text x="370" y="336">швидкість</text>
+    <text x="490" y="336">зв'язок</text>
+  </g>
+  <text x="305" y="356" fill="#93a1ab" font-size="11" text-anchor="middle">4× MTS-103 · три положення кожен</text>
+
+  <!-- sticks -->
+  <g fill="#232d36" stroke="#7fb3d5" stroke-width="2.4">
+    <circle cx="140" cy="418" r="38"/><circle cx="560" cy="418" r="38"/>
+  </g>
+  <g fill="#2a3138" stroke="#9aa5ad" stroke-width="2">
+    <circle cx="140" cy="418" r="17"/><circle cx="560" cy="418" r="17"/>
+  </g>
+  <g stroke="#4a6f8a" stroke-width="1.4">
+    <path d="M140 380 V456 M102 418 H178"/><path d="M560 380 V456 M522 418 H598"/>
+  </g>
+  <g text-anchor="middle" fill="#93a1ab" font-size="11">
+    <text x="140" y="474">їзда — хід і поворот</text>
+    <text x="560" y="474">маніпулятор або турель</text>
+  </g>
+
+  <!-- six buttons -->
+  <g fill="#2a3138" stroke="#8fd18b" stroke-width="2">
+    <circle cx="290" cy="398" r="13"/><circle cx="350" cy="398" r="13"/><circle cx="410" cy="398" r="13"/>
+    <circle cx="290" cy="440" r="13"/><circle cx="350" cy="440" r="13"/><circle cx="410" cy="440" r="13"/>
+  </g>
+  <text x="350" y="474" fill="#8fd18b" font-size="11" text-anchor="middle">6 підсвічених — підсвітка = зв'язок живий</text>
+
+  <!-- pot -->
+  <circle cx="205" cy="300" r="16" fill="#232d36" stroke="#9aa5ad" stroke-width="2"/>
+  <path d="M205 300 l10 -10" stroke="#e6ebef" stroke-width="2.2" stroke-linecap="round"/>
+  <text x="205" y="336" fill="#93a1ab" font-size="11" text-anchor="middle">яскравість</text>
+</svg>
+<figcaption>Чотири MTS-103 закривають рівно ті режими, що вже перелічені в <b>Описі ідеї</b> —
+по три положення на тумблер, один-в-один, без жодного меню. Тумблер «канал» насправді
+перемикає не картинку, а <b>на що витрачається смуга</b>.</figcaption>
+</figure>
+
+<h3>Що куди призначено</h3>
+
+<table>
+<tr><th style="width:210px">Орган</th><th style="width:44px">К-сть</th><th>Призначення</th></tr>
+<tr><td>MTS-101 SPST</td><td class="n">1</td><td>живлення пульта</td></tr>
+<tr><td>MTS-102 + ковпачок IP54</td><td class="n">1</td><td class="b">ARM / DISARM — мотори під струмом чи ні</td></tr>
+<tr><td>MTS-102</td><td class="n">1</td><td>камера увімк./вимк. — звільняє смугу під радар</td></tr>
+<tr><td rowspan="4">MTS-103 ON-OFF-ON</td><td class="n">1</td><td>режим: ручний / утримання курсу / авто</td></tr>
+<tr><td class="n">1</td><td>канал: радар / змішаний / відео</td></tr>
+<tr><td class="n">1</td><td>швидкість: повзком / звичайно / максимум</td></tr>
+<tr><td class="n">1</td><td>втрата зв'язку: стояти / повернутись / зупинитись</td></tr>
+<tr><td>KY-023 стік</td><td class="n">1</td><td>їзда: Y = хід, X = поворот (мікшер skid-steer)</td></tr>
+<tr><td>KY-023 стік</td><td class="n">1</td><td>маніпулятор або турель: X = поворот, Y = нахил</td></tr>
+<tr><td>KY-040 енкодер</td><td class="n">1</td><td>меню на OLED, підтвердження натиском</td></tr>
+<tr><td>Тактові з підсвіткою</td><td class="n">6</td><td>кадр зараз · позначити точку · повернутись у старт · сигнал · фари · скинути курс</td></tr>
+<tr><td>Потенціометр</td><td class="n">1</td><td>яскравість екрана <b>або</b> нахил камери</td></tr>
+</table>
+
+<h3>Чого з наявного не брати в пульт</h3>
+
+<table>
+<tr><th style="width:230px">Що</th><th>Чому</th></tr>
+<tr><td>Матрична клавіатура 4×4 ×2</td><td>треба дивитись і цілитись, у рукавицях не працює; усе, що вона вміє, енкодер робить краще. Її місце — на стенді, не в полі</td></tr>
+<tr><td>TTP223 сенсорна</td><td>немає тактильного відгуку, спрацьовує від дощу й мокрих рукавиць</td></tr>
+<tr><td>LCD 1602</td><td>16 символів на рядок і підсвітка-рамка; OLED кращий за всіма параметрами</td></tr>
+</table>
+
+<h2>4 · Скільки ніг треба — і чому навпростець не влазить</h2>
+
+<table>
+<tr><th>Спосіб</th><th style="width:80px">Ніг</th><th>Висновок</th></tr>
+<tr><td>Усе навпростець, по нозі на контакт</td><td class="g">34</td><td class="b">не влазить</td></tr>
+<tr><td>Доступно на ESP32-S3 без strapping / USB / консолі</td><td class="g">30</td><td></td></tr>
+<tr><td><b>Кнопки на драбину, тумблери на ADC</b></td><td class="g k">25</td><td class="k">влазить, лишається 6 вільних</td></tr>
+<tr><td>Доступно аналогових на ESP32-C6 <b>#116</b></td><td class="g">7</td><td class="b">треба 10 — не влазить</td></tr>
+</table>
+
+<p>Тобто драбина і тумблери-через-АЦП — <b>не економія заради економії</b>, а умова, щоб панель
+узагалі зібралась на одній платі. Це те, що тут вирішує вибір плати, а не тактова частота.</p>
+
+<h2>5 · Плата А — пін-карта</h2>
+
+<figure>
+<svg viewBox="0 0 700 580" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <rect x="272" y="60" width="156" height="472" rx="9" fill="#232d36" stroke="#7fb3d5" stroke-width="2.4"/>
+  <text x="350" y="42" fill="#e6ebef" font-size="13" text-anchor="middle">ESP32-S3 · плата А</text>
+  <text x="350" y="554" fill="#93a1ab" font-size="11" text-anchor="middle">Wi-Fi не піднімається → ADC2 вільний</text>
+
+  <!-- left pins -->
+  <g stroke="#d9b25f" stroke-width="2">
+    <path d="M272 92 H242"/><path d="M272 129 H242"/><path d="M272 166 H242"/><path d="M272 203 H242"/>
+    <path d="M272 240 H242"/><path d="M272 277 H242"/><path d="M272 314 H242"/><path d="M272 351 H242"/>
+    <path d="M272 388 H242"/><path d="M272 425 H242"/>
+  </g>
+  <g stroke="#9aa5ad" stroke-width="2">
+    <path d="M272 462 H242"/><path d="M272 499 H242"/>
+  </g>
+  <g text-anchor="end" font-size="11.5">
+    <text x="236" y="89" fill="#d9b25f">GPIO 1 · стік 1 — вісь X</text>
+    <text x="236" y="126" fill="#d9b25f">GPIO 2 · стік 1 — вісь Y</text>
+    <text x="236" y="163" fill="#d9b25f">GPIO 4 · стік 2 — вісь X</text>
+    <text x="236" y="200" fill="#d9b25f">GPIO 5 · стік 2 — вісь Y</text>
+    <text x="236" y="237" fill="#d9b25f">GPIO 6 · потенціометр</text>
+    <text x="236" y="274" fill="#d9b25f">GPIO 7 · драбина 6 кнопок</text>
+    <text x="236" y="311" fill="#d9b25f">GPIO 11 · MTS-103 режим</text>
+    <text x="236" y="348" fill="#d9b25f">GPIO 12 · MTS-103 канал</text>
+    <text x="236" y="385" fill="#d9b25f">GPIO 13 · MTS-103 швидкість</text>
+    <text x="236" y="422" fill="#d9b25f">GPIO 14 · MTS-103 зв'язок</text>
+    <text x="236" y="459" fill="#93a1ab">GPIO 21 · кнопка стіка 1</text>
+    <text x="236" y="496" fill="#93a1ab">GPIO 33 · кнопка стіка 2</text>
+  </g>
+  <g text-anchor="end" font-size="10" fill="#5f6b73">
+    <text x="236" y="103">ADC1</text><text x="236" y="140">ADC1</text><text x="236" y="177">ADC1</text>
+    <text x="236" y="214">ADC1</text><text x="236" y="251">ADC1</text><text x="236" y="288">ADC1</text>
+    <text x="236" y="325">ADC2</text><text x="236" y="362">ADC2</text><text x="236" y="399">ADC2</text>
+    <text x="236" y="436">ADC2</text>
+    <text x="236" y="510">quad-PSRAM only</text>
+  </g>
+
+  <!-- right pins -->
+  <g stroke="#7fb3d5" stroke-width="2">
+    <path d="M428 92 H458"/><path d="M428 129 H458"/>
+  </g>
+  <g stroke="#9aa5ad" stroke-width="2">
+    <path d="M428 166 H458"/><path d="M428 203 H458"/><path d="M428 240 H458"/>
+    <path d="M428 277 H458"/><path d="M428 314 H458"/><path d="M428 351 H458"/>
+  </g>
+  <g stroke="#8fd18b" stroke-width="2">
+    <path d="M428 388 H458"/><path d="M428 425 H458"/><path d="M428 462 H458"/><path d="M428 499 H458"/>
+  </g>
+  <g text-anchor="start" font-size="11.5">
+    <text x="464" y="89" fill="#7fb3d5">GPIO 17 · I2C SDA → OLED ×2</text>
+    <text x="464" y="126" fill="#7fb3d5">GPIO 18 · I2C SCL → OLED ×2</text>
+    <text x="464" y="163" fill="#93a1ab">GPIO 34 · енкодер CLK</text>
+    <text x="464" y="200" fill="#93a1ab">GPIO 35 · енкодер DT</text>
+    <text x="464" y="237" fill="#93a1ab">GPIO 36 · енкодер SW</text>
+    <text x="464" y="274" fill="#93a1ab">GPIO 37 · підсвітка кнопок</text>
+    <text x="464" y="311" fill="#93a1ab">GPIO 38 · MTS-102 ARM</text>
+    <text x="464" y="348" fill="#93a1ab">GPIO 39 · MTS-102 камера</text>
+    <text x="464" y="385" fill="#8fd18b">GPIO 40 · UART1 TX → радіо</text>
+    <text x="464" y="422" fill="#8fd18b">GPIO 41 · UART1 RX ← радіо</text>
+    <text x="464" y="459" fill="#8fd18b">GPIO 47 · UART2 TX → плата Б</text>
+    <text x="464" y="496" fill="#8fd18b">GPIO 48 · UART2 RX ← плата Б</text>
+  </g>
+  <g text-anchor="start" font-size="10" fill="#5f6b73">
+    <text x="464" y="288">вихід через транзистор</text>
+    <text x="464" y="510">460800</text>
+  </g>
+</svg>
+<figcaption><span class="y">Золоті</span> — аналогові, <span class="k">зелені</span> — UART,
+<span style="color:#7fb3d5">сині</span> — I2C, сірі — звичайні цифрові.
+Вільні: 8, 9, 10, 15, 16, 42.</figcaption>
+</figure>
+
+<div class="box">
+<b>Не чіпати:</b> 0, 3, 45, 46 (strapping) · 19, 20 (USB) · 43, 44 (консоль UART0) ·
+26–32 (флеш і PSRAM).<br><br>
+<b>GPIO 33–37 вільні тільки тому</b>, що ESP32-S3<b>R2</b> має quad-PSRAM. На R8 (octal)
+вони йдуть під SPIIO4–7 і зайняті. Цю карту <b>не можна</b> перенести на плату з іншим чипом
+не подивившись, який саме чип.
+</div>
+
+<h2>6 · Плата Б — пін-карта</h2>
+
+<table>
+<tr><th style="width:110px">GPIO</th><th>Що</th><th>Примітка</th></tr>
+<tr><td class="n">12</td><td>SPI SCK → ST7789</td><td></td></tr>
+<tr><td class="n">11</td><td>SPI MOSI → ST7789</td><td>MISO не потрібен — екран лише на запис</td></tr>
+<tr><td class="n">10</td><td>ST7789 CS</td><td></td></tr>
+<tr><td class="n">9</td><td>ST7789 DC</td><td></td></tr>
+<tr><td class="n">8</td><td>ST7789 RST</td><td></td></tr>
+<tr><td class="n">13</td><td>ST7789 BLK</td><td>підсвітка, PWM</td></tr>
+<tr><td class="n">18</td><td>UART2 RX ← плата А</td><td>460800</td></tr>
+<tr><td class="n">17</td><td>UART2 TX → плата А</td><td>резерв</td></tr>
+</table>
+
+<p>Тут Wi-Fi працює, тому ADC2 (11–20) як <b>АЦП</b> мертвий — але цифрові функції на цих ногах
+працюють нормально, а АЦП на платі Б і не потрібен.</p>
+
+<p class="k">Екран не є вузьким місцем: 240×240 RGB565 = 115 КБ, на SPI 80 МГц це ~12 мс
+на повний кадр, тобто ~85 к/с при потрібному одному.</p>
+
+<h2>7 · Драбина на шість кнопок — один пін замість шести</h2>
+
+<figure>
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- 3.3V rail -->
+  <path d="M90 44 H620" stroke="#e07b6a" stroke-width="2"/>
+  <text x="70" y="48" fill="#e07b6a" font-size="12" text-anchor="end">3.3 В</text>
+
+  <!-- pull-up -->
+  <path d="M120 44 V64" stroke="#9aa5ad" stroke-width="2"/>
+  <rect x="110" y="64" width="20" height="34" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <text x="140" y="85" fill="#d9b25f" font-size="11">10k</text>
+  <path d="M120 98 V126" stroke="#9aa5ad" stroke-width="2"/>
+
+  <!-- node bus -->
+  <path d="M120 126 H600" stroke="#7fb3d5" stroke-width="2.4"/>
+  <path d="M120 126 H70" stroke="#7fb3d5" stroke-width="2.4"/>
+  <text x="64" y="130" fill="#7fb3d5" font-size="12" text-anchor="end">GPIO 7</text>
+  <circle cx="120" cy="126" r="3.5" fill="#7fb3d5"/>
+
+  <!-- six branches -->
+  <g id="br">
+    <g stroke="#9aa5ad" stroke-width="2" fill="none">
+      <path d="M200 126 V150"/><path d="M280 126 V150"/><path d="M360 126 V150"/>
+      <path d="M440 126 V150"/><path d="M520 126 V150"/><path d="M600 126 V150"/>
+    </g>
+    <!-- switches -->
+    <g stroke="#8fd18b" stroke-width="2.2" fill="none">
+      <path d="M200 150 v6 M200 176 v6 M196 156 l12 -8"/>
+      <path d="M280 150 v6 M280 176 v6 M276 156 l12 -8"/>
+      <path d="M360 150 v6 M360 176 v6 M356 156 l12 -8"/>
+      <path d="M440 150 v6 M440 176 v6 M436 156 l12 -8"/>
+      <path d="M520 150 v6 M520 176 v6 M516 156 l12 -8"/>
+      <path d="M600 150 v6 M600 176 v6 M596 156 l12 -8"/>
+    </g>
+    <!-- resistors -->
+    <g fill="#232d36" stroke="#d9b25f" stroke-width="2">
+      <rect x="270" y="188" width="20" height="30" rx="3"/>
+      <rect x="350" y="188" width="20" height="30" rx="3"/>
+      <rect x="430" y="188" width="20" height="30" rx="3"/>
+      <rect x="510" y="188" width="20" height="30" rx="3"/>
+      <rect x="590" y="188" width="20" height="30" rx="3"/>
+    </g>
+    <g stroke="#9aa5ad" stroke-width="2" fill="none">
+      <path d="M200 182 V246"/>
+      <path d="M280 182 V188 M280 218 V246"/>
+      <path d="M360 182 V188 M360 218 V246"/>
+      <path d="M440 182 V188 M440 218 V246"/>
+      <path d="M520 182 V188 M520 218 V246"/>
+      <path d="M600 182 V188 M600 218 V246"/>
+    </g>
+  </g>
+
+  <!-- resistor values -->
+  <g fill="#d9b25f" font-size="11" text-anchor="middle">
+    <text x="200" y="208">0 Ω</text>
+    <text x="305" y="207">2.2k</text><text x="385" y="207">4.7k</text>
+    <text x="465" y="207">10k</text><text x="545" y="207">22k</text><text x="625" y="207">47k</text>
+  </g>
+
+  <!-- ground -->
+  <path d="M186 246 H614" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#9aa5ad" stroke-width="2">
+    <path d="M392 246 V256 M380 256 H404 M385 262 H399 M390 268 H394"/>
+  </g>
+  <text x="420" y="266" fill="#93a1ab" font-size="11">GND</text>
+
+  <!-- button labels -->
+  <g fill="#8fd18b" font-size="11" text-anchor="middle">
+    <text x="200" y="288">SW1</text><text x="280" y="288">SW2</text><text x="360" y="288">SW3</text>
+    <text x="440" y="288">SW4</text><text x="520" y="288">SW5</text><text x="600" y="288">SW6</text>
+  </g>
+</svg>
+<figcaption>Одна підтяжка 10k, шість гілок із різними резисторами. Натиснута кнопка притягує
+вузол до своєї частки напруги — і АЦП читає, <b>яка саме</b>.</figcaption>
+</figure>
+
+<table>
+<tr><th>Натиснуто</th><th style="width:110px">Напруга</th><th style="width:130px">12-біт код</th><th>Проміжок до сусіда</th></tr>
+<tr><td>нічого</td><td class="n">3.30 В</td><td class="n">~4095</td><td class="n">0.58 В</td></tr>
+<tr><td>SW1 — кадр зараз</td><td class="n">0.00 В</td><td class="n">~0</td><td class="n">0.60 В</td></tr>
+<tr><td>SW2 — позначити точку</td><td class="n">0.60 В</td><td class="n">~740</td><td class="n">0.45 В</td></tr>
+<tr><td>SW3 — повернутись у старт</td><td class="n">1.05 В</td><td class="n">~1300</td><td class="n">0.60 В</td></tr>
+<tr><td>SW4 — сигнал</td><td class="n">1.65 В</td><td class="n">~2050</td><td class="n">0.62 В</td></tr>
+<tr><td>SW5 — фари</td><td class="n">2.27 В</td><td class="n">~2820</td><td class="n">0.45 В</td></tr>
+<tr><td>SW6 — скинути курс</td><td class="n">2.72 В</td><td class="n">~3380</td><td class="n">—</td></tr>
+</table>
+
+<p class="k">Найменший проміжок 0.45 В при кроці АЦП 0.8 мВ — це 560 кроків запасу.
+Розрізняється з величезною надійністю навіть на дешевих резисторах ±5%.</p>
+
+<div class="box">
+<b>Розрізняється тільки одна кнопка за раз.</b> Дві натиснуті дають напругу меншого резистора,
+тобто виглядають як одна. Для цих шести дій прийнятно; для акордів — ні.
+Якщо колись знадобиться комбінація — це буде окрема цифрова нога, а не сьома сходинка драбини.
+</div>
+
+<h2>8 · Тумблер на три положення — теж один пін</h2>
+
+<figure>
+<svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- rails -->
+  <path d="M150 40 H470" stroke="#e07b6a" stroke-width="2"/>
+  <text x="140" y="44" fill="#e07b6a" text-anchor="end">3.3 В</text>
+  <path d="M150 220 H470" stroke="#9aa5ad" stroke-width="2"/>
+  <text x="140" y="224" fill="#93a1ab" text-anchor="end">GND</text>
+
+  <!-- divider -->
+  <path d="M240 40 V72" stroke="#9aa5ad" stroke-width="2"/>
+  <rect x="230" y="72" width="20" height="34" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <text x="262" y="93" fill="#d9b25f" font-size="11">10k</text>
+  <path d="M240 106 V154" stroke="#9aa5ad" stroke-width="2"/>
+  <rect x="230" y="154" width="20" height="34" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <text x="262" y="175" fill="#d9b25f" font-size="11">10k</text>
+  <path d="M240 188 V220" stroke="#9aa5ad" stroke-width="2"/>
+
+  <!-- node out -->
+  <path d="M240 130 H120" stroke="#7fb3d5" stroke-width="2.4"/>
+  <circle cx="240" cy="130" r="3.5" fill="#7fb3d5"/>
+  <text x="114" y="134" fill="#7fb3d5" text-anchor="end">GPIO 11</text>
+
+  <!-- switch contacts -->
+  <path d="M240 130 H400" stroke="#7fb3d5" stroke-width="2.4"/>
+  <circle cx="400" cy="130" r="4" fill="#7fb3d5"/>
+  <text x="404" y="150" fill="#93a1ab" font-size="11">спільний</text>
+
+  <path d="M470 40 V78 H500" stroke="#e07b6a" stroke-width="2" fill="none"/>
+  <circle cx="504" cy="78" r="4" fill="#e07b6a"/>
+  <text x="516" y="82" fill="#e07b6a" font-size="11">контакт A</text>
+
+  <path d="M470 220 V182 H500" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+  <circle cx="504" cy="182" r="4" fill="#9aa5ad"/>
+  <text x="516" y="186" fill="#93a1ab" font-size="11">контакт B</text>
+
+  <!-- lever -->
+  <path d="M400 130 L500 80" stroke="#8fd18b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M400 130 L512 130" stroke="#8fd18b" stroke-width="1.4" stroke-dasharray="4 4"/>
+  <path d="M400 130 L500 180" stroke="#8fd18b" stroke-width="1.4" stroke-dasharray="4 4"/>
+  <text x="516" y="134" fill="#8fd18b" font-size="11">центр — розімкнено</text>
+</svg>
+<figcaption>Дільник 10k/10k тримає вузол на 1.65 В, поки важіль посередині. Верхнє положення
+садить вузол на 3.3 В, нижнє — на землю. Той самий вузол на всі чотири MTS-103,
+по одному ADC2-піну на кожен.</figcaption>
+</figure>
+
+<table>
+<tr><th>Положення</th><th style="width:120px">Напруга</th><th>Що читаємо</th></tr>
+<tr><td>вгору — контакт A</td><td class="n">3.30 В</td><td>верхній режим</td></tr>
+<tr><td>центр — розімкнено</td><td class="n">1.65 В</td><td>дільник тримає середину</td></tr>
+<tr><td>вниз — контакт B</td><td class="n">0.00 В</td><td>нижній режим</td></tr>
+</table>
+
+<h2>9 · Що лишається вирішити</h2>
+
+<table>
+<tr><th style="width:150px">Питання</th><th>Стан</th></tr>
+<tr>
+  <td><b>Радіо</b></td>
+  <td>CC1101 / nRF24 / SiK — три різні відповіді в трьох файлах. Від цього залежить
+      <b>уся смуга</b>, а отже й те, чи є відео. Поки не вирішено — бюджет каналу
+      рахувати нема від чого.</td>
+</tr>
+<tr>
+  <td><b>Плата А</b></td>
+  <td>#116 (C6-Mini) не тримає панель: 7 АЦП проти потрібних 10. Або інша плата,
+      або тумблери йдуть на цифрові ноги.</td>
+</tr>
+<tr>
+  <td><b>Адреси I2C</b></td>
+  <td>SSD1306 майже завжди 0x3C, іноді 0x3D перепайкою резистора. <b>На шину влазить
+      максимум два OLED</b> — і то якщо на модулях є та перемичка. Перевірити до розводки.</td>
+</tr>
+<tr>
+  <td><b>Живлення</b></td>
+  <td>Не описано зовсім: акумулятор, стабілізатори на обидві плати, щогла з антеною.
+      Окремий шар.</td>
+</tr>
+</table>
+
+<p class="lead" style="margin-top:28px">Пін-карти — під ESP32-S3, факти звірені з ESP-IDF.
+Для STM32G431 номерів тут немає навмисно: на WeAct-платі точно зайняті PA9, PA10, PB2, PB4, PB6
+(USB-C), PC6 (світлодіод), PC13 (кнопка), PB8 (BOOT0), PC14/PC15 (кварц) — а ADC-канали
+треба брати з даташита, а не з пам'яті.</p>
+
+</div>

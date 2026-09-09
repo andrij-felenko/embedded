@@ -1,0 +1,377 @@
+<title>Роборука — устрій</title>
+<style>
+body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+.wrap{max-width:1080px;margin:0 auto}
+h1{font-size:26px;font-weight:600;margin:0 0 4px}
+h2{font-size:20px;font-weight:600;margin:38px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+p{margin:8px 0;max-width:80ch}
+.lead{color:#93a1ab}
+figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+svg{display:block;min-width:560px;max-width:100%;height:auto}
+table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#20262b;font-weight:600}
+td.n{color:#7fb3d5;font-variant-numeric:tabular-nums;white-space:nowrap}
+ul,ol{margin:8px 0;padding-left:20px;max-width:80ch}
+li{margin:4px 0}
+.b{color:#e07b6a}
+.k{color:#8fd18b}
+code{background:#20262b;padding:1px 5px;border-radius:3px;font-size:12.5px}
+.box{background:#1b1f23;border:1px solid #2c3339;border-left:3px solid #e07b6a;border-radius:5px;padding:10px 14px;margin:14px 0;max-width:80ch}
+.box.k{border-left-color:#8fd18b}
+</style>
+<div class="wrap">
+
+<h1>Роборука — устрій</h1>
+<p class="lead">Три осі плюс хват. Кожен вузол: що рухається, що його рухає, на чому крутиться,
+що тримає при знеструмленні. Номери <code>#N</code> — з <code>docs/hardware.md</code> і
+<code>docs/hardware_incoming.md</code>. Живлення — у <code>power.html</code>.</p>
+
+<table>
+<tr><th style="width:180px">Параметр</th><th>Значення</th></tr>
+<tr><td>Осей</td><td>3 + хват</td></tr>
+<tr><td>Виліт</td><td class="n">300 мм від осі повороту</td></tr>
+<tr><td>Вантаж</td><td class="n">600 г на 300 мм · 2 кг на 150 мм</td></tr>
+<tr><td>Розкриття хвата</td><td class="n">0–40 мм</td></tr>
+<tr><td>Сектор повороту</td><td class="n">±120°</td></tr>
+<tr><td>Висота осі плеча</td><td class="n">120 мм над палубою</td></tr>
+<tr><td>Утримання без струму</td><td class="k">так — усі осі</td></tr>
+</table>
+
+<h2>Вигляд збоку</h2>
+
+<figure>
+<svg viewBox="0 0 720 470" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- deck -->
+  <rect x="60" y="400" width="520" height="18" fill="#232d36" stroke="#3a444c" stroke-width="1.5"/>
+  <text x="320" y="413" fill="#93a1ab" text-anchor="middle" font-size="11">палуба ровера — шар 3</text>
+  <!-- front wheel -->
+  <circle cx="215" cy="432" r="26" fill="#1b1f23" stroke="#3a444c" stroke-width="2"/>
+  <text x="215" y="466" fill="#93a1ab" text-anchor="middle" font-size="11">переднє колесо</text>
+  <!-- slew ring -->
+  <rect x="108" y="382" width="86" height="18" rx="4" fill="#232d36" stroke="#8fd18b" stroke-width="2"/>
+  <text x="60" y="394" fill="#8fd18b" text-anchor="end" font-size="11">вісь 1</text>
+  <!-- column -->
+  <rect x="134" y="258" width="34" height="124" rx="4" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <!-- shoulder pivot -->
+  <circle cx="151" cy="258" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.6"/>
+  <text x="118" y="248" fill="#8fd18b" text-anchor="end" font-size="11">вісь 2</text>
+  <!-- counterweight -->
+  <path d="M151 258 L96 292" stroke="#7fb3d5" stroke-width="7" stroke-linecap="round"/>
+  <rect x="62" y="278" width="40" height="30" rx="4" fill="#3a444c" stroke="#93a1ab" stroke-width="1.6"/>
+  <text x="82" y="330" fill="#93a1ab" text-anchor="middle" font-size="11">противага</text>
+  <!-- upper arm -->
+  <path d="M151 258 L274 155" stroke="#7fb3d5" stroke-width="11" stroke-linecap="round"/>
+  <text x="196" y="196" fill="#93a1ab" font-size="11" transform="rotate(-40 196 196)">плече 160</text>
+  <!-- elbow -->
+  <circle cx="274" cy="155" r="9" fill="#14171a" stroke="#8fd18b" stroke-width="2.6"/>
+  <text x="274" y="134" fill="#8fd18b" text-anchor="middle" font-size="11">вісь 3</text>
+  <!-- forearm -->
+  <path d="M274 155 L405 203" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <text x="332" y="168" fill="#93a1ab" font-size="11" transform="rotate(20 332 168)">передпліччя 140</text>
+  <!-- gripper -->
+  <rect x="405" y="185" width="34" height="36" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <path d="M439 190 L474 186 M439 216 L474 220" stroke="#d9b25f" stroke-width="6" stroke-linecap="round"/>
+  <text x="470" y="170" fill="#d9b25f" font-size="11" text-anchor="middle">хват</text>
+  <!-- folded ghost -->
+  <g stroke="#4a5560" stroke-width="6" stroke-linecap="round" stroke-dasharray="7 6" fill="none" opacity="0.85">
+    <path d="M151 258 L188 372"/>
+    <path d="M188 372 L318 372"/>
+  </g>
+  <text x="300" y="392" fill="#4a5560" font-size="11">складена — лежить на палубі</text>
+  <!-- reach dimension -->
+  <g stroke="#e07b6a" stroke-width="1.4" fill="none">
+    <path d="M151 100 L151 250"/><path d="M457 100 L457 180"/>
+    <path d="M151 112 L457 112"/>
+    <path d="M145 106 L151 112 L145 118"/><path d="M463 106 L457 112 L463 118"/>
+  </g>
+  <text x="304" y="104" fill="#e07b6a" text-anchor="middle">виліт 300 мм</text>
+  <!-- tipping ref -->
+  <g stroke="#d9b25f" stroke-width="1.4" fill="none" stroke-dasharray="4 4">
+    <path d="M215 432 L215 60"/>
+  </g>
+  <text x="222" y="72" fill="#d9b25f" font-size="11">точка перекиду</text>
+  <!-- height dim -->
+  <g stroke="#93a1ab" stroke-width="1.2" fill="none">
+    <path d="M600 258 L600 400"/>
+    <path d="M594 264 L600 258 L606 264"/><path d="M594 394 L600 400 L606 394"/>
+  </g>
+  <text x="612" y="334" fill="#93a1ab" font-size="11">120</text>
+</svg>
+<figcaption>Противага сидить за віссю плеча: вона гасить власну вагу руки і <b>водночас відсуває
+центр мас назад</b> — тобто працює проти перекиду, а не додає до нього.</figcaption>
+</figure>
+
+<h2>Вигляд спереду</h2>
+
+<figure>
+<svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <rect x="90" y="352" width="420" height="18" fill="#232d36" stroke="#3a444c" stroke-width="1.5"/>
+  <text x="300" y="392" fill="#93a1ab" text-anchor="middle" font-size="11">палуба — 180 мм чистої ширини</text>
+  <!-- slew -->
+  <rect x="256" y="334" width="88" height="18" rx="4" fill="#232d36" stroke="#8fd18b" stroke-width="2"/>
+  <!-- column -->
+  <rect x="272" y="200" width="56" height="134" rx="5" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="300" y="272" fill="#93a1ab" text-anchor="middle" font-size="11">колона</text>
+  <!-- shoulder axle spanning -->
+  <rect x="238" y="192" width="124" height="14" rx="5" fill="#14171a" stroke="#8fd18b" stroke-width="2"/>
+  <text x="300" y="180" fill="#8fd18b" text-anchor="middle" font-size="11">вісь 2 — вал Ø6 наскрізний</text>
+  <!-- bearings -->
+  <circle cx="248" cy="199" r="11" fill="none" stroke="#d9b25f" stroke-width="2.4"/>
+  <circle cx="352" cy="199" r="11" fill="none" stroke="#d9b25f" stroke-width="2.4"/>
+  <text x="212" y="226" fill="#d9b25f" font-size="11" text-anchor="middle">686ZZ</text>
+  <text x="388" y="226" fill="#d9b25f" font-size="11" text-anchor="middle">686ZZ</text>
+  <!-- motor left, pulley right -->
+  <rect x="150" y="240" width="62" height="62" rx="5" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="181" y="266" fill="#e6ebef" text-anchor="middle" font-size="11">28BYJ-48</text>
+  <text x="181" y="282" fill="#93a1ab" text-anchor="middle" font-size="11">вісь 2</text>
+  <circle cx="392" cy="199" r="34" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
+  <text x="440" y="196" fill="#8fd18b" font-size="11">шків 96T</text>
+  <text x="440" y="211" fill="#93a1ab" font-size="11">друкований</text>
+  <!-- solenoid brake -->
+  <rect x="392" y="262" width="52" height="34" rx="4" fill="#232d36" stroke="#e07b6a" stroke-width="2"/>
+  <text x="470" y="276" fill="#e07b6a" font-size="11">соленоїд #22</text>
+  <text x="470" y="291" fill="#93a1ab" font-size="11">знімає собачку</text>
+  <!-- arms going up -->
+  <path d="M266 192 L266 96 M334 192 L334 96" stroke="#7fb3d5" stroke-width="9" stroke-linecap="round"/>
+  <text x="300" y="86" fill="#93a1ab" text-anchor="middle" font-size="11">вилка плеча — дві щоки</text>
+  <!-- width dim -->
+  <g stroke="#93a1ab" stroke-width="1.2" fill="none">
+    <path d="M238 128 L362 128"/>
+    <path d="M244 122 L238 128 L244 134"/><path d="M356 122 L362 128 L356 134"/>
+  </g>
+  <text x="300" y="120" fill="#93a1ab" text-anchor="middle" font-size="11">124</text>
+</svg>
+<figcaption>Плече — вилка з двох щік на наскрізному валу Ø6. Мотор з одного боку, шків і гальмо
+з іншого: момент заходить у вал симетрично, щоки не перекошує.</figcaption>
+</figure>
+
+<h2>Вигляд згори</h2>
+
+<figure>
+<svg viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- rover body -->
+  <rect x="120" y="150" width="300" height="120" rx="8" fill="#1b1f23" stroke="#3a444c" stroke-width="1.6"/>
+  <!-- wheels -->
+  <g fill="#232d36" stroke="#3a444c" stroke-width="2">
+    <rect x="126" y="116" width="48" height="30" rx="4"/><rect x="126" y="274" width="48" height="30" rx="4"/>
+    <rect x="300" y="116" width="48" height="30" rx="4"/><rect x="300" y="274" width="48" height="30" rx="4"/>
+    <rect x="374" y="116" width="48" height="30" rx="4"/><rect x="374" y="274" width="48" height="30" rx="4"/>
+  </g>
+  <!-- sweep -->
+  <path d="M150 210 L150 210 A160 160 0 0 1 150 210" fill="none"/>
+  <path d="M70 71 A160 160 0 0 0 70 349" fill="none" stroke="#e07b6a" stroke-width="1.8" stroke-dasharray="6 5"/>
+  <path d="M150 210 L70 71" stroke="#e07b6a" stroke-width="1.4"/>
+  <path d="M150 210 L70 349" stroke="#e07b6a" stroke-width="1.4"/>
+  <text x="44" y="212" fill="#e07b6a" text-anchor="middle" font-size="11">±120°</text>
+  <!-- arm at 0 -->
+  <circle cx="150" cy="210" r="12" fill="#14171a" stroke="#8fd18b" stroke-width="2.6"/>
+  <path d="M150 210 L10 210" stroke="#7fb3d5" stroke-width="10" stroke-linecap="round"/>
+  <rect x="4" y="196" width="26" height="28" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2"/>
+  <text x="150" y="240" fill="#8fd18b" text-anchor="middle" font-size="11">вісь 1</text>
+  <text x="86" y="196" fill="#93a1ab" text-anchor="middle" font-size="11">300 мм</text>
+  <!-- direction -->
+  <text x="270" y="216" fill="#93a1ab" text-anchor="middle" font-size="11">корпус · відсіки акума і плат</text>
+  <text x="500" y="212" fill="#7fb3d5">корма</text>
+  <text x="34" y="382" fill="#93a1ab" font-size="11">сектор обмежений корпусом:</text>
+  <text x="34" y="398" fill="#93a1ab" font-size="11">далі рука б'є в щоглу антени</text>
+</svg>
+<figcaption>±120° замість повного кола: за цією межею рука заходить на власну антену й камеру.
+Обмеження задається кінцевиками, а не програмно.</figcaption>
+</figure>
+
+<h2>Вузол 1 · Основа, вісь повороту</h2>
+
+<figure>
+<svg viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <rect x="120" y="212" width="380" height="18" fill="#232d36" stroke="#3a444c" stroke-width="1.5"/>
+  <text x="310" y="252" fill="#93a1ab" text-anchor="middle" font-size="11">палуба</text>
+  <!-- rotating ring -->
+  <rect x="196" y="182" width="228" height="30" rx="5" fill="#232d36" stroke="#8fd18b" stroke-width="2.2"/>
+  <text x="310" y="202" fill="#8fd18b" text-anchor="middle" font-size="11">поворотне кільце Ø90 — друковане</text>
+  <!-- balls / rollers -->
+  <circle cx="228" cy="212" r="9" fill="none" stroke="#d9b25f" stroke-width="2.2"/>
+  <circle cx="310" cy="212" r="9" fill="none" stroke="#d9b25f" stroke-width="2.2"/>
+  <circle cx="392" cy="212" r="9" fill="none" stroke="#d9b25f" stroke-width="2.2"/>
+  <text x="310" y="286" fill="#d9b25f" text-anchor="middle" font-size="11">3 × 623-2RS #137 як опорні ролики — гумове ущільнення, працюють у бруді</text>
+  <!-- center shaft -->
+  <rect x="302" y="140" width="16" height="90" rx="3" fill="#14171a" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="344" y="152" fill="#7fb3d5" font-size="11">вал Ø6, друкований, Nylon #225</text>
+  <circle cx="310" cy="164" r="13" fill="none" stroke="#d9b25f" stroke-width="2.2"/>
+  <text x="248" y="160" fill="#d9b25f" text-anchor="end" font-size="11">686ZZ #140</text>
+  <!-- belt -->
+  <path d="M424 196 L520 196 M424 208 L520 208" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="536" cy="202" r="20" fill="none" stroke="#7fb3d5" stroke-width="2.2"/>
+  <text x="576" y="198" fill="#7fb3d5" font-size="11">GT2 16T #142</text>
+  <text x="576" y="213" fill="#93a1ab" font-size="11">на 28BYJ-48</text>
+  <text x="472" y="184" fill="#8fd18b" text-anchor="middle" font-size="11">GT2 #141</text>
+  <!-- no brake note -->
+  <rect x="120" y="106" width="300" height="30" rx="4" fill="#1b1f23" stroke="#8fd18b" stroke-width="1.6"/>
+  <text x="270" y="126" fill="#8fd18b" text-anchor="middle" font-size="11">гальма немає і не треба — сила ваги не має моменту навколо вертикалі</text>
+</svg>
+<figcaption>Єдина вісь без гальма. Вертикальну вісь гравітація не обертає, тому досить тертя
+в ремені й редукції. Соленоїдів рівно два — і обидва потрібні нижче.</figcaption>
+</figure>
+
+<h2>Вузол 2 · Плече — привід і гальмо</h2>
+
+<figure>
+<svg viewBox="0 0 700 330" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- big pulley with teeth ring -->
+  <circle cx="270" cy="170" r="86" fill="#1b1f23" stroke="#8fd18b" stroke-width="2.6"/>
+  <circle cx="270" cy="170" r="12" fill="#14171a" stroke="#7fb3d5" stroke-width="2.2"/>
+  <text x="270" y="174" fill="#93a1ab" text-anchor="middle" font-size="10">Ø6</text>
+  <text x="270" y="76" fill="#8fd18b" text-anchor="middle" font-size="11">шків 96T · друкований</text>
+  <!-- ratchet teeth -->
+  <g stroke="#e07b6a" stroke-width="2" fill="none">
+    <path d="M356 170 l-14 -9 l0 18 z"/>
+    <path d="M348 122 l-15 -6 l4 18 z"/>
+    <path d="M348 218 l-11 -13 l-4 18 z"/>
+  </g>
+  <text x="270" y="270" fill="#e07b6a" text-anchor="middle" font-size="11">храпові зуби по ободу</text>
+  <!-- pawl -->
+  <path d="M400 170 L360 170" stroke="#e07b6a" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="406" cy="170" r="7" fill="#14171a" stroke="#e07b6a" stroke-width="2"/>
+  <text x="418" y="150" fill="#e07b6a" font-size="11">собачка</text>
+  <!-- spring -->
+  <path d="M406 178 l0 10 l8 6 l-16 6 l16 6 l-16 6 l8 6 l0 8" stroke="#d9b25f" stroke-width="1.8" fill="none"/>
+  <text x="424" y="220" fill="#d9b25f" font-size="11">пружина — тисне в зачеп</text>
+  <!-- solenoid -->
+  <rect x="380" y="248" width="70" height="36" rx="4" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="415" y="271" fill="#e6ebef" text-anchor="middle" font-size="11">JF-0530B #22</text>
+  <text x="470" y="262" fill="#93a1ab" font-size="11">увімкнувся — підняв собачку</text>
+  <text x="470" y="278" fill="#93a1ab" font-size="11">знеструмився — зафіксував</text>
+  <!-- belt to motor -->
+  <path d="M184 148 L96 148 M184 192 L96 192" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="80" cy="170" r="22" fill="none" stroke="#7fb3d5" stroke-width="2.2"/>
+  <text x="80" y="216" fill="#7fb3d5" text-anchor="middle" font-size="11">16T</text>
+  <text x="80" y="232" fill="#93a1ab" text-anchor="middle" font-size="11">28BYJ-48</text>
+  <text x="140" y="136" fill="#8fd18b" text-anchor="middle" font-size="11">6:1</text>
+</svg>
+<figcaption>Ремінь ККД 0,9 замість гвинта з 0,2 — це і є те, що робить рух вчетверо швидшим.
+Утримання відібрано в передачі й віддано собачці, яка тримає защіпкою, а не тертям.</figcaption>
+</figure>
+
+<div class="box">
+<b>Собачка тримає в один бік.</b> Храповик не дає руці впасти, але й не дає її опустити,
+поки соленоїд не підніме зуб. Тому послідовність опускання завжди така:
+<b>увімкнути соленоїд → крутити мотор → вимкнути соленоїд</b>. Якщо потрібне утримання
+в обидва боки — зуби симетричні, а собачка двостороння з двома положеннями.
+</div>
+
+<h2>Вузол 3 · Лікоть</h2>
+
+<p>Конструктивно повторює плече, тільки менший: шків 64T замість 96T (4:1), собачка
+дрібніша, соленоїд другий з пари <code>#22</code>. Мотор стоїть <b>на плечі, не на лікті</b> —
+і привід іде ременем уздовж передпліччя.</p>
+
+<div class="box k">
+<b>Чому мотор не на самому лікті.</b> Кожні 100 г на лікті — це 14 Н·м зайвого моменту на
+плечі при вильоті 140 мм. 28BYJ-48 важить 35 г, соленоїд ще 30. Винесені назад,
+вони не тільки не заважають — вони працюють як частина противаги.
+</div>
+
+<h2>Вузол 4 · Хват</h2>
+
+<figure>
+<svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI,system-ui,sans-serif" font-size="12">
+  <!-- body -->
+  <rect x="150" y="120" width="300" height="80" rx="6" fill="#1b1f23" stroke="#3a444c" stroke-width="1.6"/>
+  <!-- screw -->
+  <g stroke="#8fd18b" stroke-width="2.4" fill="none">
+    <path d="M170 160 L430 160"/>
+    <path d="M182 152 l10 16 M202 152 l10 16 M222 152 l10 16 M242 152 l10 16"/>
+    <path d="M368 152 l-10 16 M348 152 l-10 16 M328 152 l-10 16 M308 152 l-10 16"/>
+  </g>
+  <text x="216" y="196" fill="#8fd18b" text-anchor="middle" font-size="11">ліва різьба</text>
+  <text x="340" y="196" fill="#8fd18b" text-anchor="middle" font-size="11">права різьба</text>
+  <text x="278" y="110" fill="#93a1ab" text-anchor="middle" font-size="11">один гвинт Ø8, крок 2 мм на кожну сторону</text>
+  <!-- nuts / jaws -->
+  <rect x="228" y="132" width="26" height="56" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2.2"/>
+  <rect x="346" y="132" width="26" height="56" rx="3" fill="#232d36" stroke="#d9b25f" stroke-width="2.2"/>
+  <path d="M241 132 L241 54 M359 132 L359 54" stroke="#d9b25f" stroke-width="7" stroke-linecap="round"/>
+  <rect x="232" y="42" width="18" height="26" rx="3" fill="#e07b6a" opacity="0.55"/>
+  <rect x="350" y="42" width="18" height="26" rx="3" fill="#e07b6a" opacity="0.55"/>
+  <text x="300" y="34" fill="#e07b6a" text-anchor="middle" font-size="11">губки TPU — μ ≈ 0,6</text>
+  <!-- arrows -->
+  <g stroke="#7fb3d5" stroke-width="1.6" fill="none">
+    <path d="M262 96 L296 96"/><path d="M290 90 L296 96 L290 102"/>
+    <path d="M338 96 L304 96"/><path d="M310 90 L304 96 L310 102"/>
+  </g>
+  <!-- motor -->
+  <rect x="452" y="138" width="56" height="44" rx="4" fill="#232d36" stroke="#7fb3d5" stroke-width="2"/>
+  <text x="480" y="164" fill="#e6ebef" text-anchor="middle" font-size="11">N20 #18</text>
+  <circle cx="432" cy="160" r="16" fill="none" stroke="#8fd18b" stroke-width="2"/>
+  <text x="432" y="212" fill="#8fd18b" text-anchor="middle" font-size="11">4:1</text>
+  <!-- numbers -->
+  <text x="560" y="132" fill="#93a1ab" font-size="11">75 Н на губку</text>
+  <text x="560" y="150" fill="#93a1ab" font-size="11">розкриття 40 мм</text>
+  <text x="560" y="168" fill="#93a1ab" font-size="11">повний хід ~6 с</text>
+  <text x="560" y="186" fill="#8fd18b" font-size="11">тримає без струму</text>
+  <text x="560" y="204" fill="#93a1ab" font-size="11">муфта 5×5 #144</text>
+</svg>
+<figcaption>Зустрічна різьба зводить обидві губки від одного мотора, симетрично.
+Гвинт самогальмівний — на хваті це залишається, бо тут утримання постійне,
+а швидкість потрібна тільки на розкриття.</figcaption>
+</figure>
+
+<h2>Залізо по вузлах</h2>
+
+<table>
+<tr><th>Вісь</th><th>Мотор</th><th>Передача</th><th>Підшипники</th><th>Утримання</th></tr>
+<tr><td><b>1 · поворот</b></td><td>28BYJ-48 <code>#21</code></td><td>GT2 16T→96T <code>#141 #142</code></td><td>686ZZ <code>#140</code> + 3× 623-2RS <code>#137</code></td><td class="k">не потрібне</td></tr>
+<tr><td><b>2 · плече</b></td><td>28BYJ-48 <code>#21</code></td><td>GT2 16T→96T, 6:1</td><td>2× 686ZZ <code>#140</code></td><td>храповик + соленоїд <code>#22</code></td></tr>
+<tr><td><b>3 · лікоть</b></td><td>28BYJ-48 <code>#21</code></td><td>GT2 16T→64T, 4:1</td><td>2× 685ZZ <code>#138</code></td><td>храповик + соленоїд <code>#22</code></td></tr>
+<tr><td><b>4 · хват</b></td><td>N20 <code>#18</code></td><td>шестерні 4:1 + гвинт Ø8×2</td><td>625-2RS <code>#139</code></td><td class="k">гвинт сам</td></tr>
+</table>
+
+<h3>Решта</h3>
+<table>
+<tr><th>Що</th><th>З чого</th></tr>
+<tr><td>Вали Ø5 / Ø6</td><td>друковані, <b>Nylon <code>#225</code></b> — PLA потече під постійним навантаженням</td></tr>
+<tr><td>Муфта мотор↔гвинт</td><td>гнучка 5×5×25 <code>#144</code>, 2 шт</td></tr>
+<tr><td>Натяг ременів</td><td>пружини <code>#143</code>, 4 шт — рівно на 3 осі + запас</td></tr>
+<tr><td>Кінцевики секторів</td><td>SS41F Hall <code>#181</code> + магніти <code>#224</code>, по 2 на вісь</td></tr>
+<tr><td>Кріплення до палуби</td><td>M3 <code>#223</code>, гайки в шестигранні кишені</td></tr>
+<tr><td>Мастило</td><td>силіконове <code>#145</code> — на ремені й підшипники, <b class="b">не на гвинт хвата</b></td></tr>
+<tr><td>Губки</td><td>TPU, вже є</td></tr>
+</table>
+
+<h2>Керування і живлення</h2>
+
+<table>
+<tr><th>Лінія</th><th>Пінів</th><th>Куди</th></tr>
+<tr><td>3 × кроковий через ULN2003</td><td class="n">12</td><td rowspan="4">одна плата — див. нижче</td></tr>
+<tr><td>N20 хвата — PWM + напрямок</td><td class="n">2</td><td></td></tr>
+<tr><td>2 × соленоїд через IRLZ44N <code>#196</code></td><td class="n">2</td><td></td></tr>
+<tr><td>6 × кінцевик Hall</td><td class="n">6</td><td></td></tr>
+<tr><td colspan="2"><b>Разом</b></td><td class="n b">22 піни</td></tr>
+</table>
+
+<p>Живлення — з <b>шини руки</b>: XL4015E 5 А, та сама, що в <code>power.html</code> відведена
+під серви. Три крокові по 240 мА плюс N20 — близько <b>1,3 А</b>, з великим запасом.</p>
+
+<p>Соленоїди паспортно на 12 В, а шина 7,4. Або буст <code>#151</code>, або прийняти ~60% зусилля —
+собачці треба подолати лише пружину, а не вантаж.</p>
+
+<div class="box">
+<b>Куди подіти 22 піни — не вирішено.</b> Три варіанти, і вибір змінює архітектуру:
+<ul>
+<li><b>На STM32 приводу</b> (плата №1). Там уже зайнято ~16 пінів на колеса. LQFP48 має близько 40 — влізе впритул, без запасу.</li>
+<li><b>На другий STM32G431</b> — <code>#113</code> їх дві. Найчистіше, але це шоста плата в схемі, яка була на п'ять.</li>
+<li><b>На ESP32 навігації</b> (плата №2). Рука повільна й не реального часу, GPIO вистачає. Але змішує ролі.</li>
+</ul>
+</div>
+
+<h2>Чого тут ще немає</h2>
+
+<ul>
+<li><b>Опори проти перекиду.</b> Без них таблиця «маса × виліт» з попередньої розмови діє як є: 600 г на 300 мм. Опори її скасовують, але це окремий вузол, якого в цьому кресленні немає.</li>
+<li><b>Реальна потужність 28BYJ-48.</b> Усі оцінки часу спираються на неї, а паспорт дає момент при 1,5 об/хв. Поки не зміряно барабанчиком з підвішеними 200 г — час руху лишається діапазоном, а не числом.</li>
+<li><b>Передаточні числа 6:1 і 4:1 попередні.</b> Остаточні визначає той самий вимір: редукція має посадити мотор туди, де в нього ще є момент.</li>
+<li><b>Третій кроковий.</b> В інвентарі <code>#21</code> стоїть відкрите питання про кількість і про драйвери до них. Три осі — три ULN2003.</li>
+</ul>
+
+</div>
