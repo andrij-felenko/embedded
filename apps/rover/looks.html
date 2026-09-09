@@ -1,3 +1,4 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Ровер — образи</title>
 <style>
   body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
@@ -6,9 +7,8 @@
   h2{font-size:19px;font-weight:600;margin:34px 0 8px;border-top:1px solid #2c3339;padding-top:18px}
   p{margin:8px 0;max-width:80ch}
   .lead{color:#93a1ab}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px;margin-top:14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;margin-top:14px}
   .card{background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px}
-  .card.keep{border-color:#3d5a44}
   .card h4{margin:0 0 2px;font-size:15px;font-weight:600}
   .card .sub{color:#93a1ab;font-size:12px;margin:0 0 8px}
   .card .view{color:#7fb3d5;font-size:11px;margin:0 0 4px;text-transform:uppercase;letter-spacing:.06em}
@@ -22,21 +22,24 @@
   th{background:#20262b;font-weight:600}
   ul{margin:8px 0;padding-left:20px;max-width:80ch}
   li{margin:4px 0}
+  @media (max-width:520px){
+    body{padding:20px 12px 48px}
+    h1{font-size:22px}
+    .grid{grid-template-columns:1fr;gap:12px}
+    .card{padding:11px}
+  }
 </style>
 
 <div class="wrap">
 
 <h1>Образи</h1>
-<p class="lead">Правило, яке видно з вашого вибору: корпус має <b>власну форму</b> —
-не коробка й не гола рама; <b>ходова на видноті</b>, нічого не зашите; у силуеті є
-<b>вертикаль або асиметрія</b> — щогла, задертий ніс, підняте тіло.<br>
-Каркас під усіма однаковий. Ніс ліворуч.</p>
+<p class="lead">Дев'ять силуетів на однаковому каркасі: шість ведучих коліс,
+рука і щогла з камерою й антеною. Ніс ліворуч.</p>
 
-<h2>Обрані</h2>
 <div class="grid">
 
 <!-- KEEP: марсохід -->
-<div class="card keep">
+<div class="card">
   <h4>Марсохід</h4>
   <p class="sub">палуба, щогла, усе на видноті</p>
   <p class="view">збоку</p>
@@ -60,14 +63,10 @@
     <circle cx="46" cy="122" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
     <path d="M288 104 L296 46" stroke="#8fd18b" stroke-width="2.6"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Палуба звисає за габарит, щогла над кормою. Науковий апарат.</dd>
-    <dt class="b">Ціна</dt><dd>Звис чіпляє на поворотах, щогла ловить вітер і піднімає ЦТ.</dd>
-  </dl>
 </div>
 
 <!-- KEEP: комаха -->
-<div class="card keep">
+<div class="card">
   <h4>Комаха</h4>
   <p class="sub">вузьке тіло, винесені лапи</p>
   <p class="view">збоку</p>
@@ -89,14 +88,10 @@
     <circle cx="58" cy="96" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
     <path d="M250 92 L262 40" stroke="#8fd18b" stroke-width="2.6"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Веретено високо і вузько, шість лап помітно вниз-назовні.</dd>
-    <dt class="b">Ціна</dt><dd>Високий ЦТ і довгі лапи — найгірша стійкість під витягнутою рукою.</dd>
-  </dl>
 </div>
 
 <!-- KEEP: вежа, змінено -->
-<div class="card keep">
+<div class="card">
   <h4>Вежа-спостерігач</h4>
   <p class="sub">низьке тіло, камера й антена на одній щоглі</p>
   <p class="view">збоку</p>
@@ -120,14 +115,10 @@
     <path d="M48 112 L30 76 L98 66" stroke="#8fd18b" stroke-width="6" fill="none" stroke-linecap="round"/>
     <circle cx="50" cy="114" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Тіло максимально низьке, з нього росте щогла на розтяжках. Камера й антена разом на голові щогли.</dd>
-    <dt class="b">Ціна</dt><dd>Щогла — важіль: удар по ній дає момент у кілька разів більший за її вагу. Камера з антеною поруч — коротший джгут, але камера ловить наводку від передавача.</dd>
-  </dl>
 </div>
 
 <!-- KEEP: катер -->
-<div class="card keep">
+<div class="card">
   <h4>Катер</h4>
   <p class="sub">форштевень, ніс піднятий</p>
   <p class="view">збоку</p>
@@ -147,14 +138,10 @@
     <circle cx="98" cy="98" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
     <path d="M286 96 L292 40" stroke="#8fd18b" stroke-width="2.6"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Ніс задертий і загнутий уперед. Він же розсуває траву.</dd>
-    <dt class="b">Ціна</dt><dd>Довгий звис перед переднім колесом — він перший в усе впирається.</dd>
-  </dl>
 </div>
 
 <!-- KEEP: скат -->
-<div class="card keep">
+<div class="card">
   <h4>Скат</h4>
   <p class="sub">вузька передня пара, широка корма</p>
   <p class="view">зверху</p>
@@ -179,15 +166,10 @@
     <circle cx="206" cy="62" r="6" fill="#8fd18b"/>
     <text x="192" y="132" fill="#8fd18b" font-size="11">рука з корми</text>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Ніс сходиться в точку, дві передні колеса зсунуті до осі й працюють як ведуча пара. Корма розкривається на всю ширину.</dd>
-    <dt class="b">Ціна</dt><dd>Трикутник стійкості звужується саме спереду. Тому рука має йти <b>з корми</b>, як у Скорпіона — інакше витягнута вперед вона перекине ровер убік.</dd>
-    <dt>Варіант</dt><dd>Замість пари — один широкий барабан. Див. картку «Барабан».</dd>
-  </dl>
 </div>
 
 <!-- N3 богомол -->
-<div class="card keep">
+<div class="card">
   <h4>Богомол</h4>
   <p class="sub">рука і є силует</p>
   <p class="view">збоку</p>
@@ -210,15 +192,10 @@
     <rect x="244" y="36" width="44" height="22" fill="#243039" stroke="#8fd18b" stroke-width="2" rx="3"/>
     <path d="M258 36 L252 14" stroke="#8fd18b" stroke-width="2.4"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Тіло низьке і непримітне, рука складена високо над носом, як передня лапа богомола. Впізнається саме за нею.</dd>
-    <dt>Друк</dt><dd>Корпус найпростіший з усіх — уся форма в руці.</dd>
-    <dt class="b">Ціна</dt><dd>Складена високо рука — це маса на висоті постійно, а не тільки під час роботи.</dd>
-  </dl>
 </div>
 
 <!-- N8 скорпіон -->
-<div class="card keep">
+<div class="card">
   <h4>Скорпіон</h4>
   <p class="sub">рука через спину вперед</p>
   <p class="view">збоку</p>
@@ -241,15 +218,10 @@
     <rect x="18" y="48" width="44" height="22" fill="#243039" stroke="#8fd18b" stroke-width="2" rx="3"/>
     <path d="M18 60 h-14" stroke="#8fd18b" stroke-width="4"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Рука основою в кормі, перекинута через увесь корпус уперед. Камера з антеною — на носі, під нею. Найагресивніша поза з восьми.</dd>
-    <dt>Друк</dt><dd>Корпус простий. Уся складність у довшій руці й у її основі.</dd>
-    <dt class="b">Ціна</dt><dd>Рука з корми дотягується далі, але й важіль довший — момент на основу більший, і базу треба ширшу.</dd>
-  </dl>
 </div>
 
 <!-- NEW: черепаха -->
-<div class="card keep">
+<div class="card">
   <h4>Черепаха</h4>
   <p class="sub">панцир навис, лапи видно під ним</p>
   <p class="view">збоку</p>
@@ -277,15 +249,10 @@
     <path d="M64 112 L44 74 L112 62" stroke="#8fd18b" stroke-width="6" fill="none" stroke-linecap="round"/>
     <circle cx="66" cy="114" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Гранований панцир нависає з усіх боків і лежить на коротких стійках над вузьким тілом. Лапи видно під його краєм. Голова з камерою й антеною висувається вперед з-під переднього краю.</dd>
-    <dt>Друк</dt><dd>Панцир — плоскі грані, як і решта. Тіло під ним найпростіше.</dd>
-    <dt class="b">Ціна</dt><dd>Край, що нависає, чіпляє все на поворотах, і саме він ламається першим. Плюс панцир треба знімати цілком, щоб дістатися всередину.</dd>
-  </dl>
 </div>
 
 <!-- NEW: кажан 321 -->
-<div class="card keep">
+<div class="card">
   <h4>Кажан 3-2-1</h4>
   <p class="sub">три спереду в ряд, два, і одне в хвості</p>
   <p class="view">зверху</p>
@@ -316,341 +283,8 @@
     <path d="M-26 100 h-16" stroke="#8fd18b" stroke-width="2"/>
     <path d="M-42 100 l12 -6 v12 z" fill="#8fd18b"/>
   </svg>
-  <dl>
-    <dt>Образ</dt><dd>Шість коліс трикутником: три в передньому ряду, два в середньому, одне в хвості. Корпус повторює цю форму й сходиться у вістря разом із ними.</dd>
-    <dt class="k">Чому це працює</dt><dd>Три точки опори через увесь ніс — саме там, де стоїть рука і найважче. Одне заднє колесо тримає легкий хвіст із щоглою і чисто йде слідом.</dd>
-    <dt class="b">Ціна</dt><dd>Середнє переднє і заднє колеса стоять <b>на осі симетрії</b>: при розвороті вони не котяться, а чисто скребуть убік. Два колеса з шести працюють проти повороту. Заднє можна зробити вільним, без мотора — тоді лишиться одне.</dd>
-    <dt class="b">І ще</dt><dd>Опора ззаду сходиться в одну точку. Усе важке — акум, рука — мусить бути в носі, інакше ровер сяде на хвіст.</dd>
-  </dl>
 </div>
 
 </div>
-
-<h2>Десять нових</h2>
-<div class="grid">
-
-<!-- NEW: наконечник -->
-<div class="card">
-  <h4>1 · Наконечник</h4>
-  <p class="sub">вістря вперед, розширення назад</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-4 95 L150 22 L302 4 Q322 4 322 30 V160 Q322 186 302 186 L150 168 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="-12" y="82" width="64" height="26" rx="4"/>
-    <rect x="118" y="31" width="64" height="26" rx="4"/>
-    <rect x="118" y="133" width="64" height="26" rx="4"/>
-    <rect x="250" y="-1" width="64" height="26" rx="4"/>
-    <rect x="250" y="82" width="64" height="26" rx="4"/>
-    <rect x="250" y="165" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="268" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M268 95 L196 52" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="196" cy="52" r="6" fill="#8fd18b"/>
-  <circle cx="290" cy="44" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M290 36 V22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M-30 95 h-8" stroke="#8fd18b" stroke-width="2"/>
-  <path d="M-38 95 l12 -6 v12 z" fill="#8fd18b"/>
-  <text x="90" y="-16" fill="#93a1ab" font-size="12">1 — 2 — 3</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Дзеркально до кажана: одне колесо у вістрі носа, далі два, далі три через усю корму. Корпус розкривається назад клином.</dd>
-    <dt class="k">Чому так</dt><dd>Переднє колесо зустрічає перешкоду першим, і за ним стоїть уся маса, яка його штовхає. Широка корма несе руку на трьох точках.</dd>
-    <dt class="b">Ціна</dt><dd>Ніс — одна точка опори. Ровер легко перекинути боком уперед, і щоглу туди ставити не можна.</dd>
-  </dl>
-</div>
-
-<!-- NEW: ромб -->
-<div class="card">
-  <h4>2 · Ромб</h4>
-  <p class="sub">найширше рівно посередині</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-4 95 L110 14 L216 14 L322 95 L216 176 L110 176 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="-12" y="82" width="64" height="26" rx="4"/>
-    <rect x="80" y="31" width="64" height="26" rx="4"/>
-    <rect x="80" y="133" width="64" height="26" rx="4"/>
-    <rect x="182" y="31" width="64" height="26" rx="4"/>
-    <rect x="182" y="133" width="64" height="26" rx="4"/>
-    <rect x="268" y="82" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="140" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M140 95 L74 62" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="74" cy="62" r="6" fill="#8fd18b"/>
-  <circle cx="276" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M276 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="88" y="-16" fill="#93a1ab" font-size="12">1 — 2 — 2 — 1</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Обидва кінці сходяться в одну точку, найширше — там, де центр ваги.</dd>
-    <dt class="k">Чому так</dt><dd>Стійкість на перекидання визначається шириною саме під центром ваги. Ромб дає максимум там і нічого не витрачає на кінцях.</dd>
-    <dt class="b">Ціна</dt><dd>Носове й кормове колеса стоять на осі — при розвороті чисто скребуть.</dd>
-  </dl>
-</div>
-
-<!-- NEW: пісочний годинник -->
-<div class="card">
-  <h4>3 · Пісочний годинник</h4>
-  <p class="sub">середня пара зсунута до осі</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-4 8 Q60 -6 120 40 Q160 72 200 40 Q260 -6 322 8 V182 Q260 196 200 150 Q160 118 120 150 Q60 196 -4 182 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="-2" y="5" width="64" height="26" rx="4"/>
-    <rect x="-2" y="159" width="64" height="26" rx="4"/>
-    <rect x="128" y="45" width="64" height="26" rx="4"/>
-    <rect x="128" y="119" width="64" height="26" rx="4"/>
-    <rect x="260" y="5" width="64" height="26" rx="4"/>
-    <rect x="260" y="159" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="60" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M60 95 L132 58" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="132" cy="58" r="6" fill="#8fd18b"/>
-  <circle cx="272" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M272 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="112" y="-16" fill="#93a1ab" font-size="12">талія посередині</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Колія широка на кінцях і вузька посередині, корпус повторює цю талію.</dd>
-    <dt class="k">Чому так</dt><dd>Середні колеса ближче до осі обертання, тому при розвороті вони проходять меншу дугу і менше скребуть. Розворот дається легше, ніж при рівній колії.</dd>
-    <dt class="b">Ціна</dt><dd>Опора посередині вужча — ровер більше хитається з боку в бік на нерівностях.</dd>
-  </dl>
-</div>
-
-<!-- NEW: бочка -->
-<div class="card">
-  <h4>4 · Бочка</h4>
-  <p class="sub">середня пара винесена назовні</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-4 40 Q60 12 120 26 Q160 34 200 26 Q260 12 322 40 V150 Q260 178 200 164 Q160 156 120 164 Q60 178 -4 150 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="-2" y="39" width="64" height="26" rx="4"/>
-    <rect x="-2" y="125" width="64" height="26" rx="4"/>
-    <rect x="128" y="-3" width="64" height="26" rx="4"/>
-    <rect x="128" y="167" width="64" height="26" rx="4"/>
-    <rect x="260" y="39" width="64" height="26" rx="4"/>
-    <rect x="260" y="125" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="64" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M64 95 L136 60" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="136" cy="60" r="6" fill="#8fd18b"/>
-  <circle cx="272" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M272 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="104" y="-20" fill="#93a1ab" font-size="12">найширше в середині</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Протилежність пісочному годиннику: середні колеса винесені далі за крайні, силует пузатий.</dd>
-    <dt class="k">Чому так</dt><dd>Найширша колія опиняється точно під центром ваги — це найстійкіша схема з усіх десяти під витягнутою рукою.</dd>
-    <dt class="b">Ціна</dt><dd>Найширша точка посередині чіпляє все, повз що ровер протискається. І середні колеса при розвороті скребуть найбільше.</dd>
-  </dl>
-</div>
-
-<!-- NEW: каре -->
-<div class="card">
-  <h4>5 · Каре</h4>
-  <p class="sub">чотири колеса квадратом спереду</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-4 10 Q-4 -4 12 -4 H206 L322 60 V130 L206 194 H12 Q-4 194 -4 180 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="14" y="13" width="64" height="26" rx="4"/>
-    <rect x="14" y="151" width="64" height="26" rx="4"/>
-    <rect x="118" y="13" width="64" height="26" rx="4"/>
-    <rect x="118" y="151" width="64" height="26" rx="4"/>
-    <rect x="240" y="55" width="64" height="26" rx="4"/>
-    <rect x="240" y="109" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="60" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M60 95 L140 60" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="140" cy="60" r="6" fill="#8fd18b"/>
-  <circle cx="292" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M292 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="30" y="-20" fill="#93a1ab" font-size="12">4 спереду</text>
-  <text x="238" y="-20" fill="#93a1ab" font-size="12">2 ззаду</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Передня половина — щільний квадрат із чотирьох коліс, задня — вузька пара. Корпус різко звужується за квадратом.</dd>
-    <dt class="k">Чому так</dt><dd>Рука й акум спираються на чотири точки замість двох. Задня пара лише тримає хвіст і не бере навантаження.</dd>
-    <dt class="b">Ціна</dt><dd>Ефективна база коротка — по суті це чотириколісна машина з підпіркою. На перегині вона клює носом.</dd>
-  </dl>
-</div>
-
-<!-- NEW: кубик -->
-<div class="card">
-  <h4>6 · Кубик</h4>
-  <p class="sub">два ряди по три, майже квадрат у плані</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M14 -4 H286 Q306 -4 306 18 V172 Q306 194 286 194 H14 Q-6 194 -6 172 V18 Q-6 -4 14 -4 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="38" y="7" width="64" height="26" rx="4"/>
-    <rect x="38" y="82" width="64" height="26" rx="4"/>
-    <rect x="38" y="157" width="64" height="26" rx="4"/>
-    <rect x="198" y="7" width="64" height="26" rx="4"/>
-    <rect x="198" y="82" width="64" height="26" rx="4"/>
-    <rect x="198" y="157" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="60" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M60 95 L140 54" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="140" cy="54" r="6" fill="#8fd18b"/>
-  <circle cx="268" cy="42" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M268 34 V20" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="96" y="-20" fill="#93a1ab" font-size="12">3 — 3, база коротка</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Не довгий, а майже квадратний: два ряди по три колеса, база коротша за колію.</dd>
-    <dt class="k">Чому так</dt><dd>Найменший радіус розвороту з усіх — ровер крутиться майже в своєму габариті. Пролізе там, де довгий не впишеться.</dd>
-    <dt class="b">Ціна</dt><dd>Коротка база клює носом на кожній купині. І середні колеса кожного ряду стоять на осі — скребуть.</dd>
-  </dl>
-</div>
-
-<!-- NEW: стріла -->
-<div class="card">
-  <h4>7 · Стріла</h4>
-  <p class="sub">чотири в тісному блоці, по одному на кінцях</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-10 95 L120 20 H210 L332 95 L210 170 H120 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="-18" y="82" width="64" height="26" rx="4"/>
-    <rect x="110" y="35" width="64" height="26" rx="4"/>
-    <rect x="110" y="129" width="64" height="26" rx="4"/>
-    <rect x="168" y="35" width="64" height="26" rx="4"/>
-    <rect x="168" y="129" width="64" height="26" rx="4"/>
-    <rect x="276" y="82" width="64" height="26" rx="4"/>
-  </g>
-  <circle cx="96" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M96 95 L168 56" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="168" cy="56" r="6" fill="#8fd18b"/>
-  <circle cx="280" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M280 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  <text x="98" y="-20" fill="#93a1ab" font-size="12">1 — 4 — 1</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Чотири колеса стиснуті у щільний блок посередині, і по одному винесені далеко вперед і назад.</dd>
-    <dt class="k">Чому так</dt><dd>Крутить ровер тільки середній блок, а його база дуже коротка — розворот майже на місці. Крайні колеса не керують, вони лише не дають клюнути носом чи сісти на хвіст.</dd>
-    <dt class="b">Ціна</dt><dd>Два колеса з шести стоять на осі й ніколи не котяться в повороті. Це найбільша частка скребучих коліс з усіх схем.</dd>
-  </dl>
-</div>
-
-<!-- NEW: ножиці -->
-<div class="card">
-  <h4>8 · Ножиці</h4>
-  <p class="sub">лівий борт зсунутий відносно правого</p>
-  <p class="view">зверху</p>
-  <svg viewBox="-40 -40 400 270">
-  <path d="M-6 14 Q-6 -2 12 -2 H304 Q322 -2 322 14 V176 Q322 192 304 192 H12 Q-6 192 -6 176 Z"
-        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
-    <rect x="12" y="5" width="64" height="26" rx="4"/>
-    <rect x="136" y="5" width="64" height="26" rx="4"/>
-    <rect x="260" y="5" width="64" height="26" rx="4"/>
-    <rect x="74" y="159" width="64" height="26" rx="4"/>
-    <rect x="198" y="159" width="64" height="26" rx="4"/>
-    <rect x="268" y="159" width="64" height="26" rx="4"/>
-  </g>
-  <g stroke="#c96a5a" stroke-width="1.4" stroke-dasharray="5 4">
-    <path d="M44 -22 V6"/><path d="M106 -22 V160"/>
-  </g>
-  <path d="M44 -14 H106" stroke="#c96a5a" stroke-width="2"/>
-  <text x="112" y="-18" fill="#c96a5a" font-size="12">зсув на пів кроку</text>
-  <circle cx="60" cy="95" r="12" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M60 95 L140 58" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
-  <circle cx="140" cy="58" r="6" fill="#8fd18b"/>
-  <circle cx="270" cy="95" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M270 87 V73" stroke="#8fd18b" stroke-width="2.4"/>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Колеса не навпроти одне одного, а в шаховому порядку: лівий борт зсунутий уперед на пів кроку.</dd>
-    <dt class="k">Чому так</dt><dd>На нерівність наїжджає одне колесо за раз, а не двоє одночасно. Поштовхи розтягуються в часі й корпус трясе рівніше.</dd>
-    <dt class="b">Ціна</dt><dd>Ровер стає несиметричним. Уперед і назад він поводиться трохи по-різному, і це доведеться враховувати в керуванні.</dd>
-  </dl>
-</div>
-
-<!-- NEW: стовп -->
-<div class="card">
-  <h4>9 · Стовп</h4>
-  <p class="sub">тіло стоїть, а не лежить</p>
-  <p class="view">збоку</p>
-  <svg viewBox="-40 -30 400 250">
-  <path d="M-35 200 H360" stroke="#9aa5ad" stroke-width="1.8"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
-    <circle cx="60" cy="168" r="32"/><circle cx="160" cy="168" r="32"/><circle cx="260" cy="168" r="32"/>
-  </g>
-  <g fill="none" stroke="#c96a5a" stroke-width="3">
-    <circle cx="60" cy="168" r="26"/><circle cx="160" cy="168" r="26"/><circle cx="260" cy="168" r="26"/>
-  </g>
-  <path d="M22 150 V126 H298 V150 Z" fill="#232d36" stroke="#7fb3d5" stroke-width="2.2"/>
-  <path d="M120 126 V22 Q120 6 140 6 H196 Q216 6 216 22 V126 Z" fill="#232d36" stroke="#7fb3d5" stroke-width="2.4"/>
-  <rect x="132" y="16" width="52" height="24" fill="#243039" stroke="#8fd18b" stroke-width="2.2" rx="3"/>
-  <path d="M204 16 V-8" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M120 108 L64 92 L52 130" stroke="#8fd18b" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <circle cx="120" cy="108" r="8" fill="#243039" stroke="#8fd18b" stroke-width="2.2"/>
-  <text x="228" y="70" fill="#93a1ab" font-size="12">усе вертикально</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Корпус не пласка плита, а вертикальна колона на низькій платформі. Камера на її вершині, рука складена вздовж неї.</dd>
-    <dt class="k">Чому так</dt><dd>Камера піднімається без окремої щогли — висоту дає сам корпус. І в плані ровер виходить дуже вузьким.</dd>
-    <dt class="b">Ціна</dt><dd>Найвищий центр ваги з усіх десяти. Ця схема живе тільки на широкій колії.</dd>
-  </dl>
-</div>
-
-<!-- NEW: двоголовий -->
-<div class="card">
-  <h4>10 · Двоголовий</h4>
-  <p class="sub">у нього немає заду</p>
-  <p class="view">збоку</p>
-  <svg viewBox="-40 -20 400 290">
-  <path d="M-35 200 H360" stroke="#9aa5ad" stroke-width="1.8"/>
-  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
-    <circle cx="40" cy="168" r="32"/><circle cx="160" cy="168" r="32"/><circle cx="280" cy="168" r="32"/>
-  </g>
-  <g fill="none" stroke="#c96a5a" stroke-width="3">
-    <circle cx="40" cy="168" r="26"/><circle cx="160" cy="168" r="26"/><circle cx="280" cy="168" r="26"/>
-  </g>
-  <path d="M-16 150 L6 112 H314 L336 150 Z" fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
-  <path d="M160 112 V64" stroke="#9aa5ad" stroke-width="4"/>
-  <rect x="138" y="40" width="44" height="24" fill="#243039" stroke="#8fd18b" stroke-width="2.2" rx="3"/>
-  <path d="M160 40 L166 18" stroke="#8fd18b" stroke-width="2.4"/>
-  <path d="M40 112 L18 74 L84 62" stroke="#8fd18b" stroke-width="6" fill="none" stroke-linecap="round"/>
-  <circle cx="42" cy="114" r="7" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
-  <path d="M160 224 h-70" stroke="#8fd18b" stroke-width="2"/>
-  <path d="M90 224 l12 -6 v12 z" fill="#8fd18b"/>
-  <path d="M160 224 h70" stroke="#8fd18b" stroke-width="2"/>
-  <path d="M230 224 l-12 -6 v12 z" fill="#8fd18b"/>
-  <text x="106" y="246" fill="#8fd18b" font-size="12">обидва напрямки рівні</text>
-  </svg>
-  <dl>
-    <dt>Образ</dt><dd>Ніс і корма однакові, щогла точно посередині. Ровер симетричний уперед-назад, і в нього немає «переду».</dd>
-    <dt class="k">Чому так</dt><dd>Розвідник, що відходить, не розвертається — просто їде в інший бік. Розворот на місці, який дере ґрунт і видає рух, стає непотрібним.</dd>
-    <dt class="b">Ціна</dt><dd>Рука лишається на одному кінці — і саме вона ламає симетрію. Або друга рука, або доведеться змиритися.</dd>
-  </dl>
-</div>
-
-</div>
-
-<h2>Що з чим ріднится</h2>
-<table>
-  <tr><th>Спорідненість</th><th>Хто</th></tr>
-  <tr><td>Камера й антена разом</td><td>Вежа, Богомол, Черепаха, Кажан 3-2-1</td></tr>
-  <tr><td>Форма живе у плані, не в профілі</td><td>Скат</td></tr>
-  <tr><td>Форма живе в профілі</td><td>Катер, Черепаха</td></tr>
-  <tr><td>Впізнається за рукою, не за корпусом</td><td>Богомол, Скорпіон</td></tr>
-  <tr><td>Рука мусить бути з корми</td><td>Скат, Скорпіон</td></tr>
-  <tr><td>Найкраща стійкість під рукою</td><td>Бочка, Каре, Кажан 3-2-1</td></tr>
-  <tr><td>Форма без жодної нової деталі</td><td>усі обрані, і всі три нові</td></tr>
-  <tr><td>Розстановка коліс не 3+3</td><td>Кажан 3-2-1, Наконечник, Ромб, Каре, Кубик, Стріла, Ножиці</td></tr>
-  <tr><td>Легше розвертається</td><td>Пісочний годинник, Кубик, Стріла</td></tr>
-  <tr><td>Найбільше коліс скребе в повороті</td><td>Стріла, Кубик, Ромб</td></tr>
-</table>
 
 </div>

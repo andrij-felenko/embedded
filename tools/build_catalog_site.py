@@ -1618,6 +1618,13 @@ ROVER_SHELL = """<!doctype html>
   .sd{color:var(--dim);max-width:52ch;margin:0 auto 18px}
   .sn{display:inline-block;font-size:12px;color:var(--dim);
       border:1px solid var(--line);border-radius:20px;padding:4px 14px}
+  @media (max-width:520px){
+    .hin{padding:10px 12px 0}
+    nav{padding:8px 12px 0;gap:2px}
+    .tab{font-size:13px;padding:8px 8px 10px}
+    .stub{padding:56px 16px}
+    .st{font-size:19px}
+  }
 </style></head><body>
 <header>
   <div class="hin"><span class="brand">Ровер</span>
