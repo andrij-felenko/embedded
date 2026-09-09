@@ -1641,8 +1641,10 @@ ROVER_SHELL = """<!doctype html>
       border:1px solid var(--line);border-radius:20px;padding:4px 14px}
   @media (max-width:520px){
     .hin{padding:10px 12px 0}
-    nav{padding:6px 10px 9px;gap:3px}
-    .tab{font-size:12px;padding:5px 8px}
+    nav{padding:6px 10px 9px;gap:3px;flex-wrap:nowrap;overflow-x:auto;
+        -webkit-overflow-scrolling:touch;scrollbar-width:none}
+    nav::-webkit-scrollbar{display:none}
+    .tab{font-size:12px;padding:5px 9px}
     .stub{padding:56px 16px}
     .st{font-size:19px}
   }
