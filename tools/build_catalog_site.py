@@ -1553,11 +1553,18 @@ def copy_rover(out_dir):
     dst = os.path.join(out_dir, "rover")
     os.makedirs(dst, exist_ok=True)
 
+    stamp = __import__("datetime").datetime.now().strftime("%Y%m%d%H%M%S")
     n = 0
     for f in sorted(os.listdir(ROVER)):
-        if f.lower().endswith(".html"):
-            shutil.copy2(os.path.join(ROVER, f), os.path.join(dst, f))
-            n += 1
+        if not f.lower().endswith(".html"):
+            continue
+        with open(os.path.join(ROVER, f), encoding="utf-8") as fh:
+            body = fh.read()
+        if "http-equiv" not in body:
+            body = NOCACHE + body
+        with open(os.path.join(dst, f), "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(body)
+        n += 1
 
     btns, panes = [], []
     for key, label, src in ROVER_TABS:
@@ -1579,15 +1586,23 @@ def copy_rover(out_dir):
     page = (ROVER_SHELL
             .replace("__BTNS__", "\n".join(btns))
             .replace("__PANES__", "\n".join(panes))
-            .replace("__DEF__", ROVER_DEFAULT))
+            .replace("__DEF__", ROVER_DEFAULT)
+            .replace("__STAMP__", stamp))
     with open(os.path.join(dst, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(page)
     return n
 
 
+NOCACHE = ('<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">\n'
+           '<meta http-equiv="Pragma" content="no-cache">\n'
+           '<meta http-equiv="Expires" content="0">\n')
+
 ROVER_SHELL = """<!doctype html>
 <html lang="uk"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>Ровер</title>
 <style>
   :root{--bg:#14171a;--bar:#1b1f23;--line:#2c3339;--txt:#e6ebef;--dim:#93a1ab;--acc:#7fb3d5}
@@ -1641,7 +1656,8 @@ var DEF="__DEF__";
 function load(p){
   if(p.dataset.src && !p.firstChild){
     var f=document.createElement("iframe");
-    f.src=p.dataset.src; f.setAttribute("scrolling","no");
+    var u=p.dataset.src+(p.dataset.src.indexOf("?")<0?"?":"&")+"v=__STAMP__&t="+Date.now();
+    f.src=u; f.setAttribute("scrolling","no");
     f.onload=function(){
       try{
         var d=f.contentDocument;
