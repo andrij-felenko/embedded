@@ -1,0 +1,578 @@
+<title>Ровер — концепти компонування</title>
+<style>
+  :root{
+    --bg:#14171a; --panel:#1b1f23; --line:#7fb3d5; --line2:#4a6f8a;
+    --txt:#e6ebef; --dim:#d18b47; --note:#93a1ab; --accent:#8fd18b; --warn:#e07b6a;
+  }
+  body{background:var(--bg);color:var(--txt);font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:28px 22px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:44px 0 6px;border-top:1px solid #2c3339;padding-top:22px}
+  h3{font-size:15px;font-weight:600;margin:26px 0 8px;color:var(--line)}
+  p{margin:8px 0;max-width:78ch}
+  .lead{color:var(--note)}
+  figure{margin:16px 0 8px;background:var(--panel);border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:var(--note);font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:520px;max-width:100%;height:auto}
+  text{font-family:"Segoe UI",system-ui,sans-serif}
+  table{border-collapse:collapse;margin:14px 0;font-size:13.5px;width:100%;max-width:860px}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600}
+  ul{margin:8px 0;padding-left:20px;max-width:78ch}
+  li{margin:4px 0}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:10px;border:1px solid #3a444c;color:var(--note);margin-right:6px}
+  .good{color:var(--accent)}
+  .bad{color:var(--warn)}
+</style>
+
+<div class="wrap">
+
+<h1>Ровер — концепти компонування</h1>
+<p class="lead">Два варіанти ходової під наш список ідей, плюс внутрішнє компонування,
+колесо в розрізі і розбивка корпусу під стіл друку 220×220.
+Усі розміри в міліметрах, креслення в масштабі.</p>
+
+<h2>Концепт A — 4WD skid-steer на амортизаторах</h2>
+<p><span class="tag">простіше</span><span class="tag">дешевше</span><span class="tag">швидше поїде</span></p>
+<p>Класика: чотири колеса, поворот різницею швидкостей бортів, підвіска на важелях
+з покупними RC-амортизаторами 90–100 мм.</p>
+
+<figure>
+<svg viewBox="-100 -120 610 545" role="img" aria-label="Концепт A, вигляд зверху">
+  <text x="-92" y="-95" fill="#e6ebef" font-size="15" font-weight="600">Вигляд зверху</text>
+
+  <rect x="30"  y="-60" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+  <rect x="250" y="-60" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+  <rect x="30"  y="300" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+  <rect x="250" y="300" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+  <g stroke="#c96a5a" stroke-width="1.1" opacity="0.75">
+    <path d="M42 -60 v60 M66 -60 v60 M90 -60 v60 M114 -60 v60 M138 -60 v60"/>
+    <path d="M262 -60 v60 M286 -60 v60 M310 -60 v60 M334 -60 v60 M358 -60 v60"/>
+    <path d="M42 300 v60 M66 300 v60 M90 300 v60 M114 300 v60 M138 300 v60"/>
+    <path d="M262 300 v60 M286 300 v60 M310 300 v60 M334 300 v60 M358 300 v60"/>
+  </g>
+
+  <rect x="0" y="0" width="400" height="300" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+
+  <g stroke="#4a6f8a" stroke-width="6" stroke-linecap="round">
+    <path d="M90 -30 L90 12"/><path d="M310 -30 L310 12"/>
+    <path d="M90 330 L90 288"/><path d="M310 330 L310 288"/>
+  </g>
+
+  <path d="M-25 150 H425" stroke="#4a6f8a" stroke-width="0.8" stroke-dasharray="14 5 3 5" opacity="0.8"/>
+  <path d="M200 -80 V380" stroke="#4a6f8a" stroke-width="0.8" stroke-dasharray="14 5 3 5" opacity="0.8"/>
+
+  <path d="M440 150 h50" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M490 150 l-13 -6 v12 z" fill="#8fd18b"/>
+  <text x="440" y="140" fill="#8fd18b" font-size="12">вперед</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M0 -86 H400"/><path d="M0 -91 v10 M400 -91 v10"/>
+    <text x="176" y="-94">400</text>
+    <path d="M-62 -60 V360"/><path d="M-67 -60 h10 M-67 360 h10"/>
+    <text x="-95" y="146">420</text>
+    <path d="M-26 0 V300"/><path d="M-31 0 h10 M-31 300 h10"/>
+    <text x="-56" y="188">300</text>
+    <path d="M30 388 H150"/><path d="M30 383 v10 M150 383 v10"/>
+    <text x="64" y="406">Ø120</text>
+    <path d="M90 -70 H310"/><path d="M90 -75 v10 M310 -75 v10"/>
+    <text x="168" y="-56">база 220</text>
+  </g>
+  <text x="196" y="406" fill="#93a1ab" font-size="12">колія 360 по центрах коліс</text>
+</svg>
+<figcaption>Габарит 400 × 420 мм разом з колесами. Ширина колеса 60 мм — під TPU-шину або 2–3 гумових кільця в канавках.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-100 55 620 400" role="img" aria-label="Концепт A, вигляд збоку">
+  <text x="-92" y="82" fill="#e6ebef" font-size="15" font-weight="600">Вигляд збоку</text>
+
+  <path d="M-75 400 H495" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M-60 400 l-11 12 M-30 400 l-11 12 M0 400 l-11 12 M30 400 l-11 12 M60 400 l-11 12
+             M90 400 l-11 12 M120 400 l-11 12 M150 400 l-11 12 M180 400 l-11 12 M210 400 l-11 12
+             M240 400 l-11 12 M270 400 l-11 12 M300 400 l-11 12 M330 400 l-11 12 M360 400 l-11 12
+             M390 400 l-11 12 M420 400 l-11 12 M450 400 l-11 12 M480 400 l-11 12"/>
+  </g>
+
+  <rect x="0" y="130" width="400" height="200" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <path d="M6 166 H394" stroke="#4a6f8a" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <text x="10" y="160" fill="#93a1ab" font-size="11">знімна кришка</text>
+
+  <circle cx="90"  cy="340" r="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+  <circle cx="90"  cy="340" r="52" fill="none" stroke="#c96a5a" stroke-width="4"/>
+  <circle cx="90"  cy="340" r="18" fill="#20262b" stroke="#9aa5ad" stroke-width="1.6"/>
+  <circle cx="310" cy="340" r="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+  <circle cx="310" cy="340" r="52" fill="none" stroke="#c96a5a" stroke-width="4"/>
+  <circle cx="310" cy="340" r="18" fill="#20262b" stroke="#9aa5ad" stroke-width="1.6"/>
+  <g stroke="#4a6f8a" stroke-width="1.2">
+    <path d="M90 282 v116 M32 340 h116 M49 299 l82 82 M131 299 l-82 82"/>
+    <path d="M310 282 v116 M252 340 h116 M269 299 l82 82 M351 299 l-82 82"/>
+  </g>
+
+  <g stroke="#5a86c9" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M152 322 L90 340"/>
+    <path d="M248 322 L310 340"/>
+  </g>
+  <g stroke="#9aa5ad" stroke-width="5" stroke-linecap="round">
+    <path d="M118 332 L152 244"/>
+    <path d="M282 332 L248 244"/>
+  </g>
+  <g fill="#9aa5ad">
+    <circle cx="152" cy="244" r="5"/><circle cx="248" cy="244" r="5"/>
+    <circle cx="152" cy="322" r="5"/><circle cx="248" cy="322" r="5"/>
+  </g>
+  <text x="126" y="232" fill="#93a1ab" font-size="11">амортизатор RC 1/10 · 90–100 мм</text>
+
+  <rect x="152" y="288" width="112" height="40" fill="#2b2320" stroke="#d18b47" stroke-width="1.6" rx="4"/>
+  <text x="158" y="313" fill="#d18b47" font-size="11">акум 4S — найнижче</text>
+
+  <path d="M200 130 v-26" stroke="#9aa5ad" stroke-width="6"/>
+  <rect x="176" y="72" width="48" height="32" fill="#243039" stroke="#8fd18b" stroke-width="1.6" rx="5"/>
+  <path d="M224 88 h16" stroke="#8fd18b" stroke-width="4"/>
+  <text x="246" y="82" fill="#8fd18b" font-size="11">турель pan/tilt + камера</text>
+
+  <rect x="300" y="102" width="52" height="28" fill="#243039" stroke="#8fd18b" stroke-width="1.6" rx="4"/>
+  <text x="360" y="120" fill="#8fd18b" font-size="11">лідар</text>
+
+  <path d="M40 130 v-46" stroke="#8fd18b" stroke-width="2.4"/>
+  <text x="4" y="76" fill="#8fd18b" font-size="11">радіо 868</text>
+  <path d="M372 130 v-30" stroke="#8fd18b" stroke-width="2.4"/>
+  <circle cx="372" cy="93" r="7" fill="none" stroke="#8fd18b" stroke-width="1.6"/>
+  <text x="386" y="86" fill="#8fd18b" font-size="11">GNSS</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M-46 330 V400"/><path d="M-51 330 h10 M-51 400 h10"/>
+    <text x="-92" y="370">70</text>
+    <path d="M-20 130 V330"/><path d="M-25 130 h10 M-25 330 h10"/>
+    <text x="-56" y="236">200</text>
+    <path d="M430 280 V400"/><path d="M425 280 h10 M425 400 h10"/>
+    <text x="440" y="344">Ø120</text>
+  </g>
+  <text x="-95" y="388" fill="#93a1ab" font-size="11">кліренс</text>
+</svg>
+<figcaption>Кліренс 70 мм, центр ваги низько — акум лежить на дні між осями. Амортизатор купується, важіль друкується.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Що дає</th><th>Чим платиш</th></tr>
+  <tr>
+    <td class="good">
+      Найшвидший шлях до «котиться».<br>
+      4 мотори замість 6 — менше струму, дешевший драйвер.<br>
+      Розворот на місці «з коробки».<br>
+      Один Sabertooth 2x32 закриває всю платформу.
+    </td>
+    <td class="bad">
+      Перешкода вища за ~50 мм зупиняє.<br>
+      На діагональному перекосі колесо вивішується — тяга зникає.<br>
+      Амортизатори треба купувати і підбирати жорсткість.
+    </td>
+  </tr>
+</table>
+
+<h2>Концепт B — 6WD rocker-bogie</h2>
+<p><span class="tag">прохідність</span><span class="tag">6 моторів</span><span class="tag">складніше</span></p>
+<p>Те, про що говорили: шість коліс, кожне зі своїм мотором. Схема марсоходів —
+пружин і амортизаторів немає взагалі, корпус вирівнює диференціал між лівим і правим рокером.
+Переїжджає перешкоду висотою приблизно у два діаметри колеса.</p>
+
+<figure>
+<svg viewBox="-100 20 640 445" role="img" aria-label="Концепт B, вигляд збоку">
+  <text x="-92" y="52" fill="#e6ebef" font-size="15" font-weight="600">Вигляд збоку — кінематика</text>
+
+  <path d="M-75 400 H510" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M-60 400 l-11 12 M-20 400 l-11 12 M20 400 l-11 12 M60 400 l-11 12 M100 400 l-11 12
+             M140 400 l-11 12 M180 400 l-11 12 M220 400 l-11 12 M260 400 l-11 12 M300 400 l-11 12
+             M340 400 l-11 12 M380 400 l-11 12 M420 400 l-11 12 M460 400 l-11 12 M500 400 l-11 12"/>
+  </g>
+
+  <rect x="-8" y="290" width="46" height="110" fill="#2a2320" stroke="#e07b6a" stroke-width="1.8"/>
+  <text x="-92" y="282" fill="#e07b6a" font-size="11">перешкода 110</text>
+
+  <rect x="150" y="60" width="320" height="140" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+
+  <circle cx="70"  cy="340" r="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+  <circle cx="70"  cy="340" r="52" fill="none" stroke="#c96a5a" stroke-width="4"/>
+  <circle cx="290" cy="340" r="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+  <circle cx="290" cy="340" r="52" fill="none" stroke="#c96a5a" stroke-width="4"/>
+  <circle cx="420" cy="340" r="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+  <circle cx="420" cy="340" r="52" fill="none" stroke="#c96a5a" stroke-width="4"/>
+  <g stroke="#4a6f8a" stroke-width="1.2">
+    <path d="M70 282 v116 M12 340 h116 M29 299 l82 82 M111 299 l-82 82"/>
+    <path d="M290 282 v116 M232 340 h116 M249 299 l82 82 M331 299 l-82 82"/>
+    <path d="M420 282 v116 M362 340 h116 M379 299 l82 82 M461 299 l-82 82"/>
+  </g>
+
+  <g stroke="#5a86c9" stroke-width="9" stroke-linecap="round" fill="none">
+    <path d="M200 190 L70 340"/>
+    <path d="M200 190 L355 250"/>
+  </g>
+  <g stroke="#8fd18b" stroke-width="8" stroke-linecap="round" fill="none">
+    <path d="M355 250 L290 340"/>
+    <path d="M355 250 L420 340"/>
+  </g>
+  <circle cx="200" cy="190" r="9" fill="#20262b" stroke="#d18b47" stroke-width="2.6"/>
+  <circle cx="355" cy="250" r="8" fill="#20262b" stroke="#d18b47" stroke-width="2.6"/>
+  <text x="104" y="180" fill="#d18b47" font-size="11.5">шарнір рокера</text>
+  <text x="370" y="242" fill="#d18b47" font-size="11.5">шарнір богі</text>
+  <text x="98" y="262" fill="#5a86c9" font-size="11.5">рокер</text>
+  <text x="306" y="296" fill="#8fd18b" font-size="11.5">богі</text>
+
+  <path d="M200 60 v-20 H330" stroke="#d18b47" stroke-width="3" fill="none"/>
+  <text x="212" y="34" fill="#d18b47" font-size="11.5">диференціальний вал на протилежний борт</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M10 432 H480"/><path d="M10 427 v10 M480 427 v10"/>
+    <text x="226" y="450">470</text>
+    <path d="M505 200 V400"/><path d="M500 200 h10 M500 400 h10"/>
+    <text x="514" y="296">200</text>
+  </g>
+  <text x="502" y="316" fill="#93a1ab" font-size="11">кліренс</text>
+</svg>
+<figcaption>Переднє колесо наїжджає на перешкоду — рокер повертається, корпус піднімається лише наполовину. Диференціал тримає його приблизно горизонтально.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-100 -120 660 545" role="img" aria-label="Концепт B, вигляд зверху">
+  <text x="-92" y="-95" fill="#e6ebef" font-size="15" font-weight="600">Вигляд зверху</text>
+
+  <g>
+    <rect x="10"  y="-60" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+    <rect x="230" y="-60" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+    <rect x="360" y="-60" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+    <rect x="10"  y="300" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+    <rect x="230" y="300" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+    <rect x="360" y="300" width="120" height="60" fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6" rx="6"/>
+  </g>
+  <g stroke="#c96a5a" stroke-width="1.1" opacity="0.7">
+    <path d="M22 -60 v60 M46 -60 v60 M70 -60 v60 M94 -60 v60 M118 -60 v60"/>
+    <path d="M242 -60 v60 M266 -60 v60 M290 -60 v60 M314 -60 v60 M338 -60 v60"/>
+    <path d="M372 -60 v60 M396 -60 v60 M420 -60 v60 M444 -60 v60 M468 -60 v60"/>
+    <path d="M22 300 v60 M46 300 v60 M70 300 v60 M94 300 v60 M118 300 v60"/>
+    <path d="M242 300 v60 M266 300 v60 M290 300 v60 M314 300 v60 M338 300 v60"/>
+    <path d="M372 300 v60 M396 300 v60 M420 300 v60 M444 300 v60 M468 300 v60"/>
+  </g>
+
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M70 -30 H355"/><path d="M70 330 H355"/>
+  </g>
+  <g stroke="#8fd18b" stroke-width="6" stroke-linecap="round">
+    <path d="M290 -30 H420"/><path d="M290 330 H420"/>
+  </g>
+
+  <rect x="150" y="20" width="320" height="260" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <path d="M200 -30 V330" stroke="#d18b47" stroke-width="3" stroke-dasharray="10 6"/>
+  <text x="208" y="14" fill="#d18b47" font-size="11.5">диференціал</text>
+  <circle cx="200" cy="-30" r="8" fill="#20262b" stroke="#d18b47" stroke-width="2.4"/>
+  <circle cx="200" cy="330" r="8" fill="#20262b" stroke="#d18b47" stroke-width="2.4"/>
+
+  <path d="M510 150 h40" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M550 150 l-13 -6 v12 z" fill="#8fd18b"/>
+  <text x="508" y="140" fill="#8fd18b" font-size="12">вперед</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M10 -86 H480"/><path d="M10 -91 v10 M480 -91 v10"/>
+    <text x="226" y="-94">470</text>
+    <path d="M-42 -60 V360"/><path d="M-47 -60 h10 M-47 360 h10"/>
+    <text x="-86" y="146">420</text>
+  </g>
+</svg>
+<figcaption>Рокери винесені по бортах, корпус висить між ними. Мотор-редуктор стоїть прямо в маточині кожного колеса — це прибирає всю передачу.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Що дає</th><th>Чим платиш</th></tr>
+  <tr>
+    <td class="good">
+      Прохідність — саме те, заради чого йшлося про 6 коліс.<br>
+      Усі шість коліс завжди на землі, тяга не зникає.<br>
+      Пружин і амортизаторів не треба взагалі.<br>
+      Корпус висить між рокерами — місця всередині більше.
+    </td>
+    <td class="bad">
+      6 моторів і 6 енкодерів, ~9 А в русі — драйвер серйозніший.<br>
+      Диференціал через увесь корпус — вузол, який треба зробити точно.<br>
+      Rocker-bogie не для швидкості: він для повзання, не для 1.2 м/с.<br>
+      Розворот на місці сильніше дере ґрунт, ніж на чотирьох.
+    </td>
+  </tr>
+</table>
+
+<h2>Архітектура: три власні МК</h2>
+<p>Готового автопілота немає — увесь контур пишемо самі. Розділяється це не за
+бажанням, а за жорсткістю таймінгу: те, що мусить встигати за мілісекунди,
+не можна тримати в тому ж циклі, що й радіо і місії.</p>
+
+<figure>
+<svg viewBox="-20 -20 800 400" role="img" aria-label="Схема: три МК і шина CAN">
+  <!-- drive MCU -->
+  <rect x="0" y="40" width="190" height="112" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.2" rx="8"/>
+  <text x="14" y="66" fill="#8fd18b" font-size="14" font-weight="600">STM32 · ПРИВІД</text>
+  <text x="14" y="88" fill="#c9d4db" font-size="11.5">4–6 енкодерів (таймер в encoder mode)</text>
+  <text x="14" y="106" fill="#c9d4db" font-size="11.5">PWM на драйвери + напрямок</text>
+  <text x="14" y="124" fill="#c9d4db" font-size="11.5">PID швидкості кожного колеса</text>
+  <text x="14" y="142" fill="#c9d4db" font-size="11.5">міксер skid-steer, NTC на АЦП</text>
+  <text x="14" y="30" fill="#93a1ab" font-size="11">жорсткий realtime · 1 кГц</text>
+
+  <!-- nav MCU -->
+  <rect x="240" y="40" width="190" height="112" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.2" rx="8"/>
+  <text x="254" y="66" fill="#8fd18b" font-size="14" font-weight="600">STM32 · НАВІГАЦІЯ</text>
+  <text x="254" y="88" fill="#c9d4db" font-size="11.5">IMU + компас, злиття кутів</text>
+  <text x="254" y="106" fill="#c9d4db" font-size="11.5">GNSS, одометрія, курс</text>
+  <text x="254" y="124" fill="#c9d4db" font-size="11.5">маршрут по точках, стан місії</text>
+  <text x="254" y="142" fill="#c9d4db" font-size="11.5">failsafe, ToF-бампер, INA226</text>
+  <text x="254" y="30" fill="#93a1ab" font-size="11">м'який realtime · 50–200 Гц</text>
+
+  <!-- link MCU -->
+  <rect x="480" y="40" width="190" height="112" fill="#1c2431" stroke="#5a86c9" stroke-width="2.2" rx="8"/>
+  <text x="494" y="66" fill="#5a86c9" font-size="14" font-weight="600">ESP32 · ЗВ'ЯЗОК</text>
+  <text x="494" y="88" fill="#c9d4db" font-size="11.5">радіомодуль, свій пакет + CRC</text>
+  <text x="494" y="106" fill="#c9d4db" font-size="11.5">пакування телеметрії на пульт</text>
+  <text x="494" y="124" fill="#c9d4db" font-size="11.5">Wi-Fi для налагодження в гаражі</text>
+  <text x="494" y="142" fill="#c9d4db" font-size="11.5">мікрофон I2S, керування камерою</text>
+  <text x="494" y="30" fill="#93a1ab" font-size="11">не realtime</text>
+
+  <!-- CAN bus -->
+  <path d="M95 152 V210 M335 152 V210 M575 152 V210" stroke="#d18b47" stroke-width="2.4"/>
+  <path d="M20 210 H700" stroke="#d18b47" stroke-width="4"/>
+  <circle cx="95" cy="210" r="5" fill="#d18b47"/>
+  <circle cx="335" cy="210" r="5" fill="#d18b47"/>
+  <circle cx="575" cy="210" r="5" fill="#d18b47"/>
+  <rect x="0" y="200" width="20" height="20" fill="#2b2320" stroke="#d18b47" stroke-width="1.6" rx="3"/>
+  <rect x="700" y="200" width="20" height="20" fill="#2b2320" stroke="#d18b47" stroke-width="1.6" rx="3"/>
+  <text x="726" y="216" fill="#d18b47" font-size="11.5">120 Ω</text>
+  <text x="300" y="240" fill="#d18b47" font-size="13" font-weight="600">CAN · вита пара, 500 кбіт/с</text>
+  <text x="196" y="262" fill="#93a1ab" font-size="11.5">кадри з ID за пріоритетом: команда керування &gt; стан &gt; телеметрія</text>
+
+  <!-- peripherals row -->
+  <g font-size="11.5">
+    <rect x="0" y="296" width="190" height="52" fill="#20262b" stroke="#4a6f8a" stroke-width="1.6" rx="6"/>
+    <text x="14" y="316" fill="#c9d4db">драйвери моторів</text>
+    <text x="14" y="334" fill="#93a1ab">6× енкодер, 2× NTC, серви</text>
+
+    <rect x="240" y="296" width="190" height="52" fill="#20262b" stroke="#4a6f8a" stroke-width="1.6" rx="6"/>
+    <text x="254" y="316" fill="#c9d4db">I2C: IMU, компас, INA226, ToF</text>
+    <text x="254" y="334" fill="#93a1ab">UART: GNSS</text>
+
+    <rect x="480" y="296" width="190" height="52" fill="#20262b" stroke="#4a6f8a" stroke-width="1.6" rx="6"/>
+    <text x="494" y="316" fill="#c9d4db">SPI: LoRa SX1262 / приймач</text>
+    <text x="494" y="334" fill="#93a1ab">I2S: мікрофон</text>
+  </g>
+  <g stroke="#4a6f8a" stroke-width="1.6">
+    <path d="M95 296 V266" stroke-dasharray="5 4"/>
+    <path d="M335 296 V266" stroke-dasharray="5 4"/>
+    <path d="M575 296 V266" stroke-dasharray="5 4"/>
+  </g>
+</svg>
+<figcaption>CAN, а не UART: одна вита пара на всіх, кадр має пріоритет, шум від моторів його не збиває. STM32F072 має bxCAN на борту — купувати нічого не треба.</figcaption>
+</figure>
+
+<h3>Чому саме такий розподіл</h3>
+<ul>
+  <li><b>Привід окремо</b> — PID по енкодерах мусить крутитися рівним 1 кГц. Якщо в тому ж циклі парситься радіопакет, контур почне смикатися.</li>
+  <li><b>Зв'язок окремо і на ESP32</b> — там уже є радіо, Wi-Fi і достатньо RAM під буфери. І якщо радіо-стек зависне, привід і навігація живі.</li>
+  <li><b>Failsafe живе на «Навігації»</b>, а не на «Зв'язку» — інакше падіння того самого МК, який має помітити втрату зв'язку, залишить ровер без гальм. «Навігація» чекає heartbeat по CAN і зупиняє сама.</li>
+</ul>
+
+<h2>Внутрішнє компонування</h2>
+<p>Однакове для обох концептів. Три правила тут справжні: акум найнижче,
+IMU у центрі мас на віброопорах, GNSS якнайдалі від силових проводів.</p>
+
+<figure>
+<svg viewBox="-60 -70 560 425" role="img" aria-label="Компонування всередині корпусу">
+  <text x="-52" y="-42" fill="#e6ebef" font-size="15" font-weight="600">Вигляд зверху, кришка знята</text>
+
+  <rect x="0" y="0" width="400" height="300" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <path d="M-18 150 H418" stroke="#4a6f8a" stroke-width="0.8" stroke-dasharray="14 5 3 5"/>
+
+  <rect x="150" y="104" width="95" height="94" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="4"/>
+  <g fill="none" stroke="#d18b47" stroke-width="0.9" opacity="0.8">
+    <circle cx="162" cy="116" r="10"/><circle cx="185" cy="116" r="10"/><circle cx="208" cy="116" r="10"/><circle cx="231" cy="116" r="10"/>
+    <circle cx="162" cy="139" r="10"/><circle cx="185" cy="139" r="10"/><circle cx="208" cy="139" r="10"/><circle cx="231" cy="139" r="10"/>
+    <circle cx="162" cy="162" r="10"/><circle cx="185" cy="162" r="10"/><circle cx="208" cy="162" r="10"/><circle cx="231" cy="162" r="10"/>
+    <circle cx="162" cy="185" r="10"/><circle cx="185" cy="185" r="10"/><circle cx="208" cy="185" r="10"/><circle cx="231" cy="185" r="10"/>
+  </g>
+  <text x="140" y="214" fill="#d18b47" font-size="11">акум 4S4P 21700</text>
+  <text x="140" y="228" fill="#d18b47" font-size="11">90×90×70 · на дні</text>
+
+  <rect x="246" y="98" width="106" height="46" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <text x="253" y="117" fill="#8fd18b" font-size="10.5" font-weight="600">STM32 · ПРИВІД</text>
+  <text x="253" y="133" fill="#93a1ab" font-size="9.5">енкодери · PWM · PID</text>
+
+  <rect x="246" y="154" width="106" height="46" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <text x="253" y="173" fill="#8fd18b" font-size="10.5" font-weight="600">STM32 · НАВІГАЦІЯ</text>
+  <text x="253" y="189" fill="#93a1ab" font-size="9.5">IMU · GNSS · маршрут</text>
+
+  <rect x="246" y="210" width="106" height="46" fill="#1c2431" stroke="#5a86c9" stroke-width="2" rx="4"/>
+  <text x="253" y="229" fill="#5a86c9" font-size="10.5" font-weight="600">ESP32 · ЗВ'ЯЗОК</text>
+  <text x="253" y="245" fill="#93a1ab" font-size="9.5">радіо · телеметрія</text>
+
+  <path d="M366 108 V246" stroke="#d18b47" stroke-width="2.4"/>
+  <path d="M352 121 H366 M352 177 H366 M352 233 H366" stroke="#d18b47" stroke-width="2"/>
+  <text x="358" y="272" fill="#d18b47" font-size="11">CAN</text>
+
+  <rect x="176" y="52" width="48" height="32" fill="#2a2320" stroke="#e07b6a" stroke-width="1.8" rx="4"/>
+  <g fill="#e07b6a" opacity="0.6">
+    <circle cx="182" cy="58" r="3"/><circle cx="218" cy="58" r="3"/>
+    <circle cx="182" cy="78" r="3"/><circle cx="218" cy="78" r="3"/>
+  </g>
+  <text x="140" y="44" fill="#e07b6a" font-size="11.5">IMU у ЦТ, на демпферах</text>
+
+  <rect x="44" y="110" width="76" height="64" fill="#243039" stroke="#c96a5a" stroke-width="2" rx="4"/>
+  <text x="20" y="103" fill="#c96a5a" font-size="11.5">драйвер моторів + радіатор</text>
+
+  <rect x="44" y="196" width="76" height="46" fill="#243039" stroke="#c96a5a" stroke-width="1.6" rx="4"/>
+  <text x="10" y="260" fill="#c96a5a" font-size="11.5">PDB · запобіжники · BEC 5 В</text>
+
+  <rect x="286" y="20" width="104" height="66" fill="#20262b" stroke="#4a6f8a" stroke-width="1.6" stroke-dasharray="7 4" rx="4"/>
+  <text x="252" y="14" fill="#93a1ab" font-size="11.5">носовий відсік: маніпулятор / скид вантажу</text>
+
+  <circle cx="50" cy="48" r="16" fill="none" stroke="#8fd18b" stroke-width="2"/>
+  <text x="-54" y="26" fill="#8fd18b" font-size="11.5">GNSS на щоглі — вище за силову проводку</text>
+
+  <path d="M22 292 v-16" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M378 292 v-16" stroke="#8fd18b" stroke-width="2.4"/>
+  <text x="112" y="292" fill="#8fd18b" font-size="11.5">антени радіо рознесені по кутах</text>
+
+  <g fill="#e07b6a">
+    <rect x="-7" y="58" width="11" height="18" rx="2"/>
+    <rect x="-7" y="224" width="11" height="18" rx="2"/>
+    <rect x="396" y="58" width="11" height="18" rx="2"/>
+    <rect x="396" y="224" width="11" height="18" rx="2"/>
+  </g>
+  <text x="-52" y="330" fill="#e07b6a" font-size="11.5">4× ToF або HC-SR04 по периметру — бампер для об'їзду перешкод</text>
+
+  <path d="M442 150 h34" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M476 150 l-13 -6 v12 z" fill="#8fd18b"/>
+  <text x="438" y="140" fill="#8fd18b" font-size="12">вперед</text>
+</svg>
+<figcaption>Гаряче і шумне (драйвери, PDB) — на одному борту, три МК — на іншому. Між ними лише вита пара CAN. Силовий джгут і сигнальний не йдуть паралельно.</figcaption>
+</figure>
+
+<h3>Чим це закриває наш список ідей</h3>
+<table>
+  <tr><th>Ідея зі списку</th><th>Хто це робить</th><th>Залізо</th></tr>
+  <tr><td>Швидкість, пройдений шлях</td><td>ПРИВІД</td><td>енкодери моторів у таймер encoder mode</td></tr>
+  <tr><td>Напруга, струм</td><td>НАВІГАЦІЯ</td><td>INA226 по I2C на силовій шині</td></tr>
+  <tr><td>Температура контролера і моторів</td><td>ПРИВІД</td><td>NTC на АЦП: один на радіаторі драйвера, по одному на борт моторів</td></tr>
+  <tr><td>Нахил</td><td>НАВІГАЦІЯ</td><td>MPU-6050 + QMC5883L, злиття кутів</td></tr>
+  <tr><td>Якість радіозв'язку</td><td>ЗВ'ЯЗОК</td><td>RSSI / SNR з радіомодуля</td></tr>
+  <tr><td>Утримання напрямку</td><td>НАВІГАЦІЯ → ПРИВІД</td><td>PID курсу дає уставки швидкостей, по CAN на привід</td></tr>
+  <tr><td>Об'їзд перешкод</td><td>НАВІГАЦІЯ</td><td>4× ToF / HC-SR04 по периметру, лідар потім</td></tr>
+  <tr><td>Маршрут з точками і діями</td><td>НАВІГАЦІЯ</td><td>список точок у флеші + автомат станів</td></tr>
+  <tr><td>Позиція під глушилками</td><td>НАВІГАЦІЯ</td><td>одометрія з енкодерів як основне, GNSS як корекція</td></tr>
+  <tr><td>Втрата зв'язку → повернення або стоп</td><td>НАВІГАЦІЯ</td><td>зник heartbeat ЗВ'ЯЗКУ по CAN → failsafe</td></tr>
+  <tr><td>Брати і класти предмети</td><td>ПРИВІД</td><td>серви з окремого таймера; ЦТ рахувати з вантажем на витягнутому маніпуляторі</td></tr>
+  <tr><td>Скид вантажу</td><td>ПРИВІД</td><td>носовий відсік, серва + люк у днищі</td></tr>
+  <tr><td>Мікрофон розвідки</td><td>ЗВ'ЯЗОК</td><td>I2S-мікрофон на щоглі, подалі від моторів — вони гудуть</td></tr>
+  <tr><td>Камера на пульт</td><td>ЗВ'ЯЗОК</td><td>окремий канал повз CAN — CAN відео не тягне</td></tr>
+</table>
+
+<h2>Колесо — розріз</h2>
+<p>Однакове в обох концептах, тому проектується один раз і друкується 4 або 6 разів.</p>
+
+<figure>
+<svg viewBox="-380 -230 800 470" role="img" aria-label="Розріз колеса">
+  <g transform="scale(1.6)">
+    <rect x="-30" y="-60" width="60" height="9" fill="#3a2723" stroke="#c96a5a" stroke-width="1.6"/>
+    <rect x="-30" y="51"  width="60" height="9" fill="#3a2723" stroke="#c96a5a" stroke-width="1.6"/>
+    <rect x="-30" y="-51" width="60" height="9" fill="#22303f" stroke="#5a86c9" stroke-width="1.6"/>
+    <rect x="-30" y="42"  width="60" height="9" fill="#22303f" stroke="#5a86c9" stroke-width="1.6"/>
+    <rect x="-9" y="-42" width="18" height="26" fill="#22303f" stroke="#5a86c9" stroke-width="1.4"/>
+    <rect x="-9" y="16"  width="18" height="26" fill="#22303f" stroke="#5a86c9" stroke-width="1.4"/>
+    <rect x="-30" y="-16" width="60" height="32" fill="#22303f" stroke="#5a86c9" stroke-width="1.8"/>
+    <rect x="-30" y="-11" width="7" height="22" fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6"/>
+    <rect x="23"  y="-11" width="7" height="22" fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6"/>
+    <rect x="-48" y="-4" width="96" height="8" fill="#39424a" stroke="#9aa5ad" stroke-width="1.6"/>
+    <path d="M-58 0 H58" stroke="#4a6f8a" stroke-width="0.7" stroke-dasharray="9 3 2 3"/>
+  </g>
+
+  <g font-size="12.5">
+    <path d="M10 -92 L118 -148" stroke="#c96a5a" stroke-width="1"/>
+    <text x="122" y="-150" fill="#c96a5a">шина TPU 95A ~8 мм · або канавки під O-ring</text>
+    <path d="M-20 -76 L-150 -122" stroke="#5a86c9" stroke-width="1"/>
+    <text x="-372" y="-124" fill="#5a86c9">диск PETG — обід</text>
+    <path d="M4 -46 L126 -74" stroke="#5a86c9" stroke-width="1"/>
+    <text x="130" y="-76" fill="#5a86c9">спиці або стільник — не суцільний диск</text>
+    <path d="M-42 12 L-150 62" stroke="#9aa5ad" stroke-width="1"/>
+    <text x="-374" y="66" fill="#9aa5ad">2× підшипник 608ZZ (8×22×7)</text>
+    <path d="M64 0 L134 46" stroke="#9aa5ad" stroke-width="1"/>
+    <text x="138" y="50" fill="#9aa5ad">вал Ø8 h6 + жорстка муфта 6→8 на вал мотора</text>
+    <path d="M0 28 L118 132" stroke="#5a86c9" stroke-width="1"/>
+    <text x="122" y="136" fill="#5a86c9">маточина: 4× різьбова втулка M3 під запресовку</text>
+  </g>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12.5">
+    <path d="M-72 -96 V96"/><path d="M-77 -96 h10 M-77 96 h10"/>
+    <text x="-128" y="4">Ø120</text>
+    <path d="M-48 120 H48"/><path d="M-48 115 v10 M48 115 v10"/>
+    <text x="-10" y="142">60</text>
+  </g>
+</svg>
+<figcaption>Два підшипники, рознесені по краях маточини — колесо не бовтається на валу. Вал наскрізний, мотор через жорстку муфту.</figcaption>
+</figure>
+
+<h2>Корпус: як його друкувати на столі 220×220</h2>
+<p>Корпус 400×300 у стіл не влазить. Два робочих підходи.</p>
+
+<figure>
+<svg viewBox="-40 -70 700 400" role="img" aria-label="Розбивка корпусу на друковані панелі">
+  <text x="-30" y="-42" fill="#e6ebef" font-size="14" font-weight="600">Варіант 1 — панелі 200×150 + шви</text>
+  <rect x="0" y="0" width="200" height="150" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+  <rect x="200" y="0" width="200" height="150" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+  <rect x="0" y="150" width="200" height="150" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+  <rect x="200" y="150" width="200" height="150" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+  <path d="M200 0 V300 M0 150 H400" stroke="#d18b47" stroke-width="2.6" stroke-dasharray="10 6"/>
+  <g fill="#d18b47">
+    <circle cx="200" cy="40" r="5"/><circle cx="200" cy="110" r="5"/>
+    <circle cx="200" cy="190" r="5"/><circle cx="200" cy="260" r="5"/>
+    <circle cx="60" cy="150" r="5"/><circle cx="140" cy="150" r="5"/>
+    <circle cx="260" cy="150" r="5"/><circle cx="340" cy="150" r="5"/>
+  </g>
+  <text x="60" y="80" fill="#93a1ab" font-size="12.5">200 × 150</text>
+  <text x="260" y="80" fill="#93a1ab" font-size="12.5">200 × 150</text>
+  <text x="60" y="230" fill="#93a1ab" font-size="12.5">200 × 150</text>
+  <text x="260" y="230" fill="#93a1ab" font-size="12.5">200 × 150</text>
+  <text x="424" y="146" fill="#d18b47" font-size="12">шов: ласточкин хвіст + втулки M3</text>
+  <text x="424" y="166" fill="#93a1ab" font-size="12">кожна панель лягає плазом, без підпор</text>
+  <text x="424" y="192" fill="#93a1ab" font-size="12">шви не проходять там, де кріпляться мотори</text>
+</svg>
+<figcaption>Днище ділиться на чотири плити 200×150 — кожна друкується плазом на столі.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-40 -70 700 400" role="img" aria-label="Каркас 2020 з друкованими вузлами">
+  <text x="-30" y="-42" fill="#e6ebef" font-size="14" font-weight="600">Варіант 2 — каркас 2020 + друковані вузли</text>
+  <g stroke="#9aa5ad" stroke-width="9" stroke-linecap="square">
+    <path d="M20 20 H380"/><path d="M20 280 H380"/>
+    <path d="M20 20 V280"/><path d="M380 20 V280"/>
+    <path d="M200 20 V280"/>
+  </g>
+  <g fill="#22303f" stroke="#5a86c9" stroke-width="2">
+    <rect x="2" y="2" width="36" height="36" rx="4"/>
+    <rect x="362" y="2" width="36" height="36" rx="4"/>
+    <rect x="2" y="262" width="36" height="36" rx="4"/>
+    <rect x="362" y="262" width="36" height="36" rx="4"/>
+    <rect x="182" y="2" width="36" height="36" rx="4"/>
+    <rect x="182" y="262" width="36" height="36" rx="4"/>
+  </g>
+  <text x="424" y="24" fill="#5a86c9" font-size="12">друковані кутові вузли — маленькі,</text>
+  <text x="424" y="44" fill="#5a86c9" font-size="12">швидкі, легко передрукувати</text>
+  <text x="424" y="150" fill="#9aa5ad" font-size="12">алюмінієвий профіль 2020 —</text>
+  <text x="424" y="170" fill="#9aa5ad" font-size="12">жорсткість, якої пластик не дасть</text>
+  <rect x="60" y="70" width="280" height="160" fill="none" stroke="#4a6f8a" stroke-width="1.6" stroke-dasharray="8 5"/>
+  <text x="106" y="156" fill="#93a1ab" font-size="12.5">знімна друкована ванна під електроніку</text>
+</svg>
+<figcaption>Другий варіант дешевше перероблювати: помилився в геометрії — передрукував вузол 40×40, а не плиту на шість годин.</figcaption>
+</figure>
+
+<h3>Порядок, який економить пластик</h3>
+<ul>
+  <li>Спочатку одне колесо і один тримач мотора. Друкуєш, садиш на вал, крутиш рукою.</li>
+  <li>Далі один кутовий вузол підвіски — дивишся, чи не ламається в шарнірі.</li>
+  <li>Корпус — в останню чергу: він найдовший у друці і змінюється найчастіше.</li>
+</ul>
+
+</div>

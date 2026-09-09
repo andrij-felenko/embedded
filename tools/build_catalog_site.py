@@ -1522,6 +1522,149 @@ load();drawTiles();render();
 """
 
 
+ROVER = os.path.join(ROOT, "apps", "rover")
+
+# Вкладки міні-сайту ровера: (якір, назва, файл або None = заглушка)
+ROVER_TABS = [
+    ("korpus", "Устрій корпусу", None),
+    ("obrazy", "Образи", "looks.html"),
+    ("platy",  "Схема плат",     None),
+    ("ideya",  "Опис ідеї",      None),
+    ("arch",   "Архітектура",    None),
+]
+ROVER_DEFAULT = "obrazy"
+
+ROVER_STUB = {
+    "korpus": ("Устрій корпусу",
+               "Три шари, труби, панелі, скіс і профіль. Матеріал є — переносимо сюди."),
+    "platy":  ("Схема плат",
+               "П'ять плат, хто з ким говорить, які шини й через що йде живлення."),
+    "ideya":  ("Опис ідеї",
+               "Що це за апарат, для чого, і який у нього список функцій."),
+    "arch":   ("Архітектура",
+               "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
+}
+
+
+def copy_rover(out_dir):
+    """Кладе міні-сайт ровера в <out>/rover/ окремим розділом. index.html каталогу не чіпає."""
+    if not os.path.isdir(ROVER):
+        return 0
+    dst = os.path.join(out_dir, "rover")
+    os.makedirs(dst, exist_ok=True)
+
+    n = 0
+    for f in sorted(os.listdir(ROVER)):
+        if f.lower().endswith(".html"):
+            shutil.copy2(os.path.join(ROVER, f), os.path.join(dst, f))
+            n += 1
+
+    btns, panes = [], []
+    for key, label, src in ROVER_TABS:
+        live = bool(src) and os.path.exists(os.path.join(ROVER, src))
+        cls = "tab" + ("" if live else " tab-off")
+        if key == ROVER_DEFAULT: cls += " on"
+        btns.append('  <button class="%s" data-k="%s"%s>%s</button>'
+                    % (cls, key, "" if live else ' title="поки порожньо"', label))
+        if live:
+            on = " on" if key == ROVER_DEFAULT else ""
+            panes.append('<div class="pane%s" id="p-%s" data-src="%s"></div>' % (on, key, src))
+        else:
+            t, d = ROVER_STUB.get(key, (label, ""))
+            on = " on" if key == ROVER_DEFAULT else ""
+            panes.append('<div class="pane%s" id="p-%s"><div class="stub">'
+                         '<div class="st">%s</div><div class="sd">%s</div>'
+                         '<div class="sn">поки порожньо</div></div></div>' % (on, key, t, d))
+
+    page = (ROVER_SHELL
+            .replace("__BTNS__", "\n".join(btns))
+            .replace("__PANES__", "\n".join(panes))
+            .replace("__DEF__", ROVER_DEFAULT))
+    with open(os.path.join(dst, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(page)
+    return n
+
+
+ROVER_SHELL = """<!doctype html>
+<html lang="uk"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ровер</title>
+<style>
+  :root{--bg:#14171a;--bar:#1b1f23;--line:#2c3339;--txt:#e6ebef;--dim:#93a1ab;--acc:#7fb3d5}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--txt);margin:0;
+       font:15px/1.6 "Segoe UI",system-ui,sans-serif}
+  header{position:sticky;top:0;z-index:5;background:var(--bar);
+         border-bottom:1px solid var(--line)}
+  .hin{max-width:1120px;margin:0 auto;padding:12px 18px 0;
+       display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+  .brand{font-size:17px;font-weight:600}
+  .home{color:var(--dim);text-decoration:none;font-size:13px}
+  .home:hover{color:var(--acc)}
+  nav{max-width:1120px;margin:0 auto;padding:10px 18px 0;display:flex;gap:6px;
+      overflow-x:auto}
+  .tab{background:none;border:0;border-bottom:2px solid transparent;color:var(--dim);
+       font:inherit;font-size:14px;padding:8px 12px 10px;cursor:pointer;white-space:nowrap}
+  .tab:hover{color:var(--txt)}
+  .tab.on{color:var(--txt);border-bottom-color:var(--acc)}
+  .tab-off{opacity:.5}
+  .tab-off::after{content:"·";margin-left:6px;color:var(--acc)}
+  main{max-width:1120px;margin:0 auto}
+  .pane{display:none}
+  .pane.on{display:block}
+  iframe{display:block;width:100%;border:0;min-height:70vh}
+  .stub{padding:90px 24px;text-align:center}
+  .st{font-size:22px;font-weight:600;margin-bottom:8px}
+  .sd{color:var(--dim);max-width:52ch;margin:0 auto 18px}
+  .sn{display:inline-block;font-size:12px;color:var(--dim);
+      border:1px solid var(--line);border-radius:20px;padding:4px 14px}
+</style></head><body>
+<header>
+  <div class="hin"><span class="brand">Ровер</span>
+    <a class="home" href="../">← Конструктор ідей</a></div>
+  <nav>
+__BTNS__
+  </nav>
+</header>
+<main>
+__PANES__
+</main>
+<script>
+var DEF="__DEF__";
+function load(p){
+  if(p.dataset.src && !p.firstChild){
+    var f=document.createElement("iframe");
+    f.src=p.dataset.src; f.setAttribute("scrolling","no");
+    f.onload=function(){
+      try{
+        var d=f.contentDocument;
+        var fit=function(){f.style.height=d.documentElement.scrollHeight+"px";};
+        fit(); setTimeout(fit,120);
+        if(window.ResizeObserver) new ResizeObserver(fit).observe(d.body);
+      }catch(e){f.style.height="1600px";}
+    };
+    p.appendChild(f);
+  }
+}
+function show(k){
+  var t=document.querySelector('.tab[data-k="'+k+'"]');
+  var p=document.getElementById("p-"+k);
+  if(!t||!p) return show(DEF);
+  document.querySelectorAll(".tab").forEach(function(x){x.classList.toggle("on",x===t);});
+  document.querySelectorAll(".pane").forEach(function(x){x.classList.toggle("on",x===p);});
+  load(p);
+  try{if(location.hash.slice(1)!==k) history.replaceState(null,"","#"+k);}catch(e){}
+}
+document.querySelectorAll(".tab").forEach(function(t){
+  t.addEventListener("click",function(){show(t.dataset.k);});
+});
+window.addEventListener("hashchange",function(){show(location.hash.slice(1)||DEF);});
+show(location.hash.slice(1)||DEF);
+</script>
+</body></html>
+"""
+
+
 def build(out_dir):
     inv, desc = parse_inventory(), parse_desc()
     have_pic = set()
@@ -1652,8 +1795,10 @@ def build(out_dir):
                     shutil.copy2(path, os.path.join(dst, f))
                     n_pics += 1
 
-    print("pics %d | answers %d | ideas %d | cards %d | parts %d"
-          % (n_pics, len(answers), len(ideas), len(cards), len(inv)))
+    n_rover = copy_rover(out_dir)
+
+    print("pics %d | rover %d | answers %d | ideas %d | cards %d | parts %d"
+          % (n_pics, n_rover, len(answers), len(ideas), len(cards), len(inv)))
     if bad: return 1
     gaps = [(i["name"], p["name"]) for i in ideas for p in i["parts"] if not p["have"]]
     if gaps:

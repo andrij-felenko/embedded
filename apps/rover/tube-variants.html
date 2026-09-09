@@ -1,0 +1,421 @@
+<title>Ровер — сім варіацій труб</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:19px;font-weight:600;margin:36px 0 4px;border-top:1px solid #2c3339;padding-top:18px}
+  h3{font-size:14px;font-weight:600;margin:18px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:12px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:470px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:10px 0;font-size:13.5px;width:100%;max-width:900px}
+  th,td{border:1px solid #2c3339;padding:6px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600;width:120px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:10px;border:1px solid #3a444c;color:#93a1ab;margin-right:6px}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:3px 0}
+  .b{color:#e07b6a}
+  .k{color:#8fd18b}
+</style>
+
+<div class="wrap">
+
+<h1>Сім варіацій — труби, TPU-гнізда, відсік</h1>
+<p class="lead">Спільне для всіх семи: труби звужені до кінців, на кінцях квадратний
+TPU-обідок у гнізді поперечника — це і є підвіска. Проводка зовні по боках корпусу.
+Відсік відкривається згори. Посередині порожниста перекладина між акумом і платами.
+Колеса Х— — — —Х— —Х.<br>
+Варіації відрізняються <b>формою труб і тим, як поділений внутрішній об'єм</b>.</p>
+
+<h2>Спершу — сам вузол</h2>
+
+<figure>
+<svg viewBox="-60 -70 700 380" role="img" aria-label="Звужена труба з квадратним TPU-гніздом">
+  <text x="-54" y="-46" fill="#e6ebef" font-size="14" font-weight="600">Труба + TPU-обідок у гнізді</text>
+
+  <!-- socket left -->
+  <path d="M16 4 H-2 V116 H16" fill="none" stroke="#9aa5ad" stroke-width="4"/>
+  <rect x="-2" y="4" width="18" height="112" fill="#39424a" opacity="0.5"/>
+  <!-- TPU collar left -->
+  <rect x="16" y="18" width="28" height="84" fill="#3a2723" stroke="#c96a5a" stroke-width="2.6" rx="3"/>
+  <!-- tapered tube -->
+  <path d="M30 42 L300 22 L570 42 L570 78 L300 98 L30 78 Z" fill="#2d353c" stroke="#9aa5ad" stroke-width="2.2"/>
+  <!-- TPU collar right -->
+  <rect x="556" y="18" width="28" height="84" fill="#3a2723" stroke="#c96a5a" stroke-width="2.6" rx="3"/>
+  <path d="M584 4 H602 V116 H584" fill="none" stroke="#9aa5ad" stroke-width="4"/>
+  <rect x="584" y="4" width="18" height="112" fill="#39424a" opacity="0.5"/>
+
+  <text x="-54" y="140" fill="#9aa5ad" font-size="12">гніздо в поперечнику</text>
+  <text x="24" y="158" fill="#c96a5a" font-size="12">квадратний TPU-обідок</text>
+  <text x="248" y="140" fill="#c9d4db" font-size="12">труба — товста посередині</text>
+  <text x="470" y="158" fill="#93a1ab" font-size="12">тонка на кінцях</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M300 -14 V16"/><path d="M295 -14 h10"/>
+    <text x="264" y="-20">макс. переріз</text>
+    <path d="M570 -14 V36"/><path d="M565 -14 h10"/>
+    <text x="536" y="-20">мін.</text>
+  </g>
+
+  <!-- deflection inset -->
+  <g transform="translate(0,232)">
+    <path d="M16 -8 H-2 V60 H16" fill="none" stroke="#9aa5ad" stroke-width="3"/>
+    <rect x="16" y="2" width="28" height="44" fill="#3a2723" stroke="#c96a5a" stroke-width="2.2" rx="3"/>
+    <path d="M30 2 L300 -14 L300 14 L30 26 Z" fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8"/>
+    <path d="M24 4 h12" stroke="#c96a5a" stroke-width="5"/>
+    <path d="M320 -20 v-18" stroke="#8fd18b" stroke-width="2.4"/>
+    <path d="M320 -38 l-6 12 h12 z" fill="#8fd18b"/>
+    <text x="332" y="-24" fill="#8fd18b" font-size="12">колесо піднялося</text>
+    <text x="332" y="-8" fill="#93a1ab" font-size="11.5">труба гнеться + TPU стискається з одного боку</text>
+  </g>
+</svg>
+<figcaption>Момент згину максимальний посередині прольоту — там і найбільше матеріалу. Квадрат у гнізді не дає трубі провернутися навколо своєї осі.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-80 -70 700 260" role="img" aria-label="Переріз поперек, проводка зовні">
+  <text x="-74" y="-46" fill="#e6ebef" font-size="14" font-weight="600">Переріз поперек — куди йдуть проводи</text>
+
+  <rect x="40" y="0" width="340" height="12" fill="#22303f" stroke="#5a86c9" stroke-width="2.2" rx="2"/>
+  <rect x="40" y="98" width="340" height="12" fill="#22303f" stroke="#5a86c9" stroke-width="2.2" rx="2"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="2">
+    <circle cx="72" cy="55" r="24"/><circle cx="128" cy="55" r="24"/>
+    <circle cx="292" cy="55" r="24"/><circle cx="348" cy="55" r="24"/>
+  </g>
+  <rect x="160" y="20" width="100" height="70" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="4"/>
+  <text x="166" y="60" fill="#d18b47" font-size="12">відсік</text>
+
+  <!-- wire channel outside -->
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="2">
+    <rect x="18" y="34" width="20" height="42" rx="5"/>
+    <rect x="382" y="34" width="20" height="42" rx="5"/>
+  </g>
+  <g fill="#c96a5a">
+    <circle cx="24" cy="42" r="3"/><circle cx="32" cy="42" r="3"/><circle cx="24" cy="52" r="3"/>
+    <circle cx="32" cy="52" r="3"/><circle cx="24" cy="62" r="3"/><circle cx="32" cy="62" r="3"/>
+    <circle cx="388" cy="42" r="3"/><circle cx="396" cy="42" r="3"/><circle cx="388" cy="52" r="3"/>
+    <circle cx="396" cy="52" r="3"/><circle cx="388" cy="62" r="3"/><circle cx="396" cy="62" r="3"/>
+  </g>
+  <text x="-74" y="30" fill="#c96a5a" font-size="12">проводка зовні,</text>
+  <text x="-74" y="46" fill="#c96a5a" font-size="12">у бічній ніші</text>
+  <text x="416" y="56" fill="#93a1ab" font-size="12">ніша утворюється сама:</text>
+  <text x="416" y="72" fill="#93a1ab" font-size="12">плити ширші за трубу</text>
+
+  <path d="M210 -14 v22" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M210 8 l-6 -12 h12 z" fill="#8fd18b"/>
+  <text x="226" y="-14" fill="#8fd18b" font-size="12">відсік відкривається згори</text>
+</svg>
+<figcaption>Якщо плити шарів 1 і 3 виступають за крайні труби, збоку сам собою утворюється закритий жолоб під джгут. Нічого окремо друкувати не треба.</figcaption>
+</figure>
+
+<!-- ============================ 1 -->
+<h2>1 · Базова — чотири симетричні труби</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 1">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 18 L165 13 L310 18 L310 26 L165 31 L20 26 Z"/>
+    <path d="M20 42 L165 37 L310 42 L310 50 L165 55 L20 50 Z"/>
+    <path d="M20 110 L165 105 L310 110 L310 118 L165 123 L20 118 Z"/>
+    <path d="M20 134 L165 129 L310 134 L310 142 L165 147 L20 142 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="1.8">
+    <rect x="12" y="14" width="16" height="16" rx="2"/><rect x="12" y="38" width="16" height="16" rx="2"/>
+    <rect x="12" y="106" width="16" height="16" rx="2"/><rect x="12" y="130" width="16" height="16" rx="2"/>
+    <rect x="294" y="14" width="16" height="16" rx="2"/><rect x="294" y="38" width="16" height="16" rx="2"/>
+    <rect x="294" y="106" width="16" height="16" rx="2"/><rect x="294" y="130" width="16" height="16" rx="2"/>
+  </g>
+  <rect x="30" y="58" width="122" height="44" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="52" y="85" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="178" y="58" width="112" height="44" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="202" y="85" fill="#8fd18b" font-size="11.5">плати</text>
+  <rect x="156" y="58" width="18" height="44" fill="none" stroke="#9aa5ad" stroke-width="2.4"/>
+  <rect x="161" y="63" width="8" height="34" fill="#14171a" stroke="#9aa5ad" stroke-width="1.2"/>
+  <text x="352" y="86" fill="#c9d4db" font-size="12">порожниста перекладина</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 18 V-2"/><path d="M200 18 V-2"/><path d="M292 18 V-2"/>
+    <path d="M40 142 V162"/><path d="M200 142 V162"/><path d="M292 142 V162"/>
+  </g>
+  <path d="M-14 80 h-40" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M-54 80 l13 -6 v12 z" fill="#8fd18b"/>
+  <text x="-66" y="68" fill="#8fd18b" font-size="12">вперед</text>
+  <text x="352" y="24" fill="#c96a5a" font-size="12">TPU-гнізда</text>
+  <text x="352" y="40" fill="#93a1ab" font-size="11.5">по два на кожну трубу</text>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Чотири однакові труби на всю довжину, вісім TPU-гнізд. Об'єм ділиться перекладиною навпіл: акум спереду, плати ззаду.</td></tr>
+  <tr><th class="b">Ціна</th><td>Хід однаковий по всій довжині, а навантаження — ні. Передня частина з акумом просяде більше за задню.</td></tr>
+</table>
+
+<!-- ============================ 2 -->
+<h2>2 · Дві довгі + дві короткі</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 2">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 14 L165 8 L310 14 L310 26 L165 32 L20 26 Z"/>
+    <path d="M20 134 L165 128 L310 134 L310 146 L165 152 L20 146 Z"/>
+    <path d="M78 46 L165 42 L252 46 L252 54 L165 58 L78 54 Z"/>
+    <path d="M78 106 L165 102 L252 106 L252 114 L165 118 L78 114 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="1.8">
+    <rect x="12" y="12" width="16" height="16" rx="2"/><rect x="12" y="132" width="16" height="16" rx="2"/>
+    <rect x="294" y="12" width="16" height="16" rx="2"/><rect x="294" y="132" width="16" height="16" rx="2"/>
+    <rect x="70" y="42" width="14" height="14" rx="2"/><rect x="70" y="102" width="14" height="14" rx="2"/>
+    <rect x="246" y="42" width="14" height="14" rx="2"/><rect x="246" y="102" width="14" height="14" rx="2"/>
+  </g>
+  <rect x="86" y="62" width="72" height="38" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="100" y="86" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="180" y="62" width="66" height="38" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="192" y="86" fill="#8fd18b" font-size="11.5">плати</text>
+  <rect x="162" y="62" width="14" height="38" fill="none" stroke="#9aa5ad" stroke-width="2.2"/>
+  <g stroke="#4a6f8a" stroke-width="1.6" stroke-dasharray="6 4" fill="none">
+    <rect x="28" y="34" width="44" height="92" rx="4"/>
+    <rect x="258" y="34" width="34" height="92" rx="4"/>
+  </g>
+  <text x="352" y="52" fill="#93a1ab" font-size="12">носовий і кормовий</text>
+  <text x="352" y="68" fill="#93a1ab" font-size="12">об'єми вільні під вантаж</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 14 V-6"/><path d="M200 14 V-6"/><path d="M292 14 V-6"/>
+    <path d="M40 146 V166"/><path d="M200 146 V166"/><path d="M292 146 V166"/>
+  </g>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Несуть тільки дві зовнішні труби. Внутрішні короткі — вони лише тримають підлогу відсіку, тому ніс і корма лишаються порожніми.</td></tr>
+  <tr><th class="k">Плюс</th><td>Найбільше вільного місця під предмети, і найлегша: дві труби замість чотирьох по довжині.</td></tr>
+  <tr><th class="b">Ціна</th><td>Уся вага на двох крайніх трубах. Вони мають бути помітно товщими, ніж у варіації 1.</td></tr>
+</table>
+
+<!-- ============================ 3 -->
+<h2>3 · Асиметричний конус — під нерівну базу</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 3">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 10 L230 14 L310 20 L310 28 L230 26 L20 22 Z"/>
+    <path d="M20 38 L230 42 L310 46 L310 54 L230 54 L20 50 Z"/>
+    <path d="M20 110 L230 106 L310 106 L310 114 L230 118 L20 122 Z"/>
+    <path d="M20 138 L230 134 L310 132 L310 140 L230 146 L20 150 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="1.8">
+    <rect x="10" y="8" width="18" height="16" rx="2"/><rect x="10" y="36" width="18" height="16" rx="2"/>
+    <rect x="10" y="108" width="18" height="16" rx="2"/><rect x="10" y="136" width="18" height="16" rx="2"/>
+    <rect x="296" y="16" width="14" height="14" rx="2"/><rect x="296" y="44" width="14" height="14" rx="2"/>
+    <rect x="296" y="104" width="14" height="14" rx="2"/><rect x="296" y="132" width="14" height="14" rx="2"/>
+  </g>
+  <rect x="34" y="60" width="112" height="40" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="54" y="85" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="172" y="60" width="112" height="40" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="196" y="85" fill="#8fd18b" font-size="11.5">плати</text>
+  <rect x="150" y="60" width="16" height="40" fill="none" stroke="#9aa5ad" stroke-width="2.2"/>
+  <text x="-64" y="-26" fill="#93a1ab" font-size="12">товсто спереду — там акум і рука</text>
+  <text x="352" y="80" fill="#93a1ab" font-size="12">тонко ззаду —</text>
+  <text x="352" y="96" fill="#93a1ab" font-size="12">м'якше під задньою парою</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 10 V-10"/><path d="M200 12 V-10"/><path d="M292 18 V-10"/>
+    <path d="M40 150 V170"/><path d="M200 148 V170"/><path d="M292 142 V170"/>
+  </g>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Труби товсті спереду і тонкі ззаду. Жорстко там, де акум і рука; м'яко там, де задня пара коліс близько одна до одної.</td></tr>
+  <tr><th class="k">Плюс</th><td>Єдина варіація, яка враховує, що розстановка Х— — — —Х— —Х несиметрична, а отже і навантаження теж.</td></tr>
+  <tr><th class="b">Ціна</th><td>Труби перестають бути взаємозамінними — з'являється «ліва передня», «права задня» і так далі.</td></tr>
+</table>
+
+<!-- ============================ 4 -->
+<h2>4 · Ступінчасті — жорсткість регулюється</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 4">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 16 H70 V13 H120 V10 H210 V13 H260 V16 H310 V28 H260 V31 H210 V34 H120 V31 H70 V28 H20 Z"/>
+    <path d="M20 116 H70 V113 H120 V110 H210 V113 H260 V116 H310 V128 H260 V131 H210 V134 H120 V131 H70 V128 H20 Z"/>
+  </g>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6">
+    <path d="M20 46 H70 V43 H120 V41 H210 V43 H260 V46 H310 V56 H260 V58 H210 V60 H120 V58 H70 V56 H20 Z"/>
+    <path d="M20 86 H70 V83 H120 V81 H210 V83 H260 V86 H310 V96 H260 V98 H210 V100 H120 V98 H70 V96 H20 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="2.2">
+    <rect x="62" y="8" width="16" height="28" rx="2"/>
+    <rect x="62" y="108" width="16" height="28" rx="2"/>
+    <rect x="252" y="42" width="16" height="20" rx="2"/>
+    <rect x="252" y="82" width="16" height="20" rx="2"/>
+  </g>
+  <g stroke="#c96a5a" stroke-width="1.6" stroke-dasharray="5 4" fill="none">
+    <rect x="112" y="6" width="16" height="32" rx="2"/>
+    <rect x="202" y="4" width="16" height="36" rx="2"/>
+  </g>
+  <text x="352" y="20" fill="#c96a5a" font-size="12">гніздо сідає на будь-яку</text>
+  <text x="352" y="36" fill="#c96a5a" font-size="12">сходинку — далі від краю</text>
+  <text x="352" y="52" fill="#c96a5a" font-size="12">означає жорсткіше</text>
+  <rect x="130" y="64" width="60" height="16" fill="#2b2320" stroke="#d18b47" stroke-width="1.6" rx="2"/>
+  <text x="196" y="76" fill="#93a1ab" font-size="11.5">акум і плати — як у базовій</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 16 V-4"/><path d="M200 10 V-4"/><path d="M292 16 V-4"/>
+    <path d="M40 134 V154"/><path d="M200 134 V154"/><path d="M292 128 V154"/>
+  </g>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Звуження не плавне, а сходинками. TPU-гніздо можна посадити на будь-яку сходинку: ближче до краю — м'якше, далі — жорсткіше.</td></tr>
+  <tr><th class="k">Плюс</th><td>Підвіска налаштовується <b>без нового друку</b>. Для першої машини це найцінніше — жорсткість усе одно вгадати не вийде.</td></tr>
+  <tr><th class="b">Ціна</th><td>Сходинка — це концентратор напруження. Труба зламається саме на ній, а не там, де тонко.</td></tr>
+</table>
+
+<!-- ============================ 5 -->
+<h2>5 · Х-схема — труби навхрест</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 5">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 14 L165 72 L310 130 L310 142 L165 84 L20 26 Z"/>
+    <path d="M20 146 L165 88 L310 30 L310 18 L165 76 L20 134 Z"/>
+    <path d="M20 44 L310 44 L310 54 L20 54 Z"/>
+    <path d="M20 106 L310 106 L310 116 L20 116 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="1.8">
+    <rect x="12" y="12" width="16" height="16" rx="2"/><rect x="12" y="132" width="16" height="16" rx="2"/>
+    <rect x="294" y="16" width="16" height="16" rx="2"/><rect x="294" y="128" width="16" height="16" rx="2"/>
+    <rect x="12" y="42" width="16" height="14" rx="2"/><rect x="12" y="104" width="16" height="14" rx="2"/>
+    <rect x="294" y="42" width="16" height="14" rx="2"/><rect x="294" y="104" width="16" height="14" rx="2"/>
+  </g>
+  <rect x="146" y="62" width="38" height="36" fill="none" stroke="#9aa5ad" stroke-width="2.6"/>
+  <text x="200" y="52" fill="#c9d4db" font-size="12">перекладина на перехресті —</text>
+  <text x="200" y="36" fill="#93a1ab" font-size="11.5">там, де труби і так сходяться</text>
+  <rect x="40" y="60" width="96" height="40" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="60" y="85" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="194" y="60" width="96" height="40" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="216" y="85" fill="#8fd18b" font-size="11.5">плати</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 20 V-4"/><path d="M200 44 V-4"/><path d="M292 30 V-4"/>
+    <path d="M40 140 V164"/><path d="M200 116 V164"/><path d="M292 130 V164"/>
+  </g>
+  <text x="352" y="120" fill="#93a1ab" font-size="12">кручення бере на себе</text>
+  <text x="352" y="136" fill="#93a1ab" font-size="12">сама Х, а не обшивки</text>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Дві труби йдуть по діагоналі й перетинаються посередині — саме там ставиться перекладина. Дві прямі труби вздовж бортів тримають відсік.</td></tr>
+  <tr><th class="k">Плюс</th><td>Найжорсткіша на кручення з усіх семи. Рука з вантажем не буде «вести» раму.</td></tr>
+  <tr><th class="b">Ціна</th><td>Об'єм відсіку розрізаний навскіс — прямокутний акум лягає гірше. І діагональ довша за пряму трубу, тобто важча.</td></tr>
+</table>
+
+<!-- ============================ 6 -->
+<h2>6 · Ванна — труби тільки по краях</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 6">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="2">
+    <path d="M20 6 L165 -2 L310 6 L310 24 L165 32 L20 24 Z"/>
+    <path d="M20 136 L165 128 L310 136 L310 154 L165 162 L20 154 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="2">
+    <rect x="10" y="4" width="18" height="22" rx="2"/><rect x="10" y="134" width="18" height="22" rx="2"/>
+    <rect x="294" y="4" width="18" height="22" rx="2"/><rect x="294" y="134" width="18" height="22" rx="2"/>
+  </g>
+  <rect x="28" y="36" width="276" height="88" fill="#20262b" stroke="#4a6f8a" stroke-width="2.4" rx="6"/>
+  <rect x="36" y="46" width="112" height="68" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="62" y="84" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="186" y="46" width="110" height="68" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="216" y="84" fill="#8fd18b" font-size="11.5">плати</text>
+  <rect x="154" y="36" width="24" height="88" fill="none" stroke="#9aa5ad" stroke-width="2.6"/>
+  <rect x="160" y="42" width="12" height="76" fill="#14171a" stroke="#9aa5ad" stroke-width="1.2"/>
+  <text x="352" y="60" fill="#4a6f8a" font-size="12">уся середина —</text>
+  <text x="352" y="76" fill="#4a6f8a" font-size="12">одна глибока ванна</text>
+  <text x="352" y="100" fill="#c9d4db" font-size="12">перекладина порожниста,</text>
+  <text x="352" y="116" fill="#93a1ab" font-size="11.5">крізь неї йде джгут між відсіками</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 6 V-14"/><path d="M200 0 V-14"/><path d="M292 6 V-14"/>
+    <path d="M40 154 V174"/><path d="M200 160 V174"/><path d="M292 154 V174"/>
+  </g>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Лише дві товсті труби по бортах. Усе між ними — суцільна друкована ванна, вона ж і несе частину навантаження.</td></tr>
+  <tr><th class="k">Плюс</th><td>Максимальний корисний об'єм і найпростіша збірка: дві труби, ванна, дві плити.</td></tr>
+  <tr><th class="b">Ціна</th><td>Ванна 276×88 не влазить у стіл 220 — доведеться ділити її швом. І це найважчий варіант: суцільні стінки замість труб.</td></tr>
+</table>
+
+<!-- ============================ 7 -->
+<h2>7 · Три секції — дві перекладини</h2>
+<figure>
+<svg viewBox="-70 -60 620 280" role="img" aria-label="Варіація 7">
+  <rect x="6" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <rect x="298" y="0" width="18" height="160" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="4"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M20 18 L165 13 L310 18 L310 26 L165 31 L20 26 Z"/>
+    <path d="M20 42 L165 37 L310 42 L310 50 L165 55 L20 50 Z"/>
+    <path d="M20 110 L165 105 L310 110 L310 118 L165 123 L20 118 Z"/>
+    <path d="M20 134 L165 129 L310 134 L310 142 L165 147 L20 142 Z"/>
+  </g>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="1.8">
+    <rect x="12" y="14" width="16" height="16" rx="2"/><rect x="12" y="38" width="16" height="16" rx="2"/>
+    <rect x="12" y="106" width="16" height="16" rx="2"/><rect x="12" y="130" width="16" height="16" rx="2"/>
+    <rect x="294" y="14" width="16" height="16" rx="2"/><rect x="294" y="38" width="16" height="16" rx="2"/>
+    <rect x="294" y="106" width="16" height="16" rx="2"/><rect x="294" y="130" width="16" height="16" rx="2"/>
+  </g>
+  <rect x="30" y="58" width="80" height="44" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="3"/>
+  <text x="46" y="85" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="132" y="58" width="76" height="44" fill="#20262b" stroke="#4a6f8a" stroke-width="2" rx="3"/>
+  <text x="142" y="85" fill="#93a1ab" font-size="11.5">вантаж</text>
+  <rect x="230" y="58" width="60" height="44" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <text x="240" y="85" fill="#8fd18b" font-size="11.5">плати</text>
+  <g fill="none" stroke="#9aa5ad" stroke-width="2.4">
+    <rect x="114" y="58" width="14" height="44"/>
+    <rect x="212" y="58" width="14" height="44"/>
+  </g>
+  <g fill="#14171a" stroke="#9aa5ad" stroke-width="1.2">
+    <rect x="118" y="63" width="6" height="34"/>
+    <rect x="216" y="63" width="6" height="34"/>
+  </g>
+  <text x="352" y="60" fill="#93a1ab" font-size="12">три окремі кришки —</text>
+  <text x="352" y="76" fill="#93a1ab" font-size="12">до плат без розбирання</text>
+  <text x="352" y="92" fill="#93a1ab" font-size="12">решти</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M40 18 V-2"/><path d="M200 14 V-2"/><path d="M292 18 V-2"/>
+    <path d="M40 142 V162"/><path d="M200 146 V162"/><path d="M292 142 V162"/>
+  </g>
+</svg>
+</figure>
+<table>
+  <tr><th>Суть</th><td>Дві порожнисті перекладини замість однієї. Три відсіки: акум / вантаж / плати, кожен зі своєю кришкою в шарі 3.</td></tr>
+  <tr><th class="k">Плюс</th><td>Знімає головну проблему пирога — доступ. До плат можна дістатися, не рухаючи руку й антену.</td></tr>
+  <tr><th class="b">Ціна</th><td>Дві перекладини забирають місце і додають ваги. Вантажний відсік виходить найменшим із трьох.</td></tr>
+</table>
+
+<h2>Порівняння</h2>
+<table>
+  <tr>
+    <th style="width:auto">Варіація</th>
+    <th style="width:auto">Труб</th>
+    <th style="width:auto">Перекладин</th>
+    <th style="width:auto">Об'єм під вантаж</th>
+    <th style="width:auto">Сильна сторона</th>
+  </tr>
+  <tr><td>1 · Базова</td><td>4 однакові</td><td>1</td><td>середній</td><td>усі труби взаємозамінні</td></tr>
+  <tr><td>2 · Довгі + короткі</td><td>2 + 2</td><td>1</td><td>найбільший</td><td>ніс і корма вільні</td></tr>
+  <tr><td>3 · Асиметричні</td><td>4 різні</td><td>1</td><td>середній</td><td>підвіска під реальні навантаження</td></tr>
+  <tr><td>4 · Ступінчасті</td><td>4</td><td>1</td><td>середній</td><td>жорсткість без передруку</td></tr>
+  <tr><td>5 · Х-схема</td><td>2 навхрест + 2</td><td>1 на перехресті</td><td>малий</td><td>кручення</td></tr>
+  <tr><td>6 · Ванна</td><td>2 товсті</td><td>1</td><td>найбільший суцільний</td><td>простота збірки</td></tr>
+  <tr><td>7 · Три секції</td><td>4</td><td>2</td><td>малий, але окремий</td><td>доступ до плат</td></tr>
+</table>
+
+<h3 class="b">Два зауваження до самого вузла</h3>
+<ul>
+  <li><b>Квадрат мусить бути дійсно квадратом, а не «майже».</b> TPU-обідок на круглій трубі провернеться під моментом від колеса — і колесо поїде вбік. Потрібна лиска або шпонка на трубі, а не тільки тертя.</li>
+  <li><b>TPU у гнізді працює на стиск і зсув одночасно.</b> На стиск він жорсткий і майже не повзе, на зсув — м'який і повзе помітно. Тому обідок краще робити так, щоб вертикальне навантаження йшло на <b>стиск</b>, а зсув лишався тільки для ходу.</li>
+</ul>
+
+</div>

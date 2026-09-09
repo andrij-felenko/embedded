@@ -1,0 +1,349 @@
+<title>Ровер — типи корпусу</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:40px 0 4px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:460px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%;max-width:900px}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600;width:150px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:10px;border:1px solid #3a444c;color:#93a1ab;margin-right:6px}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:3px 0}
+  .k{color:#8fd18b}
+  .b{color:#e07b6a}
+</style>
+
+<div class="wrap">
+
+<h1>Типи корпусу — шість варіантів</h1>
+<p class="lead">Спільні вихідні для всіх: 6 ведучих коліс, у кожного власна амортизація,
+маса 1–5 кг, зверху платформа з рухомою рукою. Колесо Ø90×40, колія 180, база 220.
+Різниця між варіантами — <b>форма несучої частини</b> і <b>спосіб повороту</b>.</p>
+
+<!-- ================= 1 ================= -->
+<h2>1 · Плита — поворот бортами</h2>
+<p><span class="tag">найпростіший</span><span class="tag">6 моторів, 0 серв</span></p>
+
+<figure>
+<svg viewBox="-80 -80 500 360" role="img" aria-label="Тип 1, плита">
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="5"   y="-20" width="90" height="40" rx="5"/>
+    <rect x="115" y="-20" width="90" height="40" rx="5"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5"/>
+    <rect x="5"   y="160" width="90" height="40" rx="5"/>
+    <rect x="115" y="160" width="90" height="40" rx="5"/>
+    <rect x="225" y="160" width="90" height="40" rx="5"/>
+  </g>
+  <rect x="30" y="20" width="260" height="140" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <g stroke="#4a6f8a" stroke-width="5" stroke-linecap="round">
+    <path d="M50 0 V22"/><path d="M160 0 V22"/><path d="M270 0 V22"/>
+    <path d="M50 180 V158"/><path d="M160 180 V158"/><path d="M270 180 V158"/>
+  </g>
+  <rect x="120" y="55" width="80" height="70" fill="#243039" stroke="#8fd18b" stroke-width="1.8" rx="6"/>
+  <circle cx="160" cy="90" r="12" fill="none" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M160 90 L232 44" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="232" cy="44" r="7" fill="#8fd18b"/>
+  <text x="240" y="40" fill="#8fd18b" font-size="12">рука на поворотній основі</text>
+
+  <g stroke="#d18b47" stroke-width="2.4" fill="none">
+    <path d="M160 90 m-58 0 a58 58 0 1 1 20 44"/>
+  </g>
+  <path d="M118 137 l-14 -3 l7 13 z" fill="#d18b47"/>
+  <text x="-72" y="96" fill="#d18b47" font-size="12.5">розворот на місці</text>
+  <text x="-72" y="112" fill="#d18b47" font-size="12.5">буксуванням бортів</text>
+
+  <g stroke="#93a1ab" stroke-width="1.2" fill="#93a1ab" font-size="12">
+    <path d="M5 232 H315"/><path d="M5 227 v10 M315 227 v10"/>
+    <text x="132" y="250">310</text>
+  </g>
+</svg>
+<figcaption>Несуча — сама плита. Колеса на коротких важелях по боках, кожне зі своєю пружиною.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Низька широка плита, колеса щільно по боках. Схоже на важку платформу-візок.</td></tr>
+  <tr><th>Керування</th><td>Різниця швидкостей бортів. Розворот на місці є, але колеса шкребуть — на 6 колесах сильніше, ніж на 4.</td></tr>
+  <tr><th>Рука</th><td>Найкраще з усіх: платформа велика і рівна, поворотна основа стає де завгодно.</td></tr>
+  <tr><th class="b">Ціна</th><td>Плита 260×140 не влазить у стіл 220×220 — шов посередині. Кліренс обмежений товщиною плити.</td></tr>
+</table>
+
+<!-- ================= 2 ================= -->
+<h2>2 · Хребет — поди на трубі</h2>
+<p><span class="tag">найлегший</span><span class="tag">під ваші вузли</span></p>
+
+<figure>
+<svg viewBox="-80 -80 500 360" role="img" aria-label="Тип 2, хребет">
+  <rect x="20" y="14" width="280" height="152" fill="none" stroke="#4a6f8a" stroke-width="1.4" stroke-dasharray="7 5" rx="8"/>
+  <text x="-74" y="-52" fill="#93a1ab" font-size="12">знімна платформа зверху (пунктир)</text>
+  <path d="M-10 -48 L20 14" stroke="#4a6f8a" stroke-width="1"/>
+
+  <rect x="20" y="76" width="280" height="28" fill="#2d353c" stroke="#9aa5ad" stroke-width="2" rx="14"/>
+  <text x="108" y="95" fill="#c9d4db" font-size="12">хребет — труба</text>
+
+  <g stroke="#5a86c9" stroke-width="9" stroke-linecap="round">
+    <path d="M50 76 V26"/><path d="M160 76 V26"/><path d="M270 76 V26"/>
+    <path d="M50 104 V154"/><path d="M160 104 V154"/><path d="M270 104 V154"/>
+  </g>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="5"   y="-20" width="90" height="40" rx="5"/>
+    <rect x="115" y="-20" width="90" height="40" rx="5"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5"/>
+    <rect x="5"   y="160" width="90" height="40" rx="5"/>
+    <rect x="115" y="160" width="90" height="40" rx="5"/>
+    <rect x="225" y="160" width="90" height="40" rx="5"/>
+  </g>
+  <g fill="#d18b47">
+    <circle cx="50" cy="26" r="5"/><circle cx="160" cy="26" r="5"/><circle cx="270" cy="26" r="5"/>
+    <circle cx="50" cy="154" r="5"/><circle cx="160" cy="154" r="5"/><circle cx="270" cy="154" r="5"/>
+  </g>
+  <text x="322" y="24" fill="#d18b47" font-size="12">шарнір поду</text>
+  <text x="322" y="40" fill="#93a1ab" font-size="11.5">TPU-втулка тут</text>
+
+  <text x="-74" y="96" fill="#d18b47" font-size="12.5">поворот бортами</text>
+</svg>
+<figcaption>Несуча — одна центральна труба. Шість однакових подів на ній, кожен з власним ходом. Платформа кладеться зверху окремою деталлю.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Вузький хребет і шість винесених подів — читається як павук чи комаха, а не як візок.</td></tr>
+  <tr><th>Керування</th><td>Те саме бортами.</td></tr>
+  <tr><th class="k">Чому це під вас</th><td>Один под проєктується і друкується <b>шість разів</b>. Хребет — коротка труба. Ніщо не впирається в стіл 220.</td></tr>
+  <tr><th class="b">Ціна</th><td>Уся вага і все кручення йдуть через одну трубу. Пластикова труба на кручення слабка — потрібен великий діаметр або вставка всередину.</td></tr>
+</table>
+
+<!-- ================= 3 ================= -->
+<h2>3 · Кермові передні й задні — «краб»</h2>
+<p><span class="tag">6 моторів + 4 серви</span><span class="tag">не дере ґрунт</span></p>
+
+<figure>
+<svg viewBox="-80 -80 560 360" role="img" aria-label="Тип 3, кермо">
+  <rect x="30" y="20" width="260" height="140" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="5"   y="-20" width="90" height="40" rx="5" transform="rotate(-28 50 0)"/>
+    <rect x="115" y="-20" width="90" height="40" rx="5"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5" transform="rotate(28 270 0)"/>
+    <rect x="5"   y="160" width="90" height="40" rx="5" transform="rotate(-20 50 180)"/>
+    <rect x="115" y="160" width="90" height="40" rx="5"/>
+    <rect x="225" y="160" width="90" height="40" rx="5" transform="rotate(20 270 180)"/>
+  </g>
+  <g fill="#d18b47">
+    <circle cx="50" cy="0" r="6"/><circle cx="270" cy="0" r="6"/>
+    <circle cx="50" cy="180" r="6"/><circle cx="270" cy="180" r="6"/>
+  </g>
+  <path d="M160 90 L446 90" stroke="#d18b47" stroke-width="1.4" stroke-dasharray="9 6"/>
+  <circle cx="446" cy="90" r="9" fill="none" stroke="#d18b47" stroke-width="2.4"/>
+  <path d="M446 90 m-4 -4 l8 8 M446 90 m4 -4 l-8 8" stroke="#d18b47" stroke-width="2"/>
+  <text x="392" y="72" fill="#d18b47" font-size="12">центр повороту</text>
+
+  <rect x="120" y="55" width="80" height="70" fill="#243039" stroke="#8fd18b" stroke-width="1.8" rx="6"/>
+  <path d="M160 90 L228 130" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="228" cy="130" r="7" fill="#8fd18b"/>
+  <text x="-74" y="90" fill="#93a1ab" font-size="12.5">середня пара</text>
+  <text x="-74" y="106" fill="#93a1ab" font-size="12.5">фіксована</text>
+</svg>
+<figcaption>Кермують передня і задня пари назустріч — радіус повороту вдвічі менший, ніж у звичайного авто, і жодного буксування.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-80 -80 500 300" role="img" aria-label="Тип 3, режим краба">
+  <text x="-74" y="-52" fill="#e6ebef" font-size="14" font-weight="600">Той самий корпус — режим «краб»</text>
+  <rect x="30" y="20" width="260" height="140" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="5"   y="-20" width="90" height="40" rx="5" transform="rotate(38 50 0)"/>
+    <rect x="115" y="-20" width="90" height="40" rx="5"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5" transform="rotate(38 270 0)"/>
+    <rect x="5"   y="160" width="90" height="40" rx="5" transform="rotate(38 50 180)"/>
+    <rect x="115" y="160" width="90" height="40" rx="5"/>
+    <rect x="225" y="160" width="90" height="40" rx="5" transform="rotate(38 270 180)"/>
+  </g>
+  <g stroke="#8fd18b" stroke-width="2.5">
+    <path d="M330 40 L400 96"/><path d="M330 120 L400 176"/>
+  </g>
+  <path d="M400 96 l-14 -1 l6 12 z" fill="#8fd18b"/>
+  <path d="M400 176 l-14 -1 l6 12 z" fill="#8fd18b"/>
+  <text x="330" y="200" fill="#8fd18b" font-size="12">рух по діагоналі без повороту корпусу</text>
+</svg>
+<figcaption>Корпус дивиться прямо, а їде вбік. Для роботи рукою біля стіни або для точного під'їзду до предмета це важливіше за розворот на місці.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Впізнається як машина: видно, куди повернуті колеса. Найбільш «технічний» силует.</td></tr>
+  <tr><th>Керування</th><td>Три режими з того самого заліза: звичайний поворот, краб, розворот майже на місці.</td></tr>
+  <tr><th>Рука</th><td>Краб і рука — найкраща пара. Не треба крутити весь ровер, щоб дотягтися.</td></tr>
+  <tr><th class="b">Ціна</th><td>+4 серви, +4 поворотні вузли, і кожен з них — це підшипник і люфт. Кінематика керма рахується, а не малюється на око.</td></tr>
+</table>
+
+<!-- ================= 4 ================= -->
+<h2>4 · Кожне колесо кермує окремо</h2>
+<p><span class="tag">6 моторів + 6 серв</span><span class="tag">найцікавіше керування</span></p>
+
+<figure>
+<svg viewBox="-80 -90 560 380" role="img" aria-label="Тип 4, незалежне кермо">
+  <rect x="30" y="20" width="260" height="140" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="5"   y="-20" width="90" height="40" rx="5" transform="rotate(-51 50 0)"/>
+    <rect x="115" y="-20" width="90" height="40" rx="5" transform="rotate(-90 160 0)"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5" transform="rotate(-129 270 0)"/>
+    <rect x="5"   y="160" width="90" height="40" rx="5" transform="rotate(51 50 180)"/>
+    <rect x="115" y="160" width="90" height="40" rx="5" transform="rotate(90 160 180)"/>
+    <rect x="225" y="160" width="90" height="40" rx="5" transform="rotate(129 270 180)"/>
+  </g>
+  <g fill="#d18b47">
+    <circle cx="50" cy="0" r="6"/><circle cx="160" cy="0" r="6"/><circle cx="270" cy="0" r="6"/>
+    <circle cx="50" cy="180" r="6"/><circle cx="160" cy="180" r="6"/><circle cx="270" cy="180" r="6"/>
+  </g>
+  <circle cx="160" cy="90" r="104" fill="none" stroke="#d18b47" stroke-width="1.4" stroke-dasharray="9 6"/>
+  <circle cx="160" cy="90" r="6" fill="#d18b47"/>
+  <text x="180" y="86" fill="#d18b47" font-size="12">усі колеса по дотичній —</text>
+  <text x="180" y="102" fill="#d18b47" font-size="12">чистий розворот, без ковзання</text>
+
+  <text x="326" y="-58" fill="#8fd18b" font-size="12.5" font-weight="600">Режими</text>
+  <g stroke="#8fd18b" stroke-width="2.2">
+    <path d="M326 -34 h34"/><path d="M326 -6 l24 -24"/><path d="M326 26 h34"/>
+  </g>
+  <path d="M360 -34 l-11 -5 v10 z" fill="#8fd18b"/>
+  <path d="M350 -30 l-2 -12 l10 4 z" fill="#8fd18b"/>
+  <path d="M360 26 l-11 -5 v10 z" fill="#8fd18b"/>
+  <text x="370" y="-30" fill="#c9d4db" font-size="11.5">вперед</text>
+  <text x="370" y="-2" fill="#c9d4db" font-size="11.5">краб у будь-який бік</text>
+  <text x="370" y="30" fill="#c9d4db" font-size="11.5">обертання навколо</text>
+  <text x="370" y="46" fill="#c9d4db" font-size="11.5">будь-якої точки</text>
+</svg>
+<figcaption>Шість поворотних вузлів дають рух у будь-якому напрямку при будь-якій орієнтації корпусу. Розворот стає чистим коченням — гусениць у ґрунті не лишається.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>У русі виглядає найдивніше з усіх — корпус їде боком або по колу, не змінюючи напрямку.</td></tr>
+  <tr><th>Керування</th><td>Голономний рух. Можна крутитися навколо кінчика руки, поки рука тримає предмет.</td></tr>
+  <tr><th class="k">Що це дає прошивці</th><td>Найцікавіша математика в усьому проєкті: на кожне колесо рахується свій кут і своя швидкість з вектора руху корпусу.</td></tr>
+  <tr><th class="b">Ціна</th><td>12 приводів. Проводка до кожного колеса — мотор, серва, енкодер. Це найбільша купа дротів і найбільший шанс щось перетерти.</td></tr>
+</table>
+
+<!-- ================= 5 ================= -->
+<h2>5 · Шарнірна рама 3+3</h2>
+<p><span class="tag">злам посередині</span><span class="tag">1 серва замість 4</span></p>
+
+<figure>
+<svg viewBox="-80 -90 520 380" role="img" aria-label="Тип 5, шарнірна рама">
+  <g transform="rotate(-17 160 90)">
+    <rect x="26" y="24" width="140" height="132" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+      <rect x="5" y="-20" width="90" height="40" rx="5"/>
+      <rect x="5" y="160" width="90" height="40" rx="5"/>
+    </g>
+    <g stroke="#4a6f8a" stroke-width="5" stroke-linecap="round">
+      <path d="M50 0 V26"/><path d="M50 180 V154"/>
+    </g>
+  </g>
+  <rect x="156" y="24" width="140" height="132" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="115" y="-20" width="90" height="40" rx="5"/>
+    <rect x="225" y="-20" width="90" height="40" rx="5"/>
+    <rect x="115" y="160" width="90" height="40" rx="5"/>
+    <rect x="225" y="160" width="90" height="40" rx="5"/>
+  </g>
+  <g stroke="#4a6f8a" stroke-width="5" stroke-linecap="round">
+    <path d="M160 0 V26"/><path d="M270 0 V26"/><path d="M160 180 V154"/><path d="M270 180 V154"/>
+  </g>
+  <circle cx="160" cy="90" r="14" fill="#20262b" stroke="#d18b47" stroke-width="3"/>
+  <circle cx="160" cy="90" r="5" fill="#d18b47"/>
+  <text x="176" y="126" fill="#d18b47" font-size="12.5">шарнір: поворот + скручування</text>
+
+  <path d="M120 -46 a90 90 0 0 1 -46 34" stroke="#d18b47" stroke-width="2.4" fill="none"/>
+  <path d="M74 -12 l-2 -14 l12 6 z" fill="#d18b47"/>
+  <text x="-74" y="-56" fill="#d18b47" font-size="12.5">передня половина ламається вбік</text>
+  <text x="332" y="90" fill="#8fd18b" font-size="12">рука — на задній,</text>
+  <text x="332" y="106" fill="#8fd18b" font-size="12">нерухомій половині</text>
+</svg>
+<figcaption>Дві половини на одному шарнірі. Той самий шарнір дає і поворот, і скручування — передня половина може стояти на боці, задня рівно.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Впізнається здалеку — жоден друкований ровер так не рухається. Найбільш «жива» пластика ходу.</td></tr>
+  <tr><th>Керування</th><td>Поворот зламом рами. Ґрунт не дереться. Одна серва замість чотирьох.</td></tr>
+  <tr><th class="b">Ціна</th><td>Шарнір несе <b>всю</b> вагу і все кручення — це найнавантаженіша деталь у проєкті, і вона друкована. Рука на половині, що ламається, буде хитатися.</td></tr>
+</table>
+
+<!-- ================= 6 ================= -->
+<h2>6 · Довгі поздовжні важелі</h2>
+<p><span class="tag">найбільший хід</span><span class="tag">6 моторів, 0 серв</span></p>
+
+<figure>
+<svg viewBox="-80 -60 540 330" role="img" aria-label="Тип 6, довгі важелі, вигляд збоку">
+  <text x="-74" y="-30" fill="#e6ebef" font-size="14" font-weight="600">Вигляд збоку — тут головне</text>
+  <path d="M-70 230 H470" stroke="#9aa5ad" stroke-width="2"/>
+  <rect x="70" y="60" width="240" height="86" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.2" rx="10"/>
+  <rect x="86" y="26" width="150" height="34" fill="#243039" stroke="#8fd18b" stroke-width="1.8" rx="5"/>
+  <text x="94" y="48" fill="#8fd18b" font-size="12">платформа + рука</text>
+
+  <g stroke="#5a86c9" stroke-width="10" stroke-linecap="round">
+    <path d="M120 140 L40 186"/>
+    <path d="M190 140 L190 186"/>
+    <path d="M260 140 L340 186"/>
+  </g>
+  <g fill="#d18b47">
+    <circle cx="120" cy="140" r="6"/><circle cx="190" cy="140" r="6"/><circle cx="260" cy="140" r="6"/>
+  </g>
+  <g stroke="#9aa5ad" stroke-width="4" stroke-linecap="round">
+    <path d="M92 122 L52 160"/><path d="M288 122 L328 160"/>
+  </g>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="40"  cy="186" r="44"/>
+    <circle cx="190" cy="186" r="44"/>
+    <circle cx="340" cy="186" r="44"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.5">
+    <circle cx="40" cy="186" r="38"/><circle cx="190" cy="186" r="38"/><circle cx="340" cy="186" r="38"/>
+  </g>
+  <path d="M40 186 m0 -70 a70 70 0 0 1 0 0" fill="none"/>
+  <g stroke="#d18b47" stroke-width="1.6" stroke-dasharray="6 5" fill="none">
+    <path d="M40 132 a56 56 0 0 1 30 -8"/>
+    <path d="M340 132 a56 56 0 0 0 -30 -8"/>
+  </g>
+  <text x="376" y="140" fill="#d18b47" font-size="12">хід колеса — велика дуга</text>
+  <text x="-74" y="212" fill="#93a1ab" font-size="12">важіль довгий → м'яко</text>
+</svg>
+<figcaption>Кожне колесо на довгому важелі, пружина коротка й далеко від колеса. Що довший важіль, то м'якший хід при тій самій пружині.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Багі. Колеса винесені далеко вперед і назад, корпус компактний і високо.</td></tr>
+  <tr><th>Керування</th><td>Бортами.</td></tr>
+  <tr><th class="k">Чому цікаво</th><td>Це єдиний тип, де великий хід досягається геометрією, а не дорогим амортизатором. Для 1–5 кг важіль легко зробити довгим.</td></tr>
+  <tr><th class="b">Ціна</th><td>Габарит по довжині росте сильно. І довгий важіль — це важіль і для навантаження на його основу: кріплення шарніра стає навантаженою деталлю.</td></tr>
+</table>
+
+<!-- ================= ПОРІВНЯННЯ ================= -->
+<h2>Порівняння</h2>
+<table>
+  <tr>
+    <th style="width:auto">Тип</th>
+    <th style="width:auto">Приводів</th>
+    <th style="width:auto">Поворот</th>
+    <th style="width:auto">Рука зверху</th>
+    <th style="width:auto">Складність друку</th>
+  </tr>
+  <tr><td>1 · Плита</td><td>6</td><td>бортами</td><td>ідеально</td><td>низька, але шов у плиті</td></tr>
+  <tr><td>2 · Хребет</td><td>6</td><td>бортами</td><td>добре</td><td>найнижча — один под ×6</td></tr>
+  <tr><td>3 · Кермові пари</td><td>6 + 4</td><td>кермо, краб</td><td>дуже добре</td><td>середня</td></tr>
+  <tr><td>4 · Кермо на кожному</td><td>6 + 6</td><td>у будь-який бік</td><td>найкраще</td><td>висока</td></tr>
+  <tr><td>5 · Шарнірна рама</td><td>6 + 1</td><td>зламом рами</td><td>тільки на задній</td><td>висока в одному вузлі</td></tr>
+  <tr><td>6 · Довгі важелі</td><td>6</td><td>бортами</td><td>добре</td><td>низька</td></tr>
+</table>
+
+<h3>Що змінює вага 1–5 кг</h3>
+<ul>
+  <li>Серви керма стають дешевими: на 1–5 кг вистачить MG90S замість MG996R. Тому типи 3 і 4 перестають бути дорогими.</li>
+  <li>Амортизатори RC не потрібні взагалі — при такій вазі пружності друкованого важеля з TPU-вставкою достатньо.</li>
+  <li>Мотор-редуктори — не JGB37, а <b>N20 або 25GA370</b>. Вони дрібні, тому поміщаються всередину маточини або поду.</li>
+  <li class="b">Але рука стає проблемою: витягнута рука з предметом на роверові 2 кг зміщує центр ваги набагато відчутніше, ніж на 6 кг. Колія і база важливіші, ніж здається.</li>
+</ul>
+
+</div>

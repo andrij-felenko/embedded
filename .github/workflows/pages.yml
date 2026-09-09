@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'catalog/**'
+      - 'apps/rover/**'
       - 'tools/build_catalog_site.py'
       - '.github/workflows/pages.yml'
   workflow_dispatch:

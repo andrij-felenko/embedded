@@ -1,0 +1,498 @@
+<title>Ровер — сім схем рами</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1080px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:38px 0 4px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:18px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:12px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:460px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:10px 0;font-size:13.5px;width:100%;max-width:900px}
+  th,td{border:1px solid #2c3339;padding:6px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600;width:130px}
+  .tag{display:inline-block;font-size:11.5px;padding:2px 8px;border-radius:10px;border:1px solid #3a444c;color:#93a1ab;margin-right:6px}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:3px 0}
+  .k{color:#8fd18b}
+  .b{color:#e07b6a}
+  .base{border-left:3px solid #5a86c9;padding-left:12px}
+  .mine{border-left:3px solid #d18b47;padding-left:12px}
+</style>
+
+<div class="wrap">
+
+<h1>Сім схем рами</h1>
+<p class="lead">Спільне для всіх: 6 ведучих коліс Ø80, розстановка <b>Х— — — —Х— —Х</b>,
+уся амортизація на TPU, зверху корпус з плоских плит, акум і плати в ніші рами,
+над ними вільна платформа. Маса 1–5 кг.<br>
+Схеми 1–4 — на вашій базі «пліт»: 4 поздовжні труби + 2 поперечники, TPU у стиках,
+проводка всередині труб. Схеми 5–7 — інші несучі принципи.</p>
+
+<!-- ==================================================== 1 -->
+<h2 class="base">1 · Пліт — базова схема</h2>
+<p><span class="tag">4 труби + 2 поперечники</span><span class="tag">6 моторів</span></p>
+
+<figure>
+<svg viewBox="-90 -70 600 300" role="img" aria-label="Схема 1, пліт, вигляд зверху">
+  <text x="-84" y="-46" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+
+  <!-- wheels -->
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="-18" width="80" height="36" rx="5"/>
+    <rect x="170" y="-18" width="80" height="36" rx="5"/>
+    <rect x="265" y="-18" width="80" height="36" rx="5"/>
+    <rect x="-20" y="152" width="80" height="36" rx="5"/>
+    <rect x="170" y="152" width="80" height="36" rx="5"/>
+    <rect x="265" y="152" width="80" height="36" rx="5"/>
+  </g>
+
+  <!-- longitudinal tubes -->
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <rect x="0" y="20"  width="330" height="14" rx="7"/>
+    <rect x="0" y="54"  width="330" height="14" rx="7"/>
+    <rect x="0" y="102" width="330" height="14" rx="7"/>
+    <rect x="0" y="136" width="330" height="14" rx="7"/>
+  </g>
+  <!-- crossmembers -->
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="1.8">
+    <rect x="16" y="14" width="18" height="142" rx="8"/>
+    <rect x="252" y="14" width="18" height="142" rx="8"/>
+  </g>
+  <!-- TPU pads -->
+  <g fill="#c96a5a" opacity="0.95">
+    <rect x="12" y="22" width="26" height="10" rx="4"/><rect x="12" y="56" width="26" height="10" rx="4"/>
+    <rect x="12" y="104" width="26" height="10" rx="4"/><rect x="12" y="138" width="26" height="10" rx="4"/>
+    <rect x="248" y="22" width="26" height="10" rx="4"/><rect x="248" y="56" width="26" height="10" rx="4"/>
+    <rect x="248" y="104" width="26" height="10" rx="4"/><rect x="248" y="138" width="26" height="10" rx="4"/>
+  </g>
+  <text x="352" y="30" fill="#c96a5a" font-size="12">TPU-прокладка</text>
+  <text x="352" y="46" fill="#93a1ab" font-size="11.5">у кожному стику</text>
+
+  <!-- niche -->
+  <rect x="44" y="70" width="200" height="30" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="60" y="90" fill="#d18b47" font-size="11.5">ніша: акум + плати</text>
+
+  <!-- pods -->
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M20 20 V2"/><path d="M210 20 V2"/><path d="M305 20 V2"/>
+    <path d="M20 150 V168"/><path d="M210 150 V168"/><path d="M305 150 V168"/>
+  </g>
+
+  <!-- plate body outline -->
+  <rect x="34" y="6" width="220" height="158" fill="none" stroke="#8fd18b" stroke-width="1.6" stroke-dasharray="8 5" rx="6"/>
+  <text x="352" y="90" fill="#8fd18b" font-size="12">корпус з плит</text>
+  <text x="352" y="106" fill="#93a1ab" font-size="11.5">кладеться зверху</text>
+
+  <!-- wheel spacing dims -->
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M20 212 H210"/><path d="M20 207 v10 M210 207 v10"/>
+    <text x="96" y="228">190</text>
+    <path d="M210 212 H305"/><path d="M305 207 v10"/>
+    <text x="240" y="228">95</text>
+  </g>
+</svg>
+<figcaption>Чотири труби несуть, два поперечники тримають їх разом, TPU у восьми стиках дає рамі керований люфт. Проводка йде всередині труб.</figcaption>
+</figure>
+
+<figure>
+<svg viewBox="-90 40 600 290" role="img" aria-label="Схема 1, вигляд збоку">
+  <text x="-84" y="66" fill="#e6ebef" font-size="14" font-weight="600">Вигляд збоку</text>
+  <path d="M-80 268 H420" stroke="#9aa5ad" stroke-width="2"/>
+
+  <!-- plates body -->
+  <rect x="34" y="112" width="220" height="52" fill="#1f262c" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <g stroke="#8fd18b" stroke-width="1" opacity="0.55">
+    <path d="M88 112 V164 M144 112 V164 M200 112 V164"/>
+  </g>
+  <text x="42" y="106" fill="#8fd18b" font-size="11.5">плоскі плити — як будинок з панелей</text>
+
+  <!-- tubes deck -->
+  <rect x="0" y="168" width="330" height="18" fill="#2d353c" stroke="#9aa5ad" stroke-width="2" rx="9"/>
+  <g fill="#c96a5a">
+    <rect x="18" y="186" width="16" height="8" rx="3"/>
+    <rect x="252" y="186" width="16" height="8" rx="3"/>
+  </g>
+  <!-- battery under tubes -->
+  <rect x="80" y="186" width="140" height="26" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <path d="M-6 200 H80" stroke="#d18b47" stroke-width="1"/>
+  <text x="-84" y="196" fill="#d18b47" font-size="11.5">акум під трубами</text>
+
+  <!-- pods + wheels -->
+  <g stroke="#5a86c9" stroke-width="8" stroke-linecap="round">
+    <path d="M28 186 L20 224"/><path d="M210 186 V224"/><path d="M298 186 L305 224"/>
+  </g>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="20" cy="224" r="44"/><circle cx="210" cy="224" r="44"/><circle cx="305" cy="224" r="44"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.5">
+    <circle cx="20" cy="224" r="37"/><circle cx="210" cy="224" r="37"/><circle cx="305" cy="224" r="37"/>
+  </g>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M356 186 V268"/><path d="M351 186 h10 M351 268 h10"/>
+    <text x="366" y="230">кліренс</text>
+  </g>
+  <text x="-84" y="150" fill="#93a1ab" font-size="11.5">вільна платформа</text>
+  <text x="-84" y="166" fill="#93a1ab" font-size="11.5">під руку — зверху</text>
+</svg>
+<figcaption>Профіль плоский і низький. Акум висить під трубами або лежить у ніші між ними — центр ваги виходить нижче за осі коліс.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Пліт. Читається як понтон або баржа — низький, довгий, з винесеним переднім колесом.</td></tr>
+  <tr><th>Керування</th><td>Бортами. Нерівна база означає, що центр обертання зміщений назад — ровер крутиться «навколо задка».</td></tr>
+  <tr><th class="k">Чому працює</th><td>Труба на 400 мм друкується частинами і стикується через поперечник. Жодна деталь не впирається в стіл 220.</td></tr>
+  <tr><th class="b">Ціна</th><td>Плоска рама на кручення слабка. Тут це і задумано (TPU дає хід), але треба знати межу — інакше рама «пливе» під рукою з вантажем.</td></tr>
+</table>
+
+<!-- ==================================================== 2 -->
+<h2 class="base">2 · Катамаран — глибока ніша</h2>
+<p><span class="tag">та сама база</span><span class="tag">ЦТ нижче за осі</span></p>
+
+<figure>
+<svg viewBox="-90 -70 600 300" role="img" aria-label="Схема 2, катамаран">
+  <text x="-84" y="-46" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="-28" width="80" height="36" rx="5"/>
+    <rect x="170" y="-28" width="80" height="36" rx="5"/>
+    <rect x="265" y="-28" width="80" height="36" rx="5"/>
+    <rect x="-20" y="162" width="80" height="36" rx="5"/>
+    <rect x="170" y="162" width="80" height="36" rx="5"/>
+    <rect x="265" y="162" width="80" height="36" rx="5"/>
+  </g>
+  <!-- outer heavy tubes -->
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="2.2">
+    <rect x="0" y="14"  width="330" height="22" rx="11"/>
+    <rect x="0" y="134" width="330" height="22" rx="11"/>
+  </g>
+  <!-- inner low tubes -->
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6">
+    <rect x="20" y="62" width="290" height="12" rx="6"/>
+    <rect x="20" y="96" width="290" height="12" rx="6"/>
+  </g>
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="1.8">
+    <rect x="16" y="10" width="18" height="150" rx="8"/>
+    <rect x="252" y="10" width="18" height="150" rx="8"/>
+  </g>
+  <g fill="#c96a5a">
+    <rect x="12" y="18" width="26" height="12" rx="4"/><rect x="12" y="140" width="26" height="12" rx="4"/>
+    <rect x="248" y="18" width="26" height="12" rx="4"/><rect x="248" y="140" width="26" height="12" rx="4"/>
+    <rect x="16" y="64" width="20" height="8" rx="3"/><rect x="16" y="98" width="20" height="8" rx="3"/>
+    <rect x="250" y="64" width="20" height="8" rx="3"/><rect x="250" y="98" width="20" height="8" rx="3"/>
+  </g>
+  <rect x="44" y="74" width="204" height="22" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="352" y="86" fill="#d18b47" font-size="12">ніша провалена</text>
+  <text x="352" y="102" fill="#d18b47" font-size="12">між лонжеронами</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M20 14 V-8"/><path d="M210 14 V-8"/><path d="M305 14 V-8"/>
+    <path d="M20 156 V178"/><path d="M210 156 V178"/><path d="M305 156 V178"/>
+  </g>
+  <text x="352" y="26" fill="#93a1ab" font-size="12">зовнішні труби —</text>
+  <text x="352" y="42" fill="#93a1ab" font-size="12">товсті лонжерони</text>
+</svg>
+</figure>
+
+<figure>
+<svg viewBox="-140 -40 460 240" role="img" aria-label="Схема 2, переріз спереду">
+  <text x="-134" y="-16" fill="#e6ebef" font-size="14" font-weight="600">Переріз спереду — де тут виграш</text>
+  <path d="M-120 170 H320" stroke="#9aa5ad" stroke-width="2"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="-40" cy="126" r="44"/><circle cx="240" cy="126" r="44"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.5">
+    <circle cx="-40" cy="126" r="37"/><circle cx="240" cy="126" r="37"/>
+  </g>
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="2">
+    <circle cx="20" cy="76" r="16"/><circle cx="180" cy="76" r="16"/>
+  </g>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6">
+    <circle cx="76" cy="112" r="10"/><circle cx="124" cy="112" r="10"/>
+  </g>
+  <path d="M20 76 L76 112 M124 112 L180 76" stroke="#9aa5ad" stroke-width="3"/>
+  <rect x="58" y="118" width="84" height="34" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="4"/>
+  <text x="150" y="142" fill="#d18b47" font-size="12">акум нижче за осі коліс</text>
+  <rect x="4" y="34" width="192" height="30" fill="#1f262c" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <text x="204" y="54" fill="#8fd18b" font-size="12">плити зверху</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M20 92 L-14 118"/><path d="M180 92 L214 118"/>
+  </g>
+  <path d="M100 76 V152" stroke="#d18b47" stroke-width="1.2" stroke-dasharray="6 4"/>
+  <circle cx="100" cy="136" r="6" fill="#d18b47"/>
+  <text x="-134" y="118" fill="#d18b47" font-size="12">ЦТ тут</text>
+</svg>
+<figcaption>Зовнішні труби високо і широко, внутрішні провалені вниз. Акум лягає нижче за осі коліс — ровер стає майже неперекидним.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Відмінність</th><td>Труби на двох рівнях замість одного. Зовнішні — товсті лонжерони, до них кріпляться колеса; внутрішні тонкі й низькі, вони тримають вантаж.</td></tr>
+  <tr><th>Вигляд</th><td>Човен-катамаран. Найбільш «апаратний» силует із чотирьох.</td></tr>
+  <tr><th class="b">Ціна</th><td>Кліренс під нішею менший. Стик труб різного рівня — це не пряма прокладка, а фасонний вузол.</td></tr>
+</table>
+
+<!-- ==================================================== 3 -->
+<h2 class="base">3 · Клин — труби сходяться до носа</h2>
+<p><span class="tag">та сама база</span><span class="tag">найнезвичніший силует</span></p>
+
+<figure>
+<svg viewBox="-90 -70 600 300" role="img" aria-label="Схема 3, клин">
+  <text x="-84" y="-46" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="40" width="80" height="34" rx="5"/>
+    <rect x="170" y="-16" width="80" height="36" rx="5"/>
+    <rect x="265" y="-24" width="80" height="36" rx="5"/>
+    <rect x="-20" y="96" width="80" height="34" rx="5"/>
+    <rect x="170" y="150" width="80" height="36" rx="5"/>
+    <rect x="265" y="158" width="80" height="36" rx="5"/>
+  </g>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <path d="M22 78 L318 22 L318 36 L22 92 Z"/>
+    <path d="M22 92 L318 56 L318 70 L22 106 Z"/>
+    <path d="M22 78 L318 114 L318 128 L22 64 Z"/>
+    <path d="M22 64 L318 148 L318 162 L22 50 Z"/>
+  </g>
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="1.8">
+    <rect x="14" y="46" width="18" height="62" rx="8"/>
+    <rect x="286" y="14" width="18" height="156" rx="8"/>
+  </g>
+  <g fill="#c96a5a">
+    <rect x="10" y="52" width="26" height="10" rx="4"/><rect x="10" y="92" width="26" height="10" rx="4"/>
+    <rect x="282" y="22" width="26" height="10" rx="4"/><rect x="282" y="58" width="26" height="10" rx="4"/>
+    <rect x="282" y="114" width="26" height="10" rx="4"/><rect x="282" y="148" width="26" height="10" rx="4"/>
+  </g>
+  <rect x="120" y="72" width="150" height="28" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="130" y="92" fill="#d18b47" font-size="11.5">ніша розширюється назад</text>
+  <text x="352" y="30" fill="#93a1ab" font-size="12">широка задня</text>
+  <text x="352" y="46" fill="#93a1ab" font-size="12">колія — стійкість</text>
+  <text x="-84" y="88" fill="#93a1ab" font-size="12">вузький ніс —</text>
+  <text x="-84" y="104" fill="#93a1ab" font-size="12">пролазить у щілини</text>
+</svg>
+<figcaption>Труби не паралельні: передній поперечник короткий, задній довгий. Колія спереду вужча, ззаду ширша.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Відмінність</th><td>Трапеція замість прямокутника. Ніша сама собою розширюється назад — акум лягає в широку частину, а ніс лишається легким.</td></tr>
+  <tr><th>Вигляд</th><td>Стріла. Найдалі від «коробки на колесах» з усього списку.</td></tr>
+  <tr><th class="b">Ціна</th><td>Жодна труба не паралельна іншій — кожен стик під своїм кутом, і симетрію треба тримати точно, інакше ровер поведе вбік.</td></tr>
+</table>
+
+<!-- ==================================================== 4 -->
+<h2 class="base">4 · Торсіонний пліт — рама сама і є підвіска</h2>
+<p><span class="tag">та сама база</span><span class="tag">найменше деталей</span></p>
+
+<figure>
+<svg viewBox="-90 -80 600 320" role="img" aria-label="Схема 4, торсіонний пліт">
+  <text x="-84" y="-56" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="-18" width="80" height="36" rx="5"/>
+    <rect x="170" y="-18" width="80" height="36" rx="5"/>
+    <rect x="265" y="-18" width="80" height="36" rx="5"/>
+    <rect x="-20" y="152" width="80" height="36" rx="5"/>
+    <rect x="170" y="152" width="80" height="36" rx="5"/>
+    <rect x="265" y="152" width="80" height="36" rx="5"/>
+  </g>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.8">
+    <rect x="0" y="20"  width="330" height="14" rx="7"/>
+    <rect x="0" y="54"  width="330" height="14" rx="7"/>
+    <rect x="0" y="102" width="330" height="14" rx="7"/>
+    <rect x="0" y="136" width="330" height="14" rx="7"/>
+  </g>
+  <!-- torsion crossmembers -->
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="2.6">
+    <rect x="14" y="14" width="22" height="142" rx="10"/>
+    <rect x="250" y="14" width="22" height="142" rx="10"/>
+  </g>
+  <text x="352" y="26" fill="#c96a5a" font-size="12">поперечник —</text>
+  <text x="352" y="42" fill="#c96a5a" font-size="12">TPU-торсіон цілком</text>
+  <g stroke="#c96a5a" stroke-width="2.2" fill="none">
+    <path d="M25 -34 a30 30 0 0 1 26 16"/>
+    <path d="M25 -34 a30 30 0 0 0 -26 16"/>
+  </g>
+  <path d="M51 -18 l1 -13 l-11 6 z" fill="#c96a5a"/>
+  <path d="M-1 -18 l-1 -13 l11 6 z" fill="#c96a5a"/>
+  <text x="-84" y="-30" fill="#c96a5a" font-size="12">рама скручується</text>
+  <g stroke="#5a86c9" stroke-width="7" stroke-linecap="round">
+    <path d="M20 20 V2"/><path d="M210 20 V2"/><path d="M305 20 V2"/>
+    <path d="M20 150 V168"/><path d="M210 150 V168"/><path d="M305 150 V168"/>
+  </g>
+  <rect x="46" y="70" width="198" height="30" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="60" y="90" fill="#d18b47" font-size="11.5">ніша: акум + плати</text>
+  <text x="352" y="88" fill="#93a1ab" font-size="12">поди жорсткі —</text>
+  <text x="352" y="104" fill="#93a1ab" font-size="12">пружин у них немає</text>
+</svg>
+<figcaption>Поперечники друкуються цілком з TPU і працюють як торсіони. Колеса на жорстких подах — окремих пружин немає взагалі.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Відмінність</th><td>Підвіска зникає як окремий вузол. Хід дає скручування самої рами між передніми і задніми трубами.</td></tr>
+  <tr><th class="k">Чому цікаво</th><td>Найменша кількість деталей у всьому списку: нема шарнірів, нема осей підвіски, нема пружин. Два поперечники — і все.</td></tr>
+  <tr><th class="b">Ціна</th><td>Жорсткість підбирається тільки друком — товщиною і заповненням. Перший поперечник майже напевно буде не той. І TPU повзе: після місяця під навантаженням пліт трохи «сяде».</td></tr>
+</table>
+
+<!-- ==================================================== 5 -->
+<h2 class="mine">5 · Хребет з консолями</h2>
+<p><span class="tag">моя схема</span><span class="tag">одна несуча балка</span></p>
+
+<figure>
+<svg viewBox="-90 -80 600 320" role="img" aria-label="Схема 5, хребет з консолями">
+  <text x="-84" y="-56" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="-38" width="80" height="36" rx="5"/>
+    <rect x="170" y="-38" width="80" height="36" rx="5"/>
+    <rect x="265" y="-38" width="80" height="36" rx="5"/>
+    <rect x="-20" y="172" width="80" height="36" rx="5"/>
+    <rect x="170" y="172" width="80" height="36" rx="5"/>
+    <rect x="265" y="172" width="80" height="36" rx="5"/>
+  </g>
+  <rect x="0" y="62" width="330" height="46" fill="#39424a" stroke="#9aa5ad" stroke-width="2.4" rx="10"/>
+  <text x="112" y="90" fill="#c9d4db" font-size="12.5">хребет — коробчаста балка</text>
+  <g stroke="#5a86c9" stroke-width="9" stroke-linecap="round">
+    <path d="M20 62 V-16"/><path d="M210 62 V-16"/><path d="M305 62 V-16"/>
+    <path d="M20 108 V186"/><path d="M210 108 V186"/><path d="M305 108 V186"/>
+  </g>
+  <g fill="#c96a5a">
+    <circle cx="20" cy="62" r="7"/><circle cx="210" cy="62" r="7"/><circle cx="305" cy="62" r="7"/>
+    <circle cx="20" cy="108" r="7"/><circle cx="210" cy="108" r="7"/><circle cx="305" cy="108" r="7"/>
+  </g>
+  <text x="352" y="60" fill="#c96a5a" font-size="12">TPU у корені</text>
+  <text x="352" y="76" fill="#93a1ab" font-size="11.5">консолі — вся підвіска</text>
+  <rect x="40" y="70" width="150" height="30" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="48" y="90" fill="#d18b47" font-size="11.5">акум усередині балки</text>
+  <rect x="30" y="20" width="270" height="130" fill="none" stroke="#8fd18b" stroke-width="1.6" stroke-dasharray="8 5" rx="6"/>
+  <text x="352" y="140" fill="#8fd18b" font-size="12">платформа шириться</text>
+  <text x="352" y="156" fill="#93a1ab" font-size="11.5">поверх консолей</text>
+</svg>
+<figcaption>Одна коробчаста балка замість чотирьох труб. Колеса на довгих консолях, TPU тільки в корені кожної.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Комаха. Вузьке тіло і шість винесених лап — найменш схоже на машину з усіх семи.</td></tr>
+  <tr><th class="k">Плюс</th><td>Консоль проєктується один раз і друкується шість разів. Балка — єдина складна деталь. Акум усередині балки, тобто в геометричному центрі.</td></tr>
+  <tr><th class="b">Ціна</th><td>Уся вага і все кручення в одній деталі. Коробчастий переріз це витягне, кругла труба — ні.</td></tr>
+</table>
+
+<!-- ==================================================== 6 -->
+<h2 class="mine">6 · Дельта — вузький ніс, широкий зад</h2>
+<p><span class="tag">моя схема</span><span class="tag">колія росте назад</span></p>
+
+<figure>
+<svg viewBox="-90 -90 600 340" role="img" aria-label="Схема 6, дельта">
+  <text x="-84" y="-66" fill="#e6ebef" font-size="14" font-weight="600">Вигляд зверху</text>
+  <path d="M20 84 L300 -30 L300 200 Z" fill="#1f262c" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.6">
+    <rect x="-20" y="30" width="80" height="34" rx="5"/>
+    <rect x="170" y="-44" width="80" height="36" rx="5"/>
+    <rect x="265" y="-72" width="80" height="36" rx="5"/>
+    <rect x="-20" y="106" width="80" height="34" rx="5"/>
+    <rect x="170" y="178" width="80" height="36" rx="5"/>
+    <rect x="265" y="206" width="80" height="36" rx="5"/>
+  </g>
+  <g stroke="#5a86c9" stroke-width="8" stroke-linecap="round">
+    <path d="M32 78 L20 64"/><path d="M210 12 V-8"/><path d="M300 -14 L305 -36"/>
+    <path d="M32 90 L20 106"/><path d="M210 156 V178"/><path d="M300 182 L305 206"/>
+  </g>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="1.6">
+    <path d="M26 78 L300 -18 L300 -6 L26 88 Z"/>
+    <path d="M26 90 L300 186 L300 174 L26 80 Z"/>
+    <rect x="150" y="78" width="150" height="12" rx="6"/>
+  </g>
+  <rect x="286" y="-24" width="18" height="218" fill="#39424a" stroke="#9aa5ad" stroke-width="1.8" rx="8"/>
+  <g fill="#c96a5a">
+    <circle cx="30" cy="84" r="8"/>
+    <rect x="282" y="-14" width="26" height="10" rx="4"/>
+    <rect x="282" y="78" width="26" height="10" rx="4"/>
+    <rect x="282" y="172" width="26" height="10" rx="4"/>
+  </g>
+  <rect x="180" y="52" width="100" height="64" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="190" y="88" fill="#d18b47" font-size="11.5">акум + плати</text>
+  <text x="352" y="-20" fill="#93a1ab" font-size="12">задня колія</text>
+  <text x="352" y="-4" fill="#93a1ab" font-size="12">найширша</text>
+  <text x="-84" y="76" fill="#8fd18b" font-size="12">рука — на носі,</text>
+  <text x="-84" y="92" fill="#8fd18b" font-size="12">де вузько</text>
+</svg>
+<figcaption>Три труби сходяться в одну точку на носі. Колія росте від переднього колеса до заднього — стійкість там, де важко.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Наконечник стріли. Ні на що з друкованих роверів не схоже.</td></tr>
+  <tr><th class="k">Плюс</th><td>Рука на вузькому носі: витягнута вперед, вона спирається на найширшу задню колію. Перекинути такий ровер рукою складно.</td></tr>
+  <tr><th class="b">Ціна</th><td>Вузол сходження труб на носі несе все відразу. Ніша ззаду, тому вага зміщена назад — переднє колесо буде недовантажене.</td></tr>
+</table>
+
+<!-- ==================================================== 7 -->
+<h2 class="mine">7 · Двоярусна рама — колеса між поверхами</h2>
+<p><span class="tag">моя схема</span><span class="tag">найжорсткіша</span></p>
+
+<figure>
+<svg viewBox="-90 40 600 300" role="img" aria-label="Схема 7, двоярусна рама, вигляд збоку">
+  <text x="-84" y="66" fill="#e6ebef" font-size="14" font-weight="600">Вигляд збоку — тут суть</text>
+  <path d="M-80 288 H420" stroke="#9aa5ad" stroke-width="2"/>
+  <rect x="0" y="112" width="330" height="16" fill="#2d353c" stroke="#9aa5ad" stroke-width="2" rx="8"/>
+  <rect x="0" y="212" width="330" height="16" fill="#2d353c" stroke="#9aa5ad" stroke-width="2" rx="8"/>
+  <g stroke="#9aa5ad" stroke-width="5">
+    <path d="M24 128 V212"/><path d="M306 128 V212"/>
+  </g>
+  <g fill="#c96a5a">
+    <rect x="16" y="126" width="16" height="8" rx="3"/><rect x="298" y="126" width="16" height="8" rx="3"/>
+    <rect x="16" y="206" width="16" height="8" rx="3"/><rect x="298" y="206" width="16" height="8" rx="3"/>
+  </g>
+  <rect x="60" y="140" width="200" height="60" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="4"/>
+  <text x="76" y="176" fill="#d18b47" font-size="12">акум і плати між ярусами</text>
+  <rect x="34" y="70" width="260" height="42" fill="#1f262c" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <g stroke="#8fd18b" stroke-width="1" opacity="0.5"><path d="M100 70 V112 M164 70 V112 M228 70 V112"/></g>
+  <text x="46" y="64" fill="#8fd18b" font-size="11.5">верхня плита — платформа під руку</text>
+  <g stroke="#5a86c9" stroke-width="8" stroke-linecap="round">
+    <path d="M20 228 V244"/><path d="M210 228 V244"/><path d="M305 228 V244"/>
+  </g>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="20" cy="244" r="44"/><circle cx="210" cy="244" r="44"/><circle cx="305" cy="244" r="44"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.5">
+    <circle cx="20" cy="244" r="37"/><circle cx="210" cy="244" r="37"/><circle cx="305" cy="244" r="37"/>
+  </g>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M356 112 V228"/><path d="M351 112 h10 M351 228 h10"/>
+    <text x="366" y="176">два яруси</text>
+  </g>
+  <text x="-84" y="200" fill="#93a1ab" font-size="11.5">колеса заходять</text>
+  <text x="-84" y="216" fill="#93a1ab" font-size="11.5">між ярусами</text>
+</svg>
+<figcaption>Два плоти один над одним, зв'язані стійками. Все, що важить, лежить між ними — і воно ж закрите з усіх боків.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Вигляд</th><td>Приземкуватий блок з видимою «щілиною» посередині. Найтехнічніший з семи.</td></tr>
+  <tr><th class="k">Плюс</th><td>Дві плоскі рами, зв'язані стійками, на кручення тримають у рази більше, ніж одна. Це знімає головну слабкість плоту. Акум і плати захищені з усіх боків.</td></tr>
+  <tr><th class="b">Ціна</th><td>Найвищий і найважчий. Вдвічі більше труб. Дістатися до плат складніше — треба знімати ярус.</td></tr>
+</table>
+
+<!-- ==================================================== -->
+<h2>Порівняння</h2>
+<table>
+  <tr>
+    <th style="width:auto">Схема</th>
+    <th style="width:auto">Несуче</th>
+    <th style="width:auto">Підвіска</th>
+    <th style="width:auto">Де акум</th>
+    <th style="width:auto">Силует</th>
+  </tr>
+  <tr><td>1 · Пліт</td><td>4 труби + 2 поперечники</td><td>TPU у стиках + поди</td><td>ніша або під трубами</td><td>понтон</td></tr>
+  <tr><td>2 · Катамаран</td><td>2 лонжерони + 2 низькі</td><td>те саме</td><td>провалений між ними</td><td>човен</td></tr>
+  <tr><td>3 · Клин</td><td>4 труби, трапеція</td><td>те саме</td><td>у широкій кормі</td><td>стріла</td></tr>
+  <tr><td>4 · Торсіонний</td><td>4 труби + TPU-торсіони</td><td>сама рама</td><td>ніша</td><td>пліт, але «живий»</td></tr>
+  <tr><td>5 · Хребет</td><td>одна коробчаста балка</td><td>консолі</td><td>всередині балки</td><td>комаха</td></tr>
+  <tr><td>6 · Дельта</td><td>3 труби в точку</td><td>консолі</td><td>у кормі</td><td>наконечник стріли</td></tr>
+  <tr><td>7 · Двоярусна</td><td>2 плоти + стійки</td><td>TPU у стійках</td><td>між ярусами</td><td>блок зі щілиною</td></tr>
+</table>
+
+<h3>Що дає нерівна розстановка Х— — — —Х— —Х у всіх семи</h3>
+<ul>
+  <li><b>Переднє колесо винесене далеко</b> — воно перше зустрічає перешкоду і має найбільше місця, щоб піднятися, не впершись у корпус.</li>
+  <li><b>Задня пара близько</b> — працює майже як одне широке колесо: коли одне провалюється, друге вже на твердому.</li>
+  <li class="b">Центр обертання зміщений назад. При розвороті бортами ніс описує велику дугу — біля стіни це відчувається одразу.</li>
+  <li>Навантаження на колеса нерівне за визначенням. Ставте важке (акум) ближче до задньої пари, легке — до носа.</li>
+</ul>
+
+</div>

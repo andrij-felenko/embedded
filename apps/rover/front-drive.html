@@ -1,0 +1,272 @@
+<title>Ровер — велике переднє колесо</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:36px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:470px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:4px 0}
+  .b{color:#e07b6a}
+  .k{color:#8fd18b}
+</style>
+
+<div class="wrap">
+
+<h1>Скат з одним великим переднім колесом</h1>
+<p class="lead">План як у ската — ніс у точку, корма на всю ширину.
+Спереду <b>одне велике ведуче колесо, яке крутять два мотори</b>.
+Ззаду чотири колеса, корпус піднятий на амортизаторах.
+Разом усе одно <b>6 моторів</b>: два спереду, чотири ззаду.</p>
+
+<h2>Профіль</h2>
+
+<figure>
+<svg viewBox="-40 20 700 250" role="img" aria-label="Вигляд збоку">
+  <path d="M-30 220 H660" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M0 220 l-11 12 M60 220 l-11 12 M120 220 l-11 12 M180 220 l-11 12 M240 220 l-11 12
+             M300 220 l-11 12 M360 220 l-11 12 M420 220 l-11 12 M480 220 l-11 12 M540 220 l-11 12 M600 220 l-11 12"/>
+  </g>
+
+  <!-- big front wheel -->
+  <circle cx="70" cy="158" r="62" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.4"/>
+  <circle cx="70" cy="158" r="52" fill="none" stroke="#c96a5a" stroke-width="5"/>
+  <circle cx="70" cy="158" r="16" fill="#20262b" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#4a6f8a" stroke-width="1.4">
+    <path d="M70 96 v124 M8 158 h124 M26 114 l88 88 M114 114 l-88 88"/>
+  </g>
+
+  <!-- fork to body -->
+  <path d="M148 128 L70 158" stroke="#9aa5ad" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- body -->
+  <path d="M140 156 V104 L172 86 H418 L446 108 V156 Z" fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" stroke-linejoin="round"/>
+
+  <!-- rear wheels -->
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2.2">
+    <circle cx="300" cy="184" r="36"/><circle cx="400" cy="184" r="36"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.4">
+    <circle cx="300" cy="184" r="29"/><circle cx="400" cy="184" r="29"/>
+  </g>
+
+  <!-- shocks -->
+  <g stroke="#c96a5a" stroke-width="3" fill="none">
+    <path d="M300 156 l10 -6 l-20 -8 l20 -8 l-20 -8 l10 -6"/>
+    <path d="M400 156 l10 -6 l-20 -8 l20 -8 l-20 -8 l10 -6"/>
+  </g>
+  <path d="M300 156 V184 M400 156 V184" stroke="#9aa5ad" stroke-width="2" stroke-dasharray="4 3"/>
+  <text x="452" y="150" fill="#c96a5a" font-size="12">корма піднята</text>
+  <text x="452" y="166" fill="#c96a5a" font-size="12">на амортизаторах</text>
+
+  <!-- arm from rear -->
+  <circle cx="392" cy="86" r="9" fill="#243039" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M392 86 L408 40" stroke="#8fd18b" stroke-width="8" fill="none" stroke-linecap="round"/>
+  <path d="M408 40 L286 32" stroke="#8fd18b" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <path d="M286 32 L220 58" stroke="#8fd18b" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <circle cx="408" cy="40" r="6" fill="#8fd18b"/><circle cx="286" cy="32" r="6" fill="#8fd18b"/>
+  <text x="452" y="58" fill="#8fd18b" font-size="12">рука — з корми</text>
+
+  <!-- mast -->
+  <path d="M434 86 V50" stroke="#9aa5ad" stroke-width="4"/>
+  <rect x="418" y="30" width="40" height="20" fill="#243039" stroke="#8fd18b" stroke-width="2" rx="3"/>
+  <path d="M452 30 L458 12" stroke="#8fd18b" stroke-width="2.4"/>
+
+  <!-- dims -->
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M8 250 H132"/><path d="M8 245 v10 M132 245 v10"/>
+    <text x="42" y="268">Ø124</text>
+    <path d="M264 250 H336"/><path d="M264 245 v10 M336 245 v10"/>
+    <text x="284" y="268">Ø72</text>
+  </g>
+  <text x="150" y="252" fill="#93a1ab" font-size="12">переднє колесо майже вдвічі більше — воно й бере перешкоду</text>
+</svg>
+<figcaption>Велике колесо спереду піднімає межу уступу вдвічі. Корма на амортизаторах відпрацьовує решту.</figcaption>
+</figure>
+
+<h2>План</h2>
+
+<figure>
+<svg viewBox="-60 -40 640 280" role="img" aria-label="Вигляд зверху">
+  <path d="M-10 100 Q70 20 200 12 Q330 6 350 46 L350 154 Q330 194 200 188 Q70 180 -10 100 Z"
+        fill="#232d36" stroke="#7fb3d5" stroke-width="2.4"/>
+  <rect x="-24" y="82" width="98" height="36" rx="5" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.2"/>
+  <g stroke="#c96a5a" stroke-width="1.4" opacity="0.8">
+    <path d="M-14 82 v36 M2 82 v36 M18 82 v36 M34 82 v36 M50 82 v36 M64 82 v36"/>
+  </g>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
+    <rect x="170" y="-14" width="72" height="30" rx="4"/>
+    <rect x="256" y="-14" width="72" height="30" rx="4"/>
+    <rect x="170" y="184" width="72" height="30" rx="4"/>
+    <rect x="256" y="184" width="72" height="30" rx="4"/>
+  </g>
+  <circle cx="296" cy="100" r="13" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M296 100 L226 62" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="226" cy="62" r="6" fill="#8fd18b"/>
+  <text x="230" y="128" fill="#8fd18b" font-size="12">рука</text>
+
+  <path d="M25 100 H350" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="10 5 3 5"/>
+  <text x="380" y="26" fill="#93a1ab" font-size="12">чотири задні —</text>
+  <text x="380" y="42" fill="#93a1ab" font-size="12">на всю ширину</text>
+  <text x="380" y="96" fill="#c96a5a" font-size="12">одне переднє —</text>
+  <text x="380" y="112" fill="#c96a5a" font-size="12">на осі симетрії</text>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M-24 236 H328"/><path d="M-24 231 v10 M328 231 v10"/>
+    <text x="120" y="254">база</text>
+  </g>
+</svg>
+</figure>
+
+<h2>Два мотори на одне колесо</h2>
+
+<figure>
+<svg viewBox="-50 -30 660 220" role="img" aria-label="Два мотори на спільному валу">
+  <rect x="240" y="0" width="60" height="150" rx="6" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.4"/>
+  <g stroke="#c96a5a" stroke-width="2.4"><path d="M252 0 v150 M270 0 v150 M288 0 v150"/></g>
+  <rect x="60" y="58" width="420" height="14" rx="7" fill="#39424a" stroke="#9aa5ad" stroke-width="2"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="2.2">
+    <rect x="196" y="46" width="26" height="38" rx="3"/>
+    <rect x="318" y="46" width="26" height="38" rx="3"/>
+  </g>
+  <g fill="#243039" stroke="#8fd18b" stroke-width="2.4">
+    <rect x="70" y="38" width="110" height="54" rx="6"/>
+    <rect x="360" y="38" width="110" height="54" rx="6"/>
+  </g>
+  <text x="86" y="70" fill="#8fd18b" font-size="12.5">мотор 1</text>
+  <text x="376" y="70" fill="#8fd18b" font-size="12.5">мотор 2</text>
+  <text x="184" y="118" fill="#9aa5ad" font-size="12">підшипники</text>
+  <text x="228" y="176" fill="#c96a5a" font-size="12.5">колесо між ними — вал не гнеться</text>
+  <path d="M70 38 L40 -8 H540 L470 38" fill="none" stroke="#d18b47" stroke-width="2"/>
+  <text x="196" y="-14" fill="#d18b47" font-size="12.5">один канал драйвера на обидва</text>
+</svg>
+<figcaption>Мотори з двох боків від колеса — вал навантажений симетрично, згину немає. Два однакові щіткові мотори паралельно на одному валу самі вирівнюють обертання: той, що біжить швидше, стає генератором і сам себе гальмує.</figcaption>
+</figure>
+
+<table>
+  <tr><th>Спосіб</th><th>Як</th><th class="b">На що зважати</th></tr>
+  <tr>
+    <td><b>Паралельно на один канал</b></td>
+    <td>два однакові щіткові мотори, спільний вал, один вихід драйвера</td>
+    <td>драйвер має тримати <b>подвійний стопорний струм</b>: N20 ≈ 3 А на пару, 25GA370 ≈ 6–10 А</td>
+  </tr>
+  <tr>
+    <td>Два канали, один енкодер</td>
+    <td>другий мотор веде за першим у прошивці</td>
+    <td>складніше, але видно, якщо один мотор здох</td>
+  </tr>
+  <tr>
+    <td>Один мотор + редуктор</td>
+    <td>той самий момент з однієї штуки</td>
+    <td>редуктор доведеться друкувати або купувати; але вдвічі менше проводки</td>
+  </tr>
+</table>
+
+<h2>Ширина переднього котка — це шкала</h2>
+<p>Барабан і вузьке велике колесо — не два різні концепти, а два кінці однієї шкали.
+Обирати треба усвідомлено, бо кінці шкали протилежні за наслідками.</p>
+
+<figure>
+<svg viewBox="-50 -40 700 240" role="img" aria-label="Шкала ширини переднього котка">
+  <g>
+    <text x="0" y="-16" fill="#8fd18b" font-size="13" font-weight="600">Вузьке · 25 мм</text>
+    <path d="M-20 150 H160" stroke="#9aa5ad" stroke-width="1.8"/>
+    <rect x="58" y="34" width="24" height="116" rx="5" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.2"/>
+    <rect x="10" y="0" width="120" height="34" fill="#232d36" stroke="#7fb3d5" stroke-width="2" rx="3"/>
+    <text x="0" y="176" fill="#8fd18b" font-size="12">крутиться легко</text>
+    <text x="0" y="192" fill="#e07b6a" font-size="12">тоне в м'якому</text>
+  </g>
+  <g transform="translate(230,0)">
+    <text x="0" y="-16" fill="#d18b47" font-size="13" font-weight="600">Середнє · 55 мм</text>
+    <path d="M-20 150 H180" stroke="#9aa5ad" stroke-width="1.8"/>
+    <rect x="52" y="34" width="52" height="116" rx="6" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.2"/>
+    <g stroke="#c96a5a" stroke-width="2"><path d="M64 34 v116 M78 34 v116 M92 34 v116"/></g>
+    <rect x="10" y="0" width="140" height="34" fill="#232d36" stroke="#7fb3d5" stroke-width="2" rx="3"/>
+    <text x="0" y="176" fill="#d18b47" font-size="12">компроміс</text>
+  </g>
+  <g transform="translate(470,0)">
+    <text x="0" y="-16" fill="#e07b6a" font-size="13" font-weight="600">Барабан · 140 мм</text>
+    <path d="M-30 150 H190" stroke="#9aa5ad" stroke-width="1.8"/>
+    <rect x="10" y="34" width="140" height="116" rx="7" fill="#2a3138" stroke="#7fb3d5" stroke-width="2.2"/>
+    <g stroke="#c96a5a" stroke-width="2.6">
+      <path d="M26 34 v116 M50 34 v116 M74 34 v116 M98 34 v116 M122 34 v116 M142 34 v116"/>
+    </g>
+    <rect x="10" y="0" width="140" height="34" fill="#232d36" stroke="#7fb3d5" stroke-width="2" rx="3"/>
+    <text x="0" y="176" fill="#8fd18b" font-size="12">гребе і тримає на м'якому</text>
+    <text x="0" y="192" fill="#e07b6a" font-size="12">на місці майже не провертається</text>
+  </g>
+</svg>
+<figcaption>Бічна сила, щоб зрушити колесо вбік, від ширини майже не залежить — тертя не залежить від площі. А от момент, щоб <b>провернути</b> коток на місці, росте разом із плямою контакту. Тому барабан і поворот бортами воюють, а вузьке колесо — ні.</figcaption>
+</figure>
+
+<h2 class="b">Стійкість: це трицикл, і це головна ціна</h2>
+<p>Одна точка опори спереду на осі симетрії означає, що безпечна зона —
+трикутник від переднього п'ятна до двох задніх. Чим ближче до носа, тим вона вужча.</p>
+
+<figure>
+<svg viewBox="-60 -40 620 280" role="img" aria-label="Трикутник стійкості">
+  <path d="M20 100 L300 12 L300 188 Z" fill="#1c2a22" opacity="0.5" stroke="#8fd18b" stroke-width="2"/>
+  <circle cx="20" cy="100" r="9" fill="#c96a5a"/>
+  <circle cx="300" cy="12" r="9" fill="#7fb3d5"/>
+  <circle cx="300" cy="188" r="9" fill="#7fb3d5"/>
+  <text x="-52" y="96" fill="#c96a5a" font-size="12">переднє</text>
+  <text x="-52" y="112" fill="#c96a5a" font-size="12">п'ятно</text>
+  <text x="316" y="16" fill="#7fb3d5" font-size="12">задні п'ятна</text>
+
+  <g stroke="#d18b47" stroke-width="1.6" stroke-dasharray="5 4">
+    <path d="M90 78 V122"/><path d="M160 56 V144"/><path d="M230 34 V166"/>
+  </g>
+  <g fill="#d18b47" font-size="11.5">
+    <text x="70" y="200">±22</text>
+    <text x="140" y="200">±45</text>
+    <text x="210" y="200">±68</text>
+    <text x="286" y="216">±90</text>
+  </g>
+  <path d="M20 232 H300" stroke="#d18b47" stroke-width="1.2"/>
+  <path d="M20 227 v10 M300 227 v10" stroke="#d18b47" stroke-width="1.2"/>
+  <text x="120" y="252" fill="#d18b47" font-size="12">база 240</text>
+
+  <text x="340" y="80" fill="#93a1ab" font-size="12.5">безпечна бічна півширина</text>
+  <text x="340" y="98" fill="#93a1ab" font-size="12.5">росте від нуля на носі</text>
+  <text x="340" y="116" fill="#93a1ab" font-size="12.5">до повної колії на кормі</text>
+  <text x="340" y="148" fill="#8fd18b" font-size="12.5">тому рука ставиться ззаду</text>
+  <text x="340" y="166" fill="#93a1ab" font-size="12">і працює в широкій частині</text>
+</svg>
+<figcaption>Формула проста: безпечна півширина в точці = півколія × (відстань від носа / база). На носі вона нульова.</figcaption>
+</figure>
+
+<h3>Що з цього випливає</h3>
+<ul>
+  <li><b>Рука тільки з корми.</b> Витягнута вперед і вбік, вона потрапляє саме туди, де трикутник звужується до нуля.</li>
+  <li><b>Центр ваги — за серединою бази.</b> Акум ззаду, не спереду. Це протилежно тому, що було в пирозі з двома відсіками.</li>
+  <li class="b"><b>Тиск на ґрунт спереду подвоюється.</b> Одне колесо несе те, що раніше несли два. Великий діаметр це частково компенсує, ширина — краще, але ширина псує поворот.</li>
+</ul>
+
+<h2>Підсумок по концепту</h2>
+<table>
+  <tr><th class="k">Що дає</th><th class="b">Чим платиш</th></tr>
+  <tr>
+    <td>
+      Уступ у вдвічі більший — це найсильніший важіль з усіх.<br>
+      Два мотори на одне колесо = момент без дорогого мотора.<br>
+      Одне колесо спереду замість двох — простіший ніс, легше вписати в гострий силует ската.<br>
+      Корма на амортизаторах відпрацьовує дрібне.
+    </td>
+    <td>
+      Трицикл: трикутник стійкості звужується до нуля на носі.<br>
+      Рука і акум мусять переїхати в корму.<br>
+      Подвійний тиск на ґрунт під переднім колесом.<br>
+      Драйвер на подвійний стопорний струм.
+    </td>
+  </tr>
+</table>
+
+</div>

@@ -1,0 +1,414 @@
+<title>Ровер — устрій корпусу</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:38px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:480px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%;max-width:900px}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:4px 0}
+  .b{color:#e07b6a}
+  .k{color:#8fd18b}
+</style>
+
+<div class="wrap">
+
+<h1>Устрій корпусу</h1>
+<p class="lead">
+<b>Шар 1</b> — труби вздовж, на всю довжину.<br>
+<b>Шар 2</b> — труби поперек: спереду, по центру і ззаду, усі між колесами. Між ними два об'єми: акум і плати.<br>
+<b>Шар 3</b> — пластини 5–7 мм, накривають шар 2 і дають рівну площину.<br>
+Далі на цій площині — стіни, спереду рука, ззаду антена.
+</p>
+
+<h2>Розріз збоку</h2>
+
+<figure>
+<svg viewBox="-110 20 760 350" role="img" aria-label="Розріз корпусу збоку">
+  <path d="M-100 300 H560" stroke="#9aa5ad" stroke-width="2"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M-80 300 l-11 12 M-40 300 l-11 12 M0 300 l-11 12 M40 300 l-11 12 M80 300 l-11 12
+             M120 300 l-11 12 M160 300 l-11 12 M200 300 l-11 12 M240 300 l-11 12 M280 300 l-11 12
+             M320 300 l-11 12 M360 300 l-11 12 M400 300 l-11 12"/>
+  </g>
+
+  <!-- wheels first -->
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="20" cy="258" r="42"/><circle cx="210" cy="258" r="42"/><circle cx="305" cy="258" r="42"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.5">
+    <circle cx="20" cy="258" r="35"/><circle cx="210" cy="258" r="35"/><circle cx="305" cy="258" r="35"/>
+  </g>
+
+  <!-- LAYER 1 : lengthwise tubes -->
+  <rect x="0" y="206" width="330" height="28" fill="#2d353c" stroke="#9aa5ad" stroke-width="2.4" rx="8"/>
+  <text x="120" y="225" fill="#c9d4db" font-size="11.5">шар 1 — труби вздовж</text>
+
+  <!-- LAYER 2 : transverse tubes (3 blocks) + bays between -->
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="2.2">
+    <rect x="14" y="178" width="30" height="28" rx="8"/>
+    <rect x="150" y="178" width="30" height="28" rx="8"/>
+    <rect x="286" y="178" width="30" height="28" rx="8"/>
+  </g>
+  <rect x="44" y="180" width="106" height="24" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="3"/>
+  <text x="66" y="197" fill="#d18b47" font-size="11.5">акум</text>
+  <rect x="180" y="180" width="106" height="24" fill="#1c2a22" stroke="#8fd18b" stroke-width="1.8" rx="3"/>
+  <text x="208" y="197" fill="#8fd18b" font-size="11.5">плати</text>
+
+  <!-- LAYER 3 : plates -->
+  <rect x="0" y="170" width="330" height="8" fill="#22303f" stroke="#5a86c9" stroke-width="2.2" rx="2"/>
+  <g stroke="#5a86c9" stroke-width="1" opacity="0.6"><path d="M110 170 V178 M220 170 V178"/></g>
+
+  <!-- WALLS -->
+  <path d="M18 170 V126 H312 V170" fill="none" stroke="#5a86c9" stroke-width="2.6"/>
+  <text x="128" y="150" fill="#5a86c9" font-size="12">стіни</text>
+
+  <!-- arm front -->
+  <circle cx="56" cy="126" r="10" fill="#243039" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M56 126 L34 74" stroke="#8fd18b" stroke-width="8" stroke-linecap="round"/>
+  <path d="M34 74 L92 48" stroke="#8fd18b" stroke-width="7" stroke-linecap="round"/>
+  <path d="M92 48 L112 60" stroke="#8fd18b" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="34" cy="74" r="5" fill="#8fd18b"/><circle cx="92" cy="48" r="5" fill="#8fd18b"/>
+  <text x="122" y="46" fill="#8fd18b" font-size="12">рука — спереду</text>
+
+  <!-- antenna rear -->
+  <path d="M292 126 V48" stroke="#8fd18b" stroke-width="3"/>
+  <circle cx="292" cy="44" r="5" fill="none" stroke="#8fd18b" stroke-width="2"/>
+  <text x="304" y="70" fill="#8fd18b" font-size="12">антена — ззаду</text>
+
+  <!-- direction -->
+  <path d="M-32 258 h-46" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M-78 258 l13 -6 v12 z" fill="#8fd18b"/>
+  <text x="-98" y="246" fill="#8fd18b" font-size="12">вперед</text>
+
+  <!-- callouts -->
+  <g font-size="12">
+    <path d="M334 174 H396" stroke="#5a86c9" stroke-width="1"/>
+    <text x="402" y="170" fill="#5a86c9" font-weight="600">Шар 3 — пластини 5–7 мм</text>
+    <text x="402" y="186" fill="#93a1ab">рівна площина під стіни</text>
+
+    <path d="M334 192 H396" stroke="#9aa5ad" stroke-width="1"/>
+    <text x="402" y="216" fill="#c9d4db" font-weight="600">Шар 2 — труби поперек</text>
+    <text x="402" y="232" fill="#93a1ab">три штуки, між ними два об'єми</text>
+
+    <path d="M334 220 H396" stroke="#9aa5ad" stroke-width="1"/>
+    <text x="402" y="262" fill="#c9d4db" font-weight="600">Шар 1 — труби вздовж</text>
+    <text x="402" y="278" fill="#93a1ab">на всю довжину, до них колеса</text>
+  </g>
+</svg>
+<figcaption>Поперечні труби шару 2 стоять спереду, по центру і ззаду — саме вони й утворюють два відсіки.</figcaption>
+</figure>
+
+<h2>Шари поодинці</h2>
+
+<figure>
+<svg viewBox="-100 -60 640 280" role="img" aria-label="Шар 1 зверху">
+  <text x="-94" y="-36" fill="#5a86c9" font-size="14" font-weight="600">Шар 1 — труби вздовж, на всю довжину</text>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="2">
+    <rect x="0" y="12" width="330" height="22" rx="11"/>
+    <rect x="0" y="46" width="330" height="22" rx="11"/>
+    <rect x="0" y="98" width="330" height="22" rx="11"/>
+    <rect x="0" y="132" width="330" height="22" rx="11"/>
+  </g>
+  <g stroke="#5a86c9" stroke-width="8" stroke-linecap="round">
+    <path d="M20 12 V-10"/><path d="M210 12 V-10"/><path d="M305 12 V-10"/>
+    <path d="M20 154 V176"/><path d="M210 154 V176"/><path d="M305 154 V176"/>
+  </g>
+  <text x="356" y="20" fill="#5a86c9" font-size="12">поди коліс —</text>
+  <text x="356" y="36" fill="#5a86c9" font-size="12">з крайніх труб</text>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M20 200 H210"/><path d="M20 195 v10 M210 195 v10"/>
+    <text x="96" y="216">190</text>
+    <path d="M210 200 H305"/><path d="M305 195 v10"/>
+    <text x="240" y="216">95</text>
+  </g>
+  <path d="M-30 84 h-40" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M-70 84 l13 -6 v12 z" fill="#8fd18b"/>
+  <text x="-84" y="72" fill="#8fd18b" font-size="12">вперед</text>
+</svg>
+</figure>
+
+<figure>
+<svg viewBox="-100 -60 640 260" role="img" aria-label="Шар 2 зверху">
+  <text x="-94" y="-36" fill="#c9d4db" font-size="14" font-weight="600">Шар 2 — труби поперек: спереду, по центру, ззаду</text>
+  <rect x="0" y="0" width="330" height="160" fill="none" stroke="#4a6f8a" stroke-width="1.2" stroke-dasharray="7 5"/>
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="2.2">
+    <rect x="12" y="6" width="30" height="148" rx="14"/>
+    <rect x="150" y="6" width="30" height="148" rx="14"/>
+    <rect x="288" y="6" width="30" height="148" rx="14"/>
+  </g>
+  <rect x="46" y="14" width="100" height="132" fill="#2b2320" stroke="#d18b47" stroke-width="2" rx="4"/>
+  <text x="66" y="84" fill="#d18b47" font-size="12">акум</text>
+  <rect x="184" y="14" width="100" height="132" fill="#1c2a22" stroke="#8fd18b" stroke-width="2" rx="4"/>
+  <text x="206" y="84" fill="#8fd18b" font-size="12">плати</text>
+  <g stroke="#7fb3d5" stroke-width="1.4" stroke-dasharray="6 4" opacity="0.7">
+    <path d="M20 -14 V174"/><path d="M210 -14 V174"/><path d="M305 -14 V174"/>
+  </g>
+  <text x="356" y="20" fill="#93a1ab" font-size="12">пунктир — де стоять</text>
+  <text x="356" y="36" fill="#93a1ab" font-size="12">колеса: труби між ними</text>
+  <text x="356" y="88" fill="#c9d4db" font-size="12">центральна труба</text>
+  <text x="356" y="104" fill="#93a1ab" font-size="11.5">ділить об'єм навпіл</text>
+</svg>
+</figure>
+
+<figure>
+<svg viewBox="-100 -60 640 250" role="img" aria-label="Шар 3 і стіни зверху">
+  <text x="-94" y="-36" fill="#5a86c9" font-size="14" font-weight="600">Шар 3 — пластини 5–7 мм, і що на них стоїть</text>
+  <rect x="0" y="0" width="330" height="160" fill="#22303f" stroke="#5a86c9" stroke-width="2.4" rx="4"/>
+  <g stroke="#5a86c9" stroke-width="1.2" opacity="0.55">
+    <path d="M82 0 V160 M164 0 V160 M246 0 V160"/>
+  </g>
+  <rect x="16" y="12" width="298" height="136" fill="none" stroke="#8fd18b" stroke-width="2.6" rx="4"/>
+  <text x="130" y="8" fill="#8fd18b" font-size="12">стіни</text>
+  <circle cx="56" cy="80" r="18" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M56 80 L104 46" stroke="#8fd18b" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="104" cy="46" r="6" fill="#8fd18b"/>
+  <text x="34" y="122" fill="#8fd18b" font-size="11.5">рука</text>
+  <circle cx="292" cy="80" r="8" fill="none" stroke="#8fd18b" stroke-width="2.4"/>
+  <path d="M292 72 V60" stroke="#8fd18b" stroke-width="2.4"/>
+  <text x="270" y="118" fill="#8fd18b" font-size="11.5">антена</text>
+  <text x="356" y="70" fill="#93a1ab" font-size="12">пластини стикуються</text>
+  <text x="356" y="86" fill="#93a1ab" font-size="12">над поперечними трубами —</text>
+  <text x="356" y="102" fill="#93a1ab" font-size="12">шов лягає на опору</text>
+</svg>
+<figcaption>Шов між пластинами варто вести саме над поперечною трубою: там під ним є опора, і стик не працює на згин.</figcaption>
+</figure>
+
+<h2>Скіс на кінцях: 70% висоти</h2>
+<p>Умова — на кінці лишається 70% від середньої висоти. Якщо скіс симетричний
+(зверху і знизу), кожна сторона забирає 15% висоти. Кут тоді залежить не від
+довжини труби, а тільки від того, <b>на якій довжині</b> цей скіс зроблено:</p>
+
+<figure>
+<svg viewBox="-70 -70 700 300" role="img" aria-label="Скіс до 70 відсотків висоти">
+  <path d="M0 40 L100 12 L400 12 L500 40 L500 88 L400 116 L100 116 L0 88 Z" fill="#2d353c" stroke="#9aa5ad" stroke-width="2.2"/>
+  <g fill="#3a2723" stroke="#c96a5a" stroke-width="2">
+    <rect x="-9" y="40" width="11" height="48" rx="2"/>
+    <rect x="498" y="40" width="11" height="48" rx="2"/>
+  </g>
+  <path d="M0 40 H100" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="5 4"/>
+  <path d="M30 40 a34 34 0 0 0 34 -9" fill="none" stroke="#d18b47" stroke-width="1.4"/>
+  <text x="70" y="36" fill="#d18b47" font-size="12">α</text>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M-40 12 V116"/><path d="M-45 12 h10 M-45 116 h10"/>
+    <text x="-68" y="68">h</text>
+    <path d="M534 40 V88"/><path d="M529 40 h10 M529 88 h10"/>
+    <text x="546" y="68">0,7 h</text>
+    <path d="M0 148 H100"/><path d="M0 143 v10 M100 143 v10"/>
+    <text x="34" y="166">t</text>
+    <path d="M0 -22 H100"/><path d="M0 -27 v10 M100 -27 v10"/>
+    <text x="24" y="-30">скіс</text>
+    <path d="M100 -22 H400"/><path d="M400 -27 v10"/>
+    <text x="196" y="-30">повний переріз</text>
+  </g>
+  <text x="546" y="120" fill="#c96a5a" font-size="11.5">TPU</text>
+  <text x="120" y="166" fill="#93a1ab" font-size="12">на кожну сторону скіс забирає 0,15 h</text>
+  <text x="120" y="186" fill="#c9d4db" font-size="13">α = arctg( 0,15 · h / t )</text>
+</svg>
+</figure>
+
+<table>
+  <tr><th>Довжина скосу t</th><th>Кут α</th><th>Для труби h = 20</th><th>h = 30</th><th>h = 40</th></tr>
+  <tr><td>0,5 · h</td><td>16,7°</td><td>t = 10 мм</td><td>15 мм</td><td>20 мм</td></tr>
+  <tr><td>0,6 · h</td><td><b>14,0°</b></td><td>12 мм</td><td>18 мм</td><td>24 мм</td></tr>
+  <tr><td>0,7 · h</td><td><b>12,1°</b></td><td>14 мм</td><td>21 мм</td><td>28 мм</td></tr>
+  <tr><td>0,85 · h</td><td><b>10,0°</b></td><td>17 мм</td><td>25 мм</td><td>34 мм</td></tr>
+  <tr><td>2 · h</td><td>4,3°</td><td>40 мм</td><td>60 мм</td><td>80 мм</td></tr>
+  <tr><td>третина труби 300 мм</td><td>1,7–3,4°</td><td>100 мм</td><td>100 мм</td><td>100 мм</td></tr>
+</table>
+
+<p><b>Висновок простий: щоб кут вийшов 10–15°, довжина скосу має бути приблизно
+з висоту самої труби</b> — від 0,56·h до 0,85·h. Це фаска на краю, а не конус
+на третину довжини. Конус на третину при тих самих 70% дає всього 2–3°.</p>
+
+<p>Якщо скіс односторонній (тільки знизу, верх рівний під шар 2), то забирається
+всі 30% з одного боку, і на ті самі 10–15° довжина скосу виходить
+<b>1,1–1,7 · h</b>.</p>
+
+<h2>Плита не пласка, а аркою</h2>
+<p>Ідея правильна за напрямком, але дає не те, що здається. Порахував на прольоті
+108 мм — це відстань між поперечними трубами шару 2.</p>
+
+<figure>
+<svg viewBox="-70 -70 720 320" role="img" aria-label="Пласка плита, арка, ребра">
+  <!-- flat -->
+  <g>
+    <text x="0" y="-40" fill="#e6ebef" font-size="13" font-weight="600">Пласка 5 мм</text>
+    <rect x="0" y="0" width="180" height="14" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+    <path d="M0 60 h180" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M0 22 Q90 52 180 22" fill="none" stroke="#e07b6a" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="52" y="76" fill="#e07b6a" font-size="11.5">провисає</text>
+    <text x="0" y="104" fill="#c9d4db" font-size="12">I = 260 мм⁴</text>
+    <text x="0" y="120" fill="#93a1ab" font-size="11.5">на смугу 25 мм</text>
+  </g>
+
+  <!-- arch -->
+  <g transform="translate(228,0)">
+    <text x="0" y="-40" fill="#e6ebef" font-size="13" font-weight="600">Арка 3 мм знизу</text>
+    <path d="M0 0 H180 V14 Q90 32 0 14 Z" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+    <g stroke="#d18b47" stroke-width="2.4">
+      <path d="M0 20 h-26"/><path d="M180 20 h26"/>
+    </g>
+    <path d="M-26 20 l12 -6 v12 z" fill="#d18b47"/>
+    <path d="M206 20 l-12 -6 v12 z" fill="#d18b47"/>
+    <text x="24" y="52" fill="#d18b47" font-size="11.5">розпір ≈ 486 × навантаження</text>
+    <text x="0" y="104" fill="#c9d4db" font-size="12">I той самий: 260 мм⁴</text>
+    <text x="0" y="120" fill="#93a1ab" font-size="11.5">без жорстких опор арка</text>
+    <text x="0" y="136" fill="#93a1ab" font-size="11.5">просто розпрямиться</text>
+  </g>
+
+  <!-- ribs -->
+  <g transform="translate(456,0)">
+    <text x="0" y="-40" fill="#e6ebef" font-size="13" font-weight="600">Плита 5 мм + ребра 3×8</text>
+    <rect x="0" y="0" width="180" height="14" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+    <g fill="#22303f" stroke="#5a86c9" stroke-width="2">
+      <rect x="14" y="14" width="9" height="24"/>
+      <rect x="59" y="14" width="9" height="24"/>
+      <rect x="104" y="14" width="9" height="24"/>
+      <rect x="149" y="14" width="9" height="24"/>
+    </g>
+    <path d="M0 60 h180" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="4 4"/>
+    <path d="M0 46 Q90 52 180 46" fill="none" stroke="#8fd18b" stroke-width="2" stroke-dasharray="6 4"/>
+    <text x="0" y="104" fill="#8fd18b" font-size="12">I = 1240 мм⁴ — у 4,8 раза</text>
+    <text x="0" y="120" fill="#93a1ab" font-size="11.5">матеріалу +19%</text>
+    <text x="0" y="136" fill="#93a1ab" font-size="11.5">крок ребра 25 мм</text>
+  </g>
+</svg>
+<figcaption>Арка на 3 мм при прольоті 108 мм має підйом усього 2,8% від прольоту. Розпір H = wL²/8f виходить у сотні разів більший за саме навантаження — поперечні труби його не втримають, і арка розпрямиться.</figcaption>
+</figure>
+
+<p><b>Але арка не марна — просто працює інакше.</b> Надрукована вигнутою <i>вгору</i>
+на 2–3 мм, під навантаженням вона стає рівною замість того, щоб провиснути.
+Це передвигин: жорсткості не додає, зате візуально прогин зникає. На платформі,
+де стоїть рука, це помітно.</p>
+
+<p>Якщо потрібна саме жорсткість — ребра знизу дешевші за будь-яку кривизну.
+Друкуються без підпор (вертикальна стінка), і чотири ребра 3×8 на 180 мм
+дають майже п'ятикратний виграш.</p>
+
+<h2>Профіль панелі: товсто по краях, тонко посередині</h2>
+<p>Це працює, але тільки якщо панель <b>защемлена</b> на поперечних трубах, а не просто
+на них лежить. Різниця принципова — епюра моментів у цих двох випадках протилежна.</p>
+
+<figure>
+<svg viewBox="-60 -110 780 330" role="img" aria-label="Епюри моментів: обперта і защемлена панель">
+  <!-- A: simply supported -->
+  <g>
+    <text x="0" y="-84" fill="#e07b6a" font-size="13.5" font-weight="600">Просто лежить на трубах</text>
+    <rect x="0" y="-60" width="300" height="16" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+    <g fill="#39424a" stroke="#9aa5ad" stroke-width="1.8">
+      <rect x="-16" y="-44" width="26" height="26" rx="4"/>
+      <rect x="290" y="-44" width="26" height="26" rx="4"/>
+    </g>
+    <g stroke="#93a1ab" stroke-width="1.6">
+      <path d="M30 -78 v14 M90 -78 v14 M150 -78 v14 M210 -78 v14 M270 -78 v14"/>
+    </g>
+    <path d="M0 20 H300" stroke="#4a6f8a" stroke-width="1.2"/>
+    <path d="M0 20 Q150 140 300 20" fill="none" stroke="#e07b6a" stroke-width="2.6"/>
+    <text x="106" y="106" fill="#e07b6a" font-size="12">M max</text>
+    <text x="0" y="152" fill="#e07b6a" font-size="12">максимум посередині —</text>
+    <text x="0" y="168" fill="#e07b6a" font-size="12">там і треба товще</text>
+    <text x="0" y="190" fill="#93a1ab" font-size="11.5">ваш профіль тут зробить гірше</text>
+  </g>
+
+  <!-- B: fixed-fixed -->
+  <g transform="translate(390,0)">
+    <text x="0" y="-84" fill="#8fd18b" font-size="13.5" font-weight="600">Прикручена жорстко</text>
+    <path d="M0 -60 H300 V-52 Q150 -34 0 -52 Z" fill="#22303f" stroke="#5a86c9" stroke-width="2"/>
+    <g fill="#39424a" stroke="#9aa5ad" stroke-width="1.8">
+      <rect x="-16" y="-44" width="26" height="26" rx="4"/>
+      <rect x="290" y="-44" width="26" height="26" rx="4"/>
+    </g>
+    <g fill="#8fd18b">
+      <circle cx="8" cy="-56" r="3.5"/><circle cx="26" cy="-56" r="3.5"/>
+      <circle cx="274" cy="-56" r="3.5"/><circle cx="292" cy="-56" r="3.5"/>
+    </g>
+    <g stroke="#93a1ab" stroke-width="1.6">
+      <path d="M30 -78 v14 M90 -78 v14 M150 -78 v14 M210 -78 v14 M270 -78 v14"/>
+    </g>
+    <path d="M0 20 H300" stroke="#4a6f8a" stroke-width="1.2"/>
+    <polyline points="0,-40 37,-1 63,20 75,28 112,44 150,50 187,44 225,28 237,20 263,-1 300,-40"
+              fill="none" stroke="#8fd18b" stroke-width="2.6"/>
+    <text x="6" y="-48" fill="#8fd18b" font-size="12">M на опорі</text>
+    <text x="122" y="68" fill="#8fd18b" font-size="12">удвічі менший</text>
+    <text x="0" y="152" fill="#8fd18b" font-size="12">максимум на краях —</text>
+    <text x="0" y="168" fill="#8fd18b" font-size="12">ваш профіль правильний</text>
+    <text x="0" y="190" fill="#93a1ab" font-size="11.5">M(опора) = wL²/12 · M(центр) = wL²/24</text>
+  </g>
+</svg>
+<figcaption>Защемлення дають не самі труби, а кріплення: широка опорна смуга і мінімум 2–3 гвинти на кожен край. Один гвинт посередині краю працює як шарнір — тоді це лівий випадок.</figcaption>
+</figure>
+
+<h3>Скільки саме можна зняти посередині</h3>
+<p>Опір перерізу росте як квадрат висоти (W = b·h²/6). Момент посередині вдвічі менший,
+отже висота посередині може бути 1/√2 ≈ <b>0,71</b> від крайової:</p>
+
+<table>
+  <tr><th>Край</th><th>Центр</th><th>Глибина арки</th></tr>
+  <tr><td>7 мм</td><td>5,0 мм</td><td><b>2,0 мм</b></td></tr>
+  <tr><td>6 мм</td><td>4,2 мм</td><td>1,8 мм</td></tr>
+  <tr><td>8 мм</td><td>5,7 мм</td><td>2,3 мм</td></tr>
+</table>
+
+<p class="k">Ваші «2–3 мм» — це майже точно теоретичне значення. При 7 мм по краях і 5 мм
+посередині напруження виходить <b>однакове по всьому прольоту</b>:
+на опорі ≈ wL²/98, у центрі ≈ wL²/100. Тобто панель однакової міцності —
+матеріал не лежить там, де не працює.</p>
+
+<figure>
+<svg viewBox="-70 -60 820 200" role="img" aria-label="Панель 7 на 5 мм">
+  <path d="M0 0 H520 V44 Q260 12 0 44 Z" fill="#22303f" stroke="#5a86c9" stroke-width="2.4"/>
+  <g fill="#39424a" stroke="#9aa5ad" stroke-width="2">
+    <rect x="-26" y="44" width="34" height="30" rx="5"/>
+    <rect x="512" y="44" width="34" height="30" rx="5"/>
+  </g>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M-44 0 V44"/><path d="M-49 0 h10 M-49 44 h10"/>
+    <text x="-68" y="26">7</text>
+    <path d="M260 0 V28"/><path d="M255 0 h10 M255 28 h10"/>
+    <text x="270" y="20">5</text>
+    <path d="M564 0 V44"/><path d="M559 0 h10 M559 44 h10"/>
+    <text x="576" y="26">7</text>
+    <path d="M0 100 H520"/><path d="M0 95 v10 M520 95 v10"/>
+    <text x="228" y="118">108</text>
+  </g>
+  <text x="196" y="-24" fill="#93a1ab" font-size="12">верх рівний — на нього стають стіни</text>
+  <text x="-64" y="90" fill="#9aa5ad" font-size="11.5">поперечна труба</text>
+  <text x="576" y="90" fill="#8fd18b" font-size="11.5">нахил на краю ≈ 4° —</text>
+  <text x="576" y="106" fill="#93a1ab" font-size="11.5">друкується без підпор</text>
+</svg>
+<figcaption>Верх пласкою стороною на стіл — арка виявляється зверху всередині деталі, звисів немає взагалі.</figcaption>
+</figure>
+
+<h3 class="b">Тут є конфлікт із доступом</h3>
+<p>Панель має бути знімною — інакше до плат не дістатися. Але защемлення вимагає,
+щоб вона була прикручена жорстко. Це сумісно, але не саме собою:</p>
+<ul>
+  <li>опорна смуга на трубі завширшки <b>щонайменше 10–12 мм</b>, а не лінія контакту</li>
+  <li><b>2–3 гвинти на кожен край</b>, рознесені по ширині — один гвинт дає шарнір, а не защемлення</li>
+  <li>якщо якась панель кріпиться тільки одним гвинтом або на защіпках — для неї профіль треба <b>звичайний, рівний</b>, бо вона працює як обперта</li>
+</ul>
+
+<h2>Що з цього випливає</h2>
+<table>
+  <tr><th style="width:190px">Шари 1 і 2 навхрест</th><td>Труби вздовж і труби поперек — це решітка. На кручення вона тримає значно краще, ніж один шар труб в одному напрямку.</td></tr>
+  <tr><td>Шар 3 як площина</td><td>5–7 мм пластина на прольоті 108 мм між поперечними трубами прогинається мало. Якби поперечна труба була одна, а не три, довелося б робити 10–12 мм.</td></tr>
+  <tr><td>Два відсіки</td><td>Силове (акум) і логіка (плати) розділені суцільною трубою по центру. Джгут між ними йде або крізь цю трубу, або зовні по борту.</td></tr>
+</table>
+
+<h3 class="b">Два місця, де це кусається</h3>
+<ul>
+  <li><b>Колеса чіпляються до шару 1, а вантаж лежить на шарі 3.</b> Між ними шар 2. Тобто вся вага з платформи йде вниз через два стики, а не через один. Стик шар 1 ↔ шар 2 стає найнавантаженішим місцем.</li>
+  <li><b>Стіни на пластинах шару 3.</b> Пластина 5–7 мм добре працює на згин, але кріплення стіни — це відрив від пластини. Різьбові втулки в неї не влізуть по товщині: втулка M3 має ~5 мм. Або товстіше в місцях кріплення, або стіни спираються прямо на поперечні труби крізь пластину.</li>
+</ul>
+
+</div>

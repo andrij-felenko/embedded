@@ -1,0 +1,179 @@
+<title>Ровер — розстановка і пружини</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:36px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:470px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:4px 0}
+  .b{color:#e07b6a}
+  .k{color:#8fd18b}
+</style>
+
+<div class="wrap">
+
+<h1>Рівномірна розстановка і пружини</h1>
+<p class="lead">Два питання, які насправді одне: якщо в кожного колеса є свій хід,
+то потреба в шарнірі зменшується. Питання тільки в тому, <b>скільки саме ходу</b>
+вдасться отримати.</p>
+
+<h2>Х— —Х— —Х проти Х— — — —Х— —Х</h2>
+
+<figure>
+<svg viewBox="-60 -50 700 380" role="img" aria-label="Рівномірна і нерівномірна розстановка">
+  <text x="-52" y="-24" fill="#d18b47" font-size="13.5" font-weight="600">Нерівномірна — те, що було</text>
+  <path d="M-50 96 H620" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="4 4"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="20" cy="60" r="34"/><circle cx="400" cy="60" r="34"/><circle cx="590" cy="60" r="34"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3"><circle cx="20" cy="60" r="27"/><circle cx="400" cy="60" r="27"/><circle cx="590" cy="60" r="27"/></g>
+  <path d="M54 26 H366" stroke="#8fd18b" stroke-width="3"/>
+  <text x="150" y="18" fill="#8fd18b" font-size="12">проміжок 110 мм — шарнір влазить вільно</text>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+    <path d="M20 112 H400"/><path d="M20 107 v10 M400 107 v10"/>
+    <text x="184" y="130">190</text>
+    <path d="M400 112 H590"/><path d="M590 107 v10"/>
+    <text x="480" y="130">95</text>
+  </g>
+
+  <g transform="translate(0,158)">
+    <text x="-52" y="-24" fill="#8fd18b" font-size="13.5" font-weight="600">Рівномірна — той самий габарит</text>
+    <path d="M-50 96 H620" stroke="#4a6f8a" stroke-width="1" stroke-dasharray="4 4"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="20" cy="60" r="34"/><circle cx="305" cy="60" r="34"/><circle cx="590" cy="60" r="34"/>
+    </g>
+    <g fill="none" stroke="#c96a5a" stroke-width="3"><circle cx="20" cy="60" r="27"/><circle cx="305" cy="60" r="27"/><circle cx="590" cy="60" r="27"/></g>
+    <path d="M54 26 H271" stroke="#e07b6a" stroke-width="3"/>
+    <path d="M339 26 H556" stroke="#e07b6a" stroke-width="3"/>
+    <text x="72" y="18" fill="#e07b6a" font-size="12">обидва проміжки по 62 мм</text>
+    <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+      <path d="M20 112 H305"/><path d="M20 107 v10 M305 107 v10"/>
+      <text x="136" y="130">142</text>
+      <path d="M305 112 H590"/><path d="M590 107 v10"/>
+      <text x="422" y="130">142</text>
+    </g>
+    <path d="M305 60 V-4" stroke="#8fd18b" stroke-width="1.4" stroke-dasharray="5 4"/>
+    <text x="316" y="-6" fill="#8fd18b" font-size="12">центр обертання — рівно посередині</text>
+  </g>
+</svg>
+<figcaption>Габарит той самий, змінюється тільки положення середнього колеса. Проміжок під шарнір при цьому не зникає — він просто ділиться на два.</figcaption>
+</figure>
+
+<table>
+  <tr><th></th><th>Х— — — —Х— —Х</th><th>Х— —Х— —Х</th></tr>
+  <tr><td>Навантаження на колесо</td><td>нерівне за визначенням</td><td class="k">рівне</td></tr>
+  <tr><td>Центр обертання</td><td>зміщений назад — ніс описує велику дугу</td><td class="k">посередині — ніс і корма ходять однаково</td></tr>
+  <tr><td>Задній хід</td><td>поводиться інакше, ніж передній</td><td class="k">однаково в обидва боки</td></tr>
+  <tr><td>Деталі рами</td><td>несиметрична, кожна секція своя</td><td class="k">дзеркальна, менше унікальних деталей</td></tr>
+  <tr><td>Кут в'їзду</td><td class="k">переднє колесо винесене — більше місця піднятись</td><td>звичайний</td></tr>
+  <tr><td>Задня пара</td><td class="k">працює як одне широке колесо</td><td>такої пари немає</td></tr>
+  <tr><td>Місце під шарнір</td><td class="k">один проміжок 110 мм</td><td>два по 62 мм — тісно, але влазить</td></tr>
+</table>
+
+<p>Дрібниця, але справжня: при рівномірній розстановці всі три колеса наїжджають
+на однакову нерівність через однакові інтервали — на регулярній гребінці це
+розгойдує ровер у резонанс. Нерівномірна розстановка цей резонанс збиває.
+На 1 м/с ефект малий, але він є.</p>
+
+<h2>Пружини: хід важливіший за жорсткість</h2>
+
+<figure>
+<svg viewBox="-60 -40 720 290" role="img" aria-label="Хід підвіски і перешкода">
+  <!-- A: no travel -->
+  <g>
+    <text x="0" y="-16" fill="#e07b6a" font-size="13" font-weight="600">Ходу мало — корпус бере весь удар</text>
+    <path d="M0 200 H110 L140 172 H210 L240 200 H300" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+    <g transform="rotate(-7 150 120)">
+      <rect x="10" y="100" width="280" height="34" fill="#232d36" stroke="#7fb3d5" stroke-width="2.2" rx="4"/>
+    </g>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="46" cy="172" r="28"/><circle cx="175" cy="144" r="28"/><circle cx="270" cy="172" r="28"/>
+    </g>
+    <path d="M320 92 V126" stroke="#e07b6a" stroke-width="2"/>
+    <path d="M320 88 l-6 12 h12 z" fill="#e07b6a"/>
+    <text x="-52" y="60" fill="#e07b6a" font-size="12">корпус піднімається</text>
+    <text x="-52" y="76" fill="#e07b6a" font-size="12">майже на всю висоту</text>
+  </g>
+
+  <!-- B: enough travel -->
+  <g transform="translate(370,0)">
+    <text x="0" y="-16" fill="#8fd18b" font-size="13" font-weight="600">Ходу вистачає — корпус майже не рухається</text>
+    <path d="M0 200 H110 L140 172 H210 L240 200 H300" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+    <rect x="10" y="88" width="280" height="34" fill="#232d36" stroke="#7fb3d5" stroke-width="2.2" rx="4"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="46" cy="172" r="28"/><circle cx="175" cy="144" r="28"/><circle cx="270" cy="172" r="28"/>
+    </g>
+    <g stroke="#c96a5a" stroke-width="2.4" fill="none">
+      <path d="M46 122 l8 -6 l-16 -6 l16 -6 l-16 -6 l8 -6"/>
+      <path d="M270 122 l8 -6 l-16 -6 l16 -6 l-16 -6 l8 -6"/>
+      <path d="M175 122 v-6"/>
+    </g>
+    <path d="M175 144 V122" stroke="#c96a5a" stroke-width="3"/>
+    <text x="196" y="140" fill="#c96a5a" font-size="12">пружина стиснулась</text>
+    <path d="M320 96 V108" stroke="#8fd18b" stroke-width="2"/>
+    <path d="M320 92 l-6 12 h12 z" fill="#8fd18b"/>
+    <text x="330" y="112" fill="#8fd18b" font-size="12">рух корпусу</text>
+    <text x="330" y="128" fill="#8fd18b" font-size="12">малий</text>
+  </g>
+</svg>
+<figcaption>Дуже м'яка пружина з ходом 5 мм на перешкоді 30 мм пробиває до упору за перші 5 мм і далі поводиться як жорстка. Тому головне питання — не «яка жорсткість», а «скільки міліметрів ходу влізе в под».</figcaption>
+</figure>
+
+<h3>Скільки ходу треба</h3>
+<ul>
+  <li>Уступ, який ровер узагалі здатен переїхати на Ø80 — <b>20–40 мм</b>.</li>
+  <li>Щоб корпус майже не піднявся, хід колеса має бути <b>співмірним з перешкодою</b>.</li>
+  <li>У друкованому поді реально закласти <b>15–20 мм</b>. Це повністю закриває дрібні
+  нерівності до 20 мм і суттєво пом'якшує 40-мм.</li>
+</ul>
+
+<h3>Жорсткість під вашу масу</h3>
+<p>Просідання під власною вагою беруть ≈30% від повного ходу. При ході 20 мм
+це <b>6 мм просідання</b>. Жорсткість на одне колесо = вага на колесо / просідання:</p>
+
+<table>
+  <tr><th>Маса ровера</th><th>На одне колесо</th><th>Жорсткість при 6 мм просідання</th></tr>
+  <tr><td>1 кг</td><td>0,17 кг = 1,6 Н</td><td>0,27 Н/мм</td></tr>
+  <tr><td>2 кг</td><td>0,33 кг = 3,3 Н</td><td>0,55 Н/мм</td></tr>
+  <tr><td>3 кг</td><td>0,50 кг = 4,9 Н</td><td>0,82 Н/мм</td></tr>
+  <tr><td>5 кг</td><td>0,83 кг = 8,2 Н</td><td>1,36 Н/мм</td></tr>
+</table>
+
+<p class="b">Це діапазон у п'ять разів. Пружина, підібрана під 5 кг, при 1 кг просяде
+на 1,2 мм і працюватиме як суцільний пластик. Перш ніж проєктувати под,
+масу треба звузити хоча б до «3 ± 1 кг» — інакше підвіска гарантовано буде не та.</p>
+
+<p>Власна частота при 6 мм просідання виходить ≈6,4 Гц. Для машини такого розміру
+це нормально — маленькі апарати завжди мають жорсткішу підвіску, ніж автомобілі.</p>
+
+<h2>Пружини частково замінюють шарнір</h2>
+<p>Шарнір потрібен рівно тоді, коли колесо не може відпрацювати нерівність своїм
+ходом і починає вивішуватись. Якщо в кожного з шести коліс є справжній хід,
+корпус сам собою «усереднює» шість точок опори — і перекіс перестає знімати
+колеса з ґрунту.</p>
+
+<table>
+  <tr><th>Хід на колесо</th><th>Перекіс 30 мм</th><th>Потрібен шарнір?</th></tr>
+  <tr><td>0–5 мм</td><td>колеса вивішуються, тяга зникає</td><td class="b">так</td></tr>
+  <tr><td>15–20 мм</td><td>усі колеса лишаються на ґрунті</td><td class="k">ні</td></tr>
+  <tr><td>15–20 мм, перекіс 60 мм</td><td>пробиває до упору</td><td>так, або більший хід</td></tr>
+</table>
+
+<p class="k"><b>Відповідь коротко:</b> рівномірна розстановка — так, вона простіша
+і симетрична, а місце під шарнір усе одно лишається (два проміжки по 62 мм).
+Пружини — так, і саме вони, а не шарнір, дадуть плавність. Але лише якщо
+закласти <b>15–20 мм ходу</b>: менше — і пружина існує лише на папері.</p>
+
+<p>Тобто порядок такий: спершу хід у поді, потім, якщо його не вистачить, шарнір.
+Не навпаки.</p>
+
+</div>

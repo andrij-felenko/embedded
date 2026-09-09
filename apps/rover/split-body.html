@@ -1,0 +1,376 @@
+<title>Ровер — корпус із двох частин</title>
+<style>
+  body{background:#14171a;color:#e6ebef;font:14px/1.55 "Segoe UI",system-ui,sans-serif;margin:0;padding:26px 20px 60px}
+  .wrap{max-width:1060px;margin:0 auto}
+  h1{font-size:26px;font-weight:600;margin:0 0 4px}
+  h2{font-size:20px;font-weight:600;margin:36px 0 6px;border-top:1px solid #2c3339;padding-top:20px}
+  h3{font-size:14px;font-weight:600;margin:20px 0 6px;color:#7fb3d5}
+  p{margin:8px 0;max-width:80ch}
+  .lead{color:#93a1ab}
+  figure{margin:14px 0 8px;background:#1b1f23;border:1px solid #2c3339;border-radius:8px;padding:14px;overflow-x:auto}
+  figcaption{color:#93a1ab;font-size:12.5px;margin-top:8px}
+  svg{display:block;min-width:470px;max-width:100%;height:auto}
+  table{border-collapse:collapse;margin:12px 0;font-size:13.5px;width:100%}
+  th,td{border:1px solid #2c3339;padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#20262b;font-weight:600}
+  ul{margin:8px 0;padding-left:20px;max-width:80ch}
+  li{margin:4px 0}
+  .b{color:#e07b6a}
+  .k{color:#8fd18b}
+</style>
+
+<div class="wrap">
+
+<h1>Корпус із двох частин</h1>
+<p class="lead">Розстановка Х— — — —Х— —Х уже має природне місце розрізу: довгий проміжок
+між переднім колесом і задньою парою. Розділивши там, отримуємо
+<b>2 колеса спереду і 4 ззаду</b>, а шарнір стає посередині порожнього місця,
+де він нічому не заважає.</p>
+
+<h2>Де проходить розріз</h2>
+
+<figure>
+<svg viewBox="-60 20 700 240" role="img" aria-label="Розріз корпусу на дві частини">
+  <path d="M-50 232 H620" stroke="#9aa5ad" stroke-width="1.8"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="44" cy="196" r="36"/><circle cx="380" cy="196" r="36"/><circle cx="552" cy="196" r="36"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.4">
+    <circle cx="44" cy="196" r="29"/><circle cx="380" cy="196" r="29"/><circle cx="552" cy="196" r="29"/>
+  </g>
+
+  <path d="M-14 150 V112 L14 98 H196 V150 Z" fill="#2b2320" stroke="#d18b47" stroke-width="2.4" stroke-linejoin="round"/>
+  <text x="42" y="130" fill="#d18b47" font-size="12">акум</text>
+  <path d="M216 150 V98 H580 L600 114 V150 Z" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4" stroke-linejoin="round"/>
+  <text x="360" y="130" fill="#8fd18b" font-size="12">плати</text>
+
+  <circle cx="206" cy="124" r="13" fill="#20262b" stroke="#c96a5a" stroke-width="3.2"/>
+  <circle cx="206" cy="124" r="4" fill="#c96a5a"/>
+  <text x="150" y="80" fill="#c96a5a" font-size="13" font-weight="600">шарнір</text>
+  <path d="M198 86 L206 108" stroke="#c96a5a" stroke-width="1.2"/>
+
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M44 262 H380"/><path d="M44 257 v10 M380 257 v10"/>
+    <text x="176" y="280">довгий проміжок</text>
+    <path d="M380 262 H552"/><path d="M552 257 v10"/>
+    <text x="432" y="280">пара</text>
+  </g>
+  <text x="-52" y="70" fill="#93a1ab" font-size="12.5">передня секція · 2 колеса</text>
+  <text x="330" y="70" fill="#93a1ab" font-size="12.5">задня секція · 4 колеса</text>
+  <path d="M-24 196 h-30" stroke="#8fd18b" stroke-width="2"/>
+  <path d="M-54 196 l13 -6 v12 z" fill="#8fd18b"/>
+</svg>
+<figcaption>Шарнір потрапляє рівно в порожнє місце між колесами — там немає ні мотора, ні поду, ні відсіку.</figcaption>
+</figure>
+
+<h2>Крен — вісь уздовж</h2>
+
+<figure>
+<svg viewBox="-80 20 660 280" role="img" aria-label="Артикуляція по крену, вигляд спереду">
+  <path d="M-70 250 H120 L330 157 H570" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M-50 250 l-11 12 M-10 250 l-11 12 M30 250 l-11 12 M70 250 l-11 12 M110 250 l-11 12
+             M360 157 l-11 12 M400 157 l-11 12 M440 157 l-11 12 M480 157 l-11 12 M520 157 l-11 12 M560 157 l-11 12"/>
+  </g>
+
+  <path d="M40 110 H470" stroke="#4a6f8a" stroke-width="1.6" stroke-dasharray="8 6"/>
+  <text x="-72" y="104" fill="#4a6f8a" font-size="12">площина</text>
+  <text x="-72" y="120" fill="#4a6f8a" font-size="12">задньої секції</text>
+
+  <g transform="rotate(-13 250 110)">
+    <rect x="40" y="88" width="420" height="42" fill="#232d36" stroke="#7fb3d5" stroke-width="2.4" rx="5"/>
+    <rect x="150" y="96" width="200" height="26" fill="#2b2320" stroke="#d18b47" stroke-width="1.8" rx="3"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <rect x="20" y="130" width="44" height="76" rx="5"/>
+      <rect x="436" y="130" width="44" height="76" rx="5"/>
+    </g>
+  </g>
+
+  <circle cx="250" cy="110" r="12" fill="#20262b" stroke="#c96a5a" stroke-width="3.2"/>
+  <circle cx="250" cy="110" r="4" fill="#c96a5a"/>
+  <path d="M250 110 m130 0 a130 130 0 0 0 -28 -32" fill="none" stroke="#c96a5a" stroke-width="2"/>
+  <path d="M352 78 l13 3 l-6 -12 z" fill="#c96a5a"/>
+  <text x="386" y="88" fill="#c96a5a" font-size="12.5">крен передньої секції</text>
+  <text x="-72" y="204" fill="#93a1ab" font-size="12">обидва колеса</text>
+  <text x="-72" y="220" fill="#93a1ab" font-size="12">лишаються на ґрунті</text>
+</svg>
+<figcaption>Передня секція лягає на нерівність, задня стоїть рівно. Це найкорисніша з чотирьох осей: усі шість коліс тримають зчеплення на будь-якому перекосі.</figcaption>
+</figure>
+
+<h2>Тангаж — вісь поперек</h2>
+
+<figure>
+<svg viewBox="-60 40 680 270" role="img" aria-label="Артикуляція по тангажу">
+  <path d="M-50 246 H50 L80 196 H160 L210 246 H620" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+  <g stroke="#4a6f8a" stroke-width="1">
+    <path d="M240 246 l-11 12 M290 246 l-11 12 M340 246 l-11 12 M390 246 l-11 12 M440 246 l-11 12
+             M490 246 l-11 12 M540 246 l-11 12 M590 246 l-11 12 M20 246 l-11 12"/>
+  </g>
+
+  <g transform="rotate(15 300 152)">
+    <path d="M60 176 V138 L88 124 H288 V176 Z" fill="#2b2320" stroke="#d18b47" stroke-width="2.4" stroke-linejoin="round"/>
+    <circle cx="120" cy="212" r="34" fill="#2a3138" stroke="#7fb3d5" stroke-width="2"/>
+    <circle cx="120" cy="212" r="27" fill="none" stroke="#c96a5a" stroke-width="3.2"/>
+    <path d="M104 176 V186" stroke="#9aa5ad" stroke-width="6"/>
+  </g>
+
+  <path d="M312 176 V124 H556 L576 140 V176 Z" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4" stroke-linejoin="round"/>
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+    <circle cx="400" cy="212" r="34"/><circle cx="530" cy="212" r="34"/>
+  </g>
+  <g fill="none" stroke="#c96a5a" stroke-width="3.2">
+    <circle cx="400" cy="212" r="27"/><circle cx="530" cy="212" r="27"/>
+  </g>
+  <g stroke="#9aa5ad" stroke-width="6">
+    <path d="M400 176 V186"/><path d="M530 176 V186"/>
+  </g>
+
+  <circle cx="300" cy="152" r="12" fill="#20262b" stroke="#c96a5a" stroke-width="3.2"/>
+  <circle cx="300" cy="152" r="4" fill="#c96a5a"/>
+  <path d="M300 152 m-120 0 a120 120 0 0 1 24 -66" fill="none" stroke="#c96a5a" stroke-width="2"/>
+  <path d="M204 86 l-2 -13 l11 6 z" fill="#c96a5a"/>
+  <text x="-52" y="100" fill="#c96a5a" font-size="12.5">вісь тангажу — поперек</text>
+  <text x="-52" y="118" fill="#93a1ab" font-size="12">передня секція піднімається сама</text>
+  <text x="330" y="292" fill="#93a1ab" font-size="12">задні чотири лишаються рівно на землі</text>
+</svg>
+<figcaption>Без цієї осі на перегині переднє колесо піднімається в повітря, і ровер втрачає саме те колесо, яким штовхається вперед.</figcaption>
+</figure>
+
+<h2>Рискання — поворот зламом</h2>
+
+<figure>
+<svg viewBox="-70 -40 640 300" role="img" aria-label="Артикуляція по рисканню, вигляд зверху">
+  <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
+    <rect x="330" y="-4" width="84" height="34" rx="5"/>
+    <rect x="446" y="-4" width="84" height="34" rx="5"/>
+    <rect x="330" y="190" width="84" height="34" rx="5"/>
+    <rect x="446" y="190" width="84" height="34" rx="5"/>
+  </g>
+  <path d="M296 8 H548 L566 42 V178 L548 212 H296 Z" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.4" stroke-linejoin="round"/>
+  <text x="392" y="116" fill="#8fd18b" font-size="12.5">задня секція</text>
+
+  <g transform="rotate(-26 280 110)">
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="1.8">
+      <rect x="6" y="-4" width="84" height="34" rx="5"/>
+      <rect x="6" y="190" width="84" height="34" rx="5"/>
+    </g>
+    <path d="M-16 44 L12 8 H264 V212 H12 L-16 176 Z" fill="#2b2320" stroke="#d18b47" stroke-width="2.4" stroke-linejoin="round"/>
+    <text x="70" y="116" fill="#d18b47" font-size="12.5">передня секція</text>
+  </g>
+
+  <circle cx="280" cy="110" r="13" fill="#20262b" stroke="#c96a5a" stroke-width="3.2"/>
+  <circle cx="280" cy="110" r="4" fill="#c96a5a"/>
+  <text x="248" y="-16" fill="#c96a5a" font-size="12.5">вісь рискання</text>
+  <path d="M264 -8 L278 96" stroke="#c96a5a" stroke-width="1.2"/>
+  <text x="-62" y="250" fill="#93a1ab" font-size="12">поворот зламом рами — колеса не буксують убік</text>
+</svg>
+<figcaption>Замінює поворот бортами: колеса котяться, а не шкребуть. Але цю вісь треба приводити — сервою або лінійним актуатором, інакше секція просто теліпається.</figcaption>
+</figure>
+
+<h2>Сам шарнір</h2>
+
+<figure>
+<svg viewBox="-70 -30 700 260" role="img" aria-label="Конструкція шарніра">
+  <text x="-62" y="-8" fill="#e6ebef" font-size="13.5" font-weight="600">Два підшипники, рознесені по осі</text>
+  <rect x="0" y="46" width="120" height="76" fill="#2b2320" stroke="#d18b47" stroke-width="2.2" rx="4"/>
+  <rect x="380" y="46" width="120" height="76" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.2" rx="4"/>
+  <rect x="120" y="72" width="260" height="24" fill="#39424a" stroke="#9aa5ad" stroke-width="2.2" rx="12"/>
+  <g fill="#2d353c" stroke="#9aa5ad" stroke-width="2.2">
+    <rect x="132" y="60" width="26" height="48" rx="3"/>
+    <rect x="342" y="60" width="26" height="48" rx="3"/>
+  </g>
+  <path d="M145 84 h210" stroke="#c96a5a" stroke-width="4" stroke-dasharray="10 6"/>
+  <text x="176" y="132" fill="#c96a5a" font-size="12">джгут іде ПО осі — скручується, а не розтягується</text>
+  <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="12">
+    <path d="M145 32 H355"/><path d="M145 27 v10 M355 27 v10"/>
+    <text x="204" y="24">рознесення ≥ 40 мм</text>
+  </g>
+  <text x="520" y="76" fill="#93a1ab" font-size="12">один підшипник</text>
+  <text x="520" y="92" fill="#93a1ab" font-size="12">не втримає момент</text>
+  <text x="520" y="108" fill="#93a1ab" font-size="12">від тангажу й рискання</text>
+
+  <text x="-62" y="176" fill="#e6ebef" font-size="13.5" font-weight="600">Або без підшипників — TPU-перехід</text>
+  <g transform="translate(0,190)">
+    <rect x="0" y="0" width="150" height="40" fill="#2b2320" stroke="#d18b47" stroke-width="2.2" rx="4"/>
+    <rect x="350" y="0" width="150" height="40" fill="#1c2a22" stroke="#8fd18b" stroke-width="2.2" rx="4"/>
+    <path d="M150 4 Q250 -12 350 4 L350 36 Q250 52 150 36 Z" fill="#3a2723" stroke="#c96a5a" stroke-width="2.4"/>
+    <text x="520" y="16" fill="#c96a5a" font-size="12">гнеться в усі боки</text>
+    <text x="520" y="32" fill="#93a1ab" font-size="12">на ±5–10°, повзе з часом</text>
+  </g>
+</svg>
+<figcaption>Один підшипник дає вісь, але не тримає моменти навколо двох інших осей. Два, рознесені хоча б на 40 мм, перетворюють шарнір на нормальний вузол.</figcaption>
+</figure>
+
+<h2>Кліренс, артикуляція і діаметр колеса — це три різні задачі</h2>
+<p>Підняти корпус вище — не заміна шарніру. Вони лікують різні хвороби, і третя,
+найчастіша, не лікується жодним із них.</p>
+
+<figure>
+<svg viewBox="-40 -50 900 300" role="img" aria-label="Три випадки: днище, перекос, уступ">
+  <!-- A: belly -->
+  <g>
+    <text x="0" y="-26" fill="#8fd18b" font-size="13" font-weight="600">1 · Камінь під днищем</text>
+    <path d="M0 200 H120 L140 158 H176 L196 200 H260" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+    <rect x="10" y="96" width="240" height="40" fill="#232d36" stroke="#7fb3d5" stroke-width="2.2" rx="4"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="46" cy="168" r="32"/><circle cx="214" cy="168" r="32"/>
+    </g>
+    <g stroke="#9aa5ad" stroke-width="5"><path d="M46 136 V146"/><path d="M214 136 V146"/></g>
+    <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+      <path d="M262 136 V200"/><path d="M257 136 h10 M257 200 h10"/>
+      <text x="270" y="172">h</text>
+    </g>
+    <text x="0" y="240" fill="#8fd18b" font-size="12">лікує: <tspan font-weight="600">кліренс</tspan></text>
+    <text x="0" y="258" fill="#93a1ab" font-size="11.5">шарнір тут не потрібен</text>
+  </g>
+
+  <!-- B: twist -->
+  <g transform="translate(310,0)">
+    <text x="0" y="-26" fill="#c96a5a" font-size="13" font-weight="600">2 · Перекос по діагоналі</text>
+    <path d="M0 200 H90 L150 162 H260" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+    <rect x="10" y="96" width="240" height="40" fill="#232d36" stroke="#7fb3d5" stroke-width="2.2" rx="4"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="46" cy="168" r="32"/>
+    </g>
+    <g fill="#2a3138" stroke="#e07b6a" stroke-width="2.4" stroke-dasharray="6 4">
+      <circle cx="214" cy="168" r="32"/>
+    </g>
+    <g stroke="#9aa5ad" stroke-width="5"><path d="M46 136 V146"/><path d="M214 136 V146"/></g>
+    <path d="M214 200 V180" stroke="#e07b6a" stroke-width="2"/>
+    <path d="M214 176 l-6 12 h12 z" fill="#e07b6a"/>
+    <text x="178" y="220" fill="#e07b6a" font-size="11.5">колесо в повітрі</text>
+    <text x="0" y="240" fill="#c96a5a" font-size="12">лікує: <tspan font-weight="600">шарнір</tspan></text>
+    <text x="0" y="258" fill="#93a1ab" font-size="11.5">кліренс не допомагає взагалі</text>
+  </g>
+
+  <!-- C: step -->
+  <g transform="translate(620,0)">
+    <text x="0" y="-26" fill="#d18b47" font-size="13" font-weight="600">3 · Вертикальний уступ</text>
+    <path d="M0 200 H150 V148 H240" stroke="#9aa5ad" stroke-width="2" fill="none"/>
+    <g fill="#2a3138" stroke="#7fb3d5" stroke-width="2">
+      <circle cx="118" cy="168" r="32"/>
+    </g>
+    <g fill="none" stroke="#c96a5a" stroke-width="3"><circle cx="118" cy="168" r="26"/></g>
+    <g stroke="#d18b47" stroke-width="1.2" fill="#d18b47" font-size="11.5">
+      <path d="M170 148 V200"/><path d="M165 148 h10 M165 200 h10"/>
+      <text x="182" y="178">h</text>
+      <path d="M60 168 V200"/><path d="M55 168 h10 M55 200 h10"/>
+      <text x="24" y="190">r</text>
+    </g>
+    <text x="0" y="240" fill="#d18b47" font-size="12">лікує: <tspan font-weight="600">діаметр колеса</tspan></text>
+    <text x="0" y="258" fill="#93a1ab" font-size="11.5">ні кліренс, ні шарнір не змінять межу</text>
+  </g>
+</svg>
+<figcaption>Три різні відмови, три різні ліки. Плутати їх — найдорожча помилка на цьому етапі.</figcaption>
+</figure>
+
+<h3>Чому підняття майже нічого не дає</h3>
+<p>Ведуче колесо радіуса r бере вертикальний уступ приблизно до <b>h ≈ 0,5 r</b>
+самотужки, і до <b>h ≈ r</b> якщо його штовхають інші колеса. Для Ø80 це
+<b>20–40 мм</b>.</p>
+<p>Поточний кліренс — <b>70 мм</b>. Він <b>уже вдвічі більший</b> за найбільший уступ,
+який ровер узагалі здатен переїхати. Піднявши корпус до 110 мм, ви отримаєте запас
+там, де запас і так є.</p>
+
+<table>
+  <tr><th>Дія</th><th>Що реально змінює</th><th class="b">Чим платиш</th></tr>
+  <tr>
+    <td>Підняти корпус<br>70 → 110 мм</td>
+    <td>нічого — кліренс і так не є вузьким місцем</td>
+    <td>ЦТ вгору, кут перекидання падає</td>
+  </tr>
+  <tr>
+    <td>Ширша колія<br>180 → 240 мм</td>
+    <td>стійкість, особливо під витягнутою рукою</td>
+    <td>габарит, довші поперечні труби</td>
+  </tr>
+  <tr>
+    <td><b>Більше колесо</b><br>Ø80 → Ø120</td>
+    <td>уступ +50%: з 20–40 до 30–60 мм. Кліренс росте сам собою</td>
+    <td>більший момент на мотор, більший габарит</td>
+  </tr>
+  <tr>
+    <td>Шарнір крену</td>
+    <td>колеса не вивішуються на перекосі — тяга не зникає</td>
+    <td>вузол, упори, джгут через вісь</td>
+  </tr>
+</table>
+
+<h3 class="b">Скільки коштує підняття</h3>
+<p>Статичний кут перекидання = arctg( колія / 2 · висота ЦТ ).</p>
+<ul>
+  <li>колія 180, ЦТ на 60 мм → <b>56°</b></li>
+  <li>колія 180, ЦТ на 90 мм → <b>45°</b></li>
+  <li>колія 240, ЦТ на 90 мм → <b>53°</b></li>
+</ul>
+<p>Тобто підняття на 30 мм з'їдає 11°, і щоб їх повернути, колію треба розширити
+на 60 мм. Ширше — так, вище — тільки разом із ширше.</p>
+
+<p class="k"><b>Відповідь коротко:</b> ширше — корисно завжди. Вище — саме по собі
+не дає нічого, бо кліренс не є вузьким місцем. Якщо мета — перешкоди, першим важелем
+є діаметр колеса, другим — шарнір, і тільки третім кліренс.</p>
+
+<h2>Порівняння осей</h2>
+<table>
+  <tr><th>Вісь</th><th>Що дає</th><th>Треба привід?</th><th class="b">Чим платиш</th></tr>
+  <tr>
+    <td><b>Крен</b><br>уздовж</td>
+    <td>усі шість коліс на ґрунті при будь-якому перекосі</td>
+    <td>ні, пасивна</td>
+    <td>передня секція на двох колесах може лягти на бік — потрібні обмежувачі ±20–30°</td>
+  </tr>
+  <tr>
+    <td><b>Тангаж</b><br>поперек</td>
+    <td>переднє колесо не відривається на перегині</td>
+    <td>ні, пасивна</td>
+    <td>вага передньої секції висить на шарнірі консоллю — найбільше навантаження з чотирьох</td>
+  </tr>
+  <tr>
+    <td><b>Крен + тангаж</b><br>хрестовина</td>
+    <td>і те, і те разом; найкраще стеження за рельєфом</td>
+    <td>ні</td>
+    <td>дві осі, удвічі більше деталей, секція «гуляє» у двох напрямках одночасно</td>
+  </tr>
+  <tr>
+    <td><b>Рискання</b><br>вертикальна</td>
+    <td>поворот зламом замість буксування</td>
+    <td><b>так</b> — серва або актуатор</td>
+    <td>без приводу секція теліпається; з приводом це ще один навантажений вузол</td>
+  </tr>
+  <tr>
+    <td><b>TPU-перехід</b><br>без осей</td>
+    <td>трохи в усі боки одразу, нуль підшипників</td>
+    <td>ні</td>
+    <td>хід малий (±5–10°), TPU повзе, і переріз має тримати всю вагу секції</td>
+  </tr>
+</table>
+
+<h2>Три речі, які вирішать, чи це працюватиме</h2>
+
+<h3 class="b">1 · Акум спереду тепер стоїть на двох колесах</h3>
+<p>Досі акум був спереду, щоб урівноважувати руку. Але після розрізу передня секція —
+це <b>2 колеса</b>, а задня — <b>4</b>. Найважча річ опиняється на найменшій кількості коліс:
+передні перевантажені, задні чотири недовантажені й почнуть буксувати.</p>
+<p>Або акум переїжджає в задню секцію (і тоді рука спереду вже нічим не врівноважена),
+або передні колеса свідомо роблять «ведучою парою» — ширша шина, більший мотор.
+Третього варіанта немає, це просто арифметика.</p>
+
+<h3 class="b">2 · Через шарнір проходять тільки проводи</h3>
+<p>Це те місце, яке ламається на всіх шарнірних машинах. Джгут має йти
+<b>по самій осі</b>, а не збоку від неї: тоді він скручується на кілька градусів,
+а не розтягується на сантиметри. Плюс запас петлею з обох боків.</p>
+<p>Якщо акум лишається спереду, а плати ззаду — через шарнір іде силовий струм.
+Це найтовщий провід у ровері, і саме йому найважче гнутися.</p>
+
+<h3 class="b">3 · Обмежувачі ходу обов'язкові</h3>
+<p>Пасивний шарнір крену без упорів означає, що на боковому схилі передня секція
+просто ляже набік і ровер стане на два колеса. Упори на ±20–30° — це не опція,
+а частина конструкції. Найпростіше — TPU-подушки, які ще й м'яко зупиняють.</p>
+
+<h3 class="k">Що я б дивився першим</h3>
+<p>Крен пасивний, з упорами, один шарнір. Він дає найбільше з найменшої кількості
+деталей і нічого не вимагає від прошивки. Тангаж і рискання можна додати пізніше —
+але тільки якщо вузол одразу спроєктований на два рознесені підшипники, бо переробити
+його потім = переробити весь центр ровера.</p>
+
+</div>
