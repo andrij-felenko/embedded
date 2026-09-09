@@ -1524,27 +1524,49 @@ load();drawTiles();render();
 
 ROVER = os.path.join(ROOT, "apps", "rover")
 
-# Вкладки міні-сайту ровера: (якір, назва, файл або None = заглушка)
+# Вкладки міні-сайту ровера: (якір, назва, файл або None, група)
+# групи: app — апарат, node — вузли, brd — плати
 ROVER_TABS = [
-    ("obrazy", "Образи",         "looks.html"),
-    ("korpus", "Устрій корпусу", "frame-layers.html"),
-    ("koleso", "Колесо",         "wheel-tilt.html"),
-    ("ruka",   "Роборука",       "arm.html"),
-    ("zhyv",   "Живлення",       "power.html"),
-    ("pult",   "Пульт",          "remote.html"),
-    ("platy",  "Схема плат",     None),
-    ("arch",   "Архітектура",    None),
-    ("ideya",  "Опис ідеї",      None),
+    ("obrazy", "Образи",         "looks.html",        "app"),
+    ("korpus", "Устрій корпусу", "frame-layers.html", "app"),
+    ("zhyv",   "Живлення",       "power.html",        "app"),
+    ("ideya",  "Опис ідеї",      None,                "app"),
+
+    ("koleso", "Колесо",         "wheel-tilt.html",   "node"),
+    ("ruka",   "Роборука",       "arm.html",          "node"),
+    ("pult",   "Пульт",          "remote.html",       "node"),
+
+    ("arch",   "Архітектура",    None,                "brd"),
+    ("platy",  "Схема плат",     None,                "brd"),
+    ("b1",     "1 · Привід",     None,                "brd"),
+    ("b2",     "2 · Навігація",  None,                "brd"),
+    ("b3",     "3 · Маршрути",   None,                "brd"),
+    ("b4",     "4 · Зв'язок",    None,                "brd"),
+    ("b5",     "5 · Камера",     None,                "brd"),
 ]
 ROVER_DEFAULT = "obrazy"
 
 ROVER_STUB = {
-    "platy": ("Схема плат",
-              "П'ять плат, хто з ким говорить, які шини й через що йде живлення."),
-    "arch":  ("Архітектура",
-              "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
     "ideya": ("Опис ідеї",
               "Що це за апарат, для чого, і який у нього список функцій."),
+    "arch":  ("Архітектура",
+              "Хто що рахує, які контури де живуть, і як діляться задачі між платами."),
+    "platy": ("Схема плат",
+              "Дерево зв'язків: хто з ким говорить, якими шинами й через що йде живлення."),
+    "b1":    ("Плата 1 · Привід",
+              "STM32. Енкодери, PWM на драйвери, PID швидкості кожного колеса, "
+              "міксер повороту. Найжорсткіший таймінг у ровері."),
+    "b2":    ("Плата 2 · Навігація",
+              "ESP32. IMU і компас, GNSS, ToF по периметру, одометрія, "
+              "маршрут по точках, failsafe. Віддає команди на привід."),
+    "b3":    ("Плата 3 · Маршрути",
+              "ESP32-S3 з PSRAM. Карта з радара, аналіз перешкод, планування шляху."),
+    "b4":    ("Плата 4 · Зв'язок",
+              "ESP32. Радіоканал з пультом, розбір команд, телеметрія назад. "
+              "Головна в дереві — решта плат висить на ній."),
+    "b5":    ("Плата 5 · Камера",
+              "ESP32. Відео по Wi-Fi, а коли Wi-Fi немає — обрізаний потік "
+              "через плату зв'язку низьким пріоритетом."),
 }
 
 VIEWPORT = '<meta name="viewport" content="width=device-width,initial-scale=1">\n'
@@ -1560,8 +1582,8 @@ def copy_rover(out_dir):
     stamp = __import__("datetime").datetime.now().strftime("%Y%m%d%H%M%S")
     n = 0
     for f in sorted(os.listdir(ROVER)):
-        if not f.lower().endswith(".html"):
-            continue
+        if not f.lower().endswith(".html") or f.lower() == "index.html":
+            continue  # index.html завжди генерується, а не копіюється
         with open(os.path.join(ROVER, f), encoding="utf-8") as fh:
             body = fh.read()
         if "http-equiv" not in body:
@@ -1573,9 +1595,13 @@ def copy_rover(out_dir):
         n += 1
 
     btns, panes = [], []
-    for key, label, src in ROVER_TABS:
+    prev_g = None
+    for key, label, src, grp in ROVER_TABS:
         live = bool(src) and os.path.exists(os.path.join(ROVER, src))
-        cls = "tab" + ("" if live else " tab-off")
+        cls = "tab g-" + grp + ("" if live else " tab-off")
+        if prev_g is not None and grp != prev_g:
+            cls += " gap"
+        prev_g = grp
         if key == ROVER_DEFAULT: cls += " on"
         btns.append('  <button class="%s" data-k="%s"%s>%s</button>'
                     % (cls, key, "" if live else ' title="поки порожньо"', label))
@@ -1627,9 +1653,17 @@ ROVER_SHELL = """<!doctype html>
   .tab{flex:0 0 auto;background:transparent;border:1px solid var(--line);border-radius:0;
        color:var(--dim);font:inherit;font-size:12.5px;line-height:1.3;padding:5px 10px;
        cursor:pointer;white-space:nowrap;transition:border-color .12s,color .12s}
-  .tab:hover{border-color:#4a5a66;color:var(--txt)}
-  .tab.on{border-color:var(--acc);color:var(--txt);background:#1e2831}
-  .tab-off{opacity:.45}
+  .tab.g-app{border-color:#2e3f4c;color:#8fa6b8}
+  .tab.g-node{border-color:#2c4030;color:#93b493}
+  .tab.g-brd{border-color:#43352a;color:#bda07f}
+  .tab.g-app:hover{border-color:#7fb3d5;color:#dbe7f0}
+  .tab.g-node:hover{border-color:#8fd18b;color:#dff0dd}
+  .tab.g-brd:hover{border-color:#d18b47;color:#f0e0cc}
+  .tab.g-app.on{border-color:#7fb3d5;color:#eaf3fa;background:#1b2833}
+  .tab.g-node.on{border-color:#8fd18b;color:#e9f7e7;background:#1a2a1e}
+  .tab.g-brd.on{border-color:#d18b47;color:#fbeedd;background:#2c2219}
+  .tab.gap{margin-left:14px}
+  .tab-off{opacity:.5}
   main{max-width:1120px;margin:0 auto}
   .pane{display:none}
   .pane.on{display:block}
@@ -1645,6 +1679,7 @@ ROVER_SHELL = """<!doctype html>
         -webkit-overflow-scrolling:touch;scrollbar-width:none}
     nav::-webkit-scrollbar{display:none}
     .tab{font-size:12px;padding:5px 9px}
+    .tab.gap{margin-left:9px}
     .stub{padding:56px 16px}
     .st{font-size:19px}
   }
